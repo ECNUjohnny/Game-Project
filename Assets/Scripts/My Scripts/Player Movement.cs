@@ -1,0 +1,66 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(CharacterController))]
+public class PlayerMove : MonoBehaviour
+{
+    public Transform cam; 
+    public float speed = 2f;
+    public float turnSpeed = 2f;
+    public float gravity = 9.8f;
+
+    private CharacterController controller;
+    private float verticalVelocity;
+    private float h = 0, v = 0;
+    private Animator animator;
+
+    void Start()
+    {
+        controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+
+        h = Input.GetKey(KeyCode.LeftShift) ? h * 2 : h;
+        v = Input.GetKey(KeyCode.LeftShift) ? v * 2 : v;
+
+        animator.SetFloat("InputX", h);
+        animator.SetFloat("InputY", v);
+
+        Vector3 camForward = cam.forward;
+        camForward.y = 0f; 
+        camForward.Normalize(); 
+
+        Vector3 playerForward = transform.forward;
+        playerForward.Normalize();
+        float check = Vector3.Dot(playerForward, camForward);
+
+        if (check > 0.09 && v != 0)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(camForward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
+        }
+
+        Vector3 moveDir = transform.forward * v + transform.right * h;
+
+        if (controller.isGrounded)
+        {
+            verticalVelocity = -0.5f;
+        }
+        else
+        {
+            verticalVelocity -= gravity * Time.deltaTime;
+        }
+
+        float tmp = Input.GetKey(KeyCode.LeftShift) ? speed * 1.4f : speed;
+
+        Vector3 velocity = moveDir * tmp;
+        velocity.y = verticalVelocity;
+        controller.Move(velocity * Time.deltaTime);
+    }
+}
