@@ -3,22 +3,20 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMove : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public Transform cam; 
     public float speed = 2f;
     public float turnSpeed = 2f;
     public float gravity = 9.8f;
-
     private CharacterController controller;
     private float verticalVelocity;
-    private float h = 0, v = 0;
-    private Animator animator;
+    public float h = 0;
+    public float v = 0;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -29,9 +27,6 @@ public class PlayerMove : MonoBehaviour
         h = Input.GetKey(KeyCode.LeftShift) ? h * 2 : h;
         v = Input.GetKey(KeyCode.LeftShift) ? v * 2 : v;
 
-        animator.SetFloat("InputX", h);
-        animator.SetFloat("InputY", v);
-
         Vector3 camForward = cam.forward;
         camForward.y = 0f; 
         camForward.Normalize(); 
@@ -40,7 +35,7 @@ public class PlayerMove : MonoBehaviour
         playerForward.Normalize();
         float check = Vector3.Dot(playerForward, camForward);
 
-        if (check > 0.09 && v != 0)
+        if (check > 0.09 && (v != 0 || Input.GetMouseButton(1)))
         {
             Quaternion targetRot = Quaternion.LookRotation(camForward);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
