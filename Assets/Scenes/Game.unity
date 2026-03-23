@@ -1590,7 +1590,7 @@ PrefabInstance:
     - target: {fileID: 95217205003396926, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 9abebdfdbf0aa34458d563ca941675d3, type: 2}
+      objectReference: {fileID: 9100000, guid: 26293ca9024e3b740853fc5e4bf6abac, type: 2}
     - target: {fileID: 95217205003396926, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
       propertyPath: m_CullingMode
       value: 1
@@ -1611,6 +1611,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1800371080893130, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2118575929}
+    - targetCorrespondingSourceObject: {fileID: 1800371080893130, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2118575931}
   m_SourcePrefab: {fileID: 100100000, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
 --- !u!1 &2101945321
 GameObject:
@@ -1623,6 +1626,7 @@ GameObject:
   - component: {fileID: 2101945322}
   - component: {fileID: 2101945324}
   - component: {fileID: 2101945323}
+  - component: {fileID: 2101945325}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: Untagged
@@ -1704,6 +1708,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2101945325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101945321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae8bfbbd1d4c41045855bd7674d3269a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalLocalPos: {x: 0, y: 0.1, z: -1.4}
+  aimLocalPos: {x: 0.42, y: 0.45, z: -0.575}
+  transitionSpeed: 10
+  bAiming: 0
 --- !u!4 &2118575922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4670764120559952, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
@@ -1779,6 +1799,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bAiming: 0
   bShooting: 0
+--- !u!114 &2118575931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986243737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RigLayers:
+  - m_Rig: {fileID: 0}
+    m_Active: 1
+  m_Effectors: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

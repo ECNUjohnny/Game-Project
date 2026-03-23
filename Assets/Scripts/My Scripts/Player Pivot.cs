@@ -144,11 +144,10 @@ public class Pivot : MonoBehaviour
 
             xRotation = Mathf.Clamp(xRotation, -75f, 75f);
 
-            
-
             yRotation += Input.GetAxis("Mouse X") * _mouseSense; 
-    
-            transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+
+            if (Input.GetMouseButton(1)) transform.localRotation = Quaternion.Euler(-xRotation, yRotation, 0f);
+            else transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
             // Yaw
         }
 
