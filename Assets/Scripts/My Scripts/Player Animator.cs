@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -11,6 +13,13 @@ public class PlayerAnimator : MonoBehaviour
     private Animator animator;
     private PlayerCombat combatScript;
     private PlayerMovement movementScript;
+    [SerializeField]
+    private Transform spineBone;
+    [SerializeField]
+    private Transform Camera;
+    private float maxUpAngle = -75f;
+    private float maxDownAngle = 75f;
+    public Vector3 rotationOffset;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -25,5 +34,23 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("InputY", movementScript.v);
         animator.SetBool("bAiming", combatScript.bAiming);
         animator.SetBool("bShooting", combatScript.bShooting);
+    }
+
+    void LateUpdate()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            float camAngle = Camera.localEulerAngles.x;
+            if (camAngle > 180f)
+            {
+                camAngle -= 360f;
+            }
+
+            camAngle = Mathf.Clamp(camAngle, maxUpAngle, maxDownAngle);
+
+            Quaternion aimRotation = Quaternion.Euler(camAngle + rotationOffset.x, rotationOffset.y, rotationOffset.z);
+
+            spineBone.localRotation *= aimRotation;
+        }
     }
 }

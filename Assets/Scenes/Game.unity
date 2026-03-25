@@ -1139,6 +1139,11 @@ Transform:
   - {fileID: 2101945322}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1434036526 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4416069579589446, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
+  m_PrefabInstance: {fileID: 2088146580}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1485729935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,7 +1595,7 @@ PrefabInstance:
     - target: {fileID: 95217205003396926, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 26293ca9024e3b740853fc5e4bf6abac, type: 2}
+      objectReference: {fileID: 9100000, guid: 9abebdfdbf0aa34458d563ca941675d3, type: 2}
     - target: {fileID: 95217205003396926, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
       propertyPath: m_CullingMode
       value: 1
@@ -1611,9 +1616,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1800371080893130, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2118575929}
-    - targetCorrespondingSourceObject: {fileID: 1800371080893130, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2118575931}
   m_SourcePrefab: {fileID: 100100000, guid: e169e4d9dbd157b498e582065a5f9302, type: 3}
 --- !u!1 &2101945321
 GameObject:
@@ -1785,6 +1787,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db89c1b9c5d32548a546822ee07fb3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spineBone: {fileID: 1434036526}
+  Camera: {fileID: 2101945322}
+  rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &2118575930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1799,22 +1804,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bAiming: 0
   bShooting: 0
---- !u!114 &2118575931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986243737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RigLayers:
-  - m_Rig: {fileID: 0}
-    m_Active: 1
-  m_Effectors: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
