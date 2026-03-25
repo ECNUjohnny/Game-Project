@@ -34,9 +34,10 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("InputY", movementScript.v);
         animator.SetBool("bAiming", combatScript.bAiming);
         animator.SetBool("bShooting", combatScript.bShooting);
+        //transform.position += new Vector3(0.1f, 0, 0);
     }
 
-    void LateUpdate()
+    /*void LateUpdate()
     {
         if (Input.GetMouseButton(1))
         {
@@ -52,5 +53,5 @@ public class PlayerAnimator : MonoBehaviour
 
             spineBone.localRotation *= aimRotation;
         }
-    }
+    }*/
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,15 @@ public class CameraMovement : MonoBehaviour
         bAiming = Input.GetMouseButton(1);
 
         Vector3 targetPos = bAiming ? aimLocalPos : normalLocalPos;
+
+        if (bAiming)
+        {
+            float camAngle = transform.eulerAngles.x;
+
+            if (camAngle > 180) camAngle -= 360; 
+        
+            if (camAngle < 0) targetPos.z += camAngle * 0.02f;
+        }
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, Time.deltaTime * transitionSpeed);
     }

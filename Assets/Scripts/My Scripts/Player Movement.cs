@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = 9.8f;
     private CharacterController controller;
     private float verticalVelocity;
+    private bool wasAiming;
     public float h = 0;
     public float v = 0;
 
@@ -28,14 +29,14 @@ public class PlayerMovement : MonoBehaviour
         v = Input.GetKey(KeyCode.LeftShift) ? v * 2 : v;
 
         Vector3 camForward = cam.forward;
-        camForward.y = 0f; 
+        if (!Input.GetMouseButton(1)) camForward.y = 0f; 
         camForward.Normalize(); 
 
         Vector3 playerForward = transform.forward;
         playerForward.Normalize();
         float check = Vector3.Dot(playerForward, camForward);
 
-        if (check > 0.09 && (v != 0 || Input.GetMouseButton(1)))
+        if ((check > 0.3 && v != 0) || Input.GetMouseButton(1))
         {
             Quaternion targetRot = Quaternion.LookRotation(camForward);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
@@ -57,5 +58,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = moveDir * tmp;
         velocity.y = verticalVelocity;
         controller.Move(velocity * Time.deltaTime);
+
+        wasAiming = Input.GetMouseButton(1);
     }
 }
