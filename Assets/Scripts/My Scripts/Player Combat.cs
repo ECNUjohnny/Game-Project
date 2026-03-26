@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEditor.Media;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool bAiming;
     public bool bShooting;
-    public bool bDeadEye;
+    private bool bDeadEye;
     private float TimeScale = 0.5f;
     private float defaultFixedDeltaTime;
     private float maxDeadEyeTime;
     private float currentTime;
+    public Image DeadEyeMeter;
     void Start()
     {
         bDeadEye = false;
@@ -35,11 +35,16 @@ public class PlayerCombat : MonoBehaviour
         {
             currentTime += Time.unscaledDeltaTime;
 
+            float ratio = 1.0f - currentTime / maxDeadEyeTime;
+            DeadEyeMeter.fillAmount = ratio; 
+
             if (currentTime > maxDeadEyeTime)
             {
                 DeadEye();
             }    
         }
+
+        if (!bDeadEye && DeadEyeMeter.fillAmount != 1.0f) DeadEyeMeter.fillAmount += Time.deltaTime / 10;
     }
 
     void DeadEye()
@@ -52,6 +57,8 @@ public class PlayerCombat : MonoBehaviour
             Time.fixedDeltaTime = defaultFixedDeltaTime * Time.timeScale;
             
             currentTime = 0;
+
+            DeadEyeMeter.fillAmount = 1.0f;
         }
         else
         {
