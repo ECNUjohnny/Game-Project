@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,13 +8,19 @@ public class PlayerMovement : MonoBehaviour
 {
     public Transform cam; 
     public float speed = 2f;
-    public float turnSpeed = 2f;
+    public float turnSpeed = 2f; //转向摄像机方向的速度
     public float gravity = 9.8f;
     private CharacterController controller;
     private float verticalVelocity;
     private bool wasAiming;
     public float h = 0;
     public float v = 0;
+    private float hRaw;
+    private float vRaw;
+    private float hTarget;
+    private float vTarget;
+    [SerializeField]
+    private float transitionSpeed = 5f;
 
     void Start()
     {
@@ -22,11 +29,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        hRaw = Input.GetAxis("Horizontal");
+        vRaw = Input.GetAxis("Vertical");
 
-        h = Input.GetKey(KeyCode.LeftShift) ? h * 2 : h;
-        v = Input.GetKey(KeyCode.LeftShift) ? v * 2 : v;
+        hTarget = Input.GetKey(KeyCode.LeftShift) && !Input.GetMouseButton(1) ? hRaw * 2.0f : hRaw;
+        vTarget = Input.GetKey(KeyCode.LeftShift) && !Input.GetMouseButton(1) ? vRaw * 2.0f : vRaw;
+
+        h = Mathf.Lerp(h, hTarget, Time.deltaTime * transitionSpeed);
+        v = Mathf.Lerp(v, vTarget, Time.deltaTime * transitionSpeed);
 
         Vector3 camForward = cam.forward;
         if (!Input.GetMouseButton(1)) camForward.y = 0f; 
@@ -42,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
         }
 
-        Vector3 moveDir = transform.forward * v + transform.right * h;
+        Vector3 moveDir = transform.forward * vRaw + transform.right * hRaw;
 
         if (controller.isGrounded)
         {
@@ -53,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             verticalVelocity -= gravity * Time.deltaTime;
         }
 
-        float tmp = Input.GetKey(KeyCode.LeftShift) ? speed * 1.4f : speed;
+        float tmp = Input.GetKey(KeyCode.LeftShift) ? speed * 2.4f : speed;
 
         Vector3 velocity = moveDir * tmp;
         velocity.y = verticalVelocity;

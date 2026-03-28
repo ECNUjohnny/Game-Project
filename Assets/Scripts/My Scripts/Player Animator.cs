@@ -9,7 +9,6 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerAnimator : MonoBehaviour
 {
-    // Start is called before the first frame update
     private Animator animator;
     private PlayerCombat combatScript;
     private PlayerMovement movementScript;
@@ -20,11 +19,13 @@ public class PlayerAnimator : MonoBehaviour
     private float maxUpAngle = -75f;
     private float maxDownAngle = 75f;
     public Vector3 rotationOffset;
+    public GameObject Aim;
     void Start()
     {
         animator = GetComponent<Animator>();
         combatScript = GetComponent<PlayerCombat>();
         movementScript = GetComponent<PlayerMovement>();
+        Aim.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,6 +35,8 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("InputY", movementScript.v);
         animator.SetBool("bAiming", combatScript.bAiming);
         animator.SetBool("bShooting", combatScript.bShooting);
+        if (Input.GetMouseButton(1)) Aim.SetActive(true);
+        else Aim.SetActive(false);
         //transform.position += new Vector3(0.1f, 0, 0);
     }
 

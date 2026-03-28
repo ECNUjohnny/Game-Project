@@ -17,7 +17,7 @@ public class Pivot : MonoBehaviour
     private bool _enableRotation = true;
 
     [SerializeField]
-    private float _mouseSense = 1.5f;
+    private float _mouseSense = 2.5f;
 
     [Space]
 
@@ -142,7 +142,8 @@ public class Pivot : MonoBehaviour
             // Pitch
             xRotation -= -Input.GetAxis("Mouse Y") * _mouseSense / 5;
 
-            xRotation = Mathf.Clamp(xRotation, -75f, 75f);
+            if (Input.GetMouseButton(1)) xRotation = Mathf.Clamp(xRotation, -50f, 50f);
+            else xRotation = Mathf.Clamp(xRotation, -75f, 75f);
 
             yRotation += Input.GetAxis("Mouse X") * _mouseSense; 
 
