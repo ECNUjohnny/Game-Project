@@ -13,12 +13,14 @@ public class PlayerCombat : MonoBehaviour
     private float maxDeadEyeTime;
     private float currentTime;
     public Image DeadEyeMeter;
+    public Material DeadEyeMaterial;
     void Start()
     {
         bDeadEye = false;
         defaultFixedDeltaTime = Time.fixedDeltaTime;
         maxDeadEyeTime = 10f;
         currentTime = 0;
+        DeadEyeMaterial.SetFloat("_ScanLine", 0);
     }
 
     // Update is called once per frame
