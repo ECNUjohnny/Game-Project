@@ -2411,6 +2411,8 @@ MonoBehaviour:
   bAiming: 0
   bShooting: 0
   DeadEyeMeter: {fileID: 1529318176}
+  DeadEyeMaterial: {fileID: 2100000, guid: 16ea20511f21e9140882cc34f255ef84, type: 2}
+  scanDuration: 0.3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

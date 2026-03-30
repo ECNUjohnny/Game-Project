@@ -1,5 +1,7 @@
 using System;
+using System.ComponentModel;
 using Unity.VisualScripting;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -8,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public Transform cam; 
     public float speed = 2f;
-    public float turnSpeed = 2f; //转向摄像机方向的速度
+    [Tooltip("The speed turn to the pos of the cam")]
+    public float turnSpeed = 2f; 
     public float gravity = 9.8f;
     private CharacterController controller;
     private float verticalVelocity;
@@ -20,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float hTarget;
     private float vTarget;
     [SerializeField]
+    [Tooltip("The speed for transforming walk to run")]
     private float transitionSpeed = 5f;
 
     void Start()

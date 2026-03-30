@@ -1,6 +1,6 @@
-using UnityEditor.Media;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -12,8 +12,13 @@ public class PlayerCombat : MonoBehaviour
     private float defaultFixedDeltaTime;
     private float maxDeadEyeTime;
     private float currentTime;
+    [Tooltip("Remain of the Dead Eye")]
     public Image DeadEyeMeter;
+    [Tooltip("Material used for DeadEye PostScreen")]
     public Material DeadEyeMaterial;
+    private Coroutine scanCoroutine;
+    [Tooltip("Existing time for the scanLine")]
+    public float scanDuration = 0.2f;
     void Start()
     {
         bDeadEye = false;
@@ -37,8 +42,7 @@ public class PlayerCombat : MonoBehaviour
         {
             currentTime += Time.unscaledDeltaTime;
 
-            float ratio = 1.0f - currentTime / maxDeadEyeTime;
-            DeadEyeMeter.fillAmount = ratio; 
+            DeadEyeMeter.fillAmount = 1.0f - currentTime / maxDeadEyeTime; 
 
             if (currentTime > maxDeadEyeTime)
             {
@@ -55,18 +59,39 @@ public class PlayerCombat : MonoBehaviour
         if (bDeadEye)
         {
             Time.timeScale = TimeScale;
-
             Time.fixedDeltaTime = defaultFixedDeltaTime * Time.timeScale;
             
             currentTime = 0;
-
             DeadEyeMeter.fillAmount = 1.0f;
+
+            if (scanCoroutine != null) StopCoroutine(scanCoroutine);
+            scanCoroutine = StartCoroutine(AnimateScanLine(0, 1.0f));
         }
         else
         {
             Time.timeScale = 1.0f;
-
             Time.fixedDeltaTime = defaultFixedDeltaTime;
+        
+            if (scanCoroutine != null) StopCoroutine(scanCoroutine);
+            scanCoroutine = StartCoroutine(AnimateScanLine(1f, 0f));
         }
     }
+
+    IEnumerator AnimateScanLine(float stVal, float enVal)
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < scanDuration)
+        {
+            elapsedTime += Time.unscaledDeltaTime * 2f;
+            float ratio = elapsedTime / scanDuration;
+            float currentVal = Mathf.Lerp(stVal, enVal, ratio);
+
+            DeadEyeMaterial.SetFloat("_ScanLine", currentVal);
+
+            yield return null;
+        }
+
+        DeadEyeMaterial.SetFloat("_ScanLine", enVal);
+    }   
 }
