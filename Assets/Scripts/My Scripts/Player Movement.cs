@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         playerForward.Normalize();
         float check = Vector3.Dot(playerForward, camForward);
 
-        if ((check > 0.3 && v != 0) || Input.GetMouseButton(1))
+        if ((check > 0.3 && vRaw != 0) || Input.GetMouseButton(1))
         {
             Quaternion targetRot = Quaternion.LookRotation(camForward);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
