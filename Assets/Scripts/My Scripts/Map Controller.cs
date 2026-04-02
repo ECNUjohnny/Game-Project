@@ -11,7 +11,7 @@ public class MinimapController : MonoBehaviour
 
     [Header("Map Setting")]
     [Tooltip("Ratio")]
-    public float mapScale = 2.0f;
+    public float mapScale = 4.0f;
 
     void Update()
     {

@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -35,6 +31,9 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("InputY", movementScript.v);
         animator.SetBool("bAiming", combatScript.bAiming);
         animator.SetBool("bShooting", combatScript.bShooting);
+        animator.SetBool("isGrounded", movementScript.isGrounded);
+        
+
         if (Input.GetMouseButton(1)) Aim.SetActive(true);
         else Aim.SetActive(false);
         //transform.position += new Vector3(0.1f, 0, 0);

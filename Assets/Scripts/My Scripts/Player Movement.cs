@@ -1,7 +1,3 @@
-using System;
-using System.ComponentModel;
-using Unity.VisualScripting;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -10,12 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
     public Transform cam; 
     public float speed = 2f;
-    [Tooltip("The speed turn to the pos of the cam")]
+    [Tooltip("The speed turning to the pos of the cam")]
     public float turnSpeed = 2f; 
-    public float gravity = 9.8f;
+    public float gravity = -9.8f;
+    public float jumpHeight = 2f;
+    public bool isGrounded;
+    public bool bJumping;
     private CharacterController controller;
     private float verticalVelocity;
-    private bool wasAiming;
     public float h = 0;
     public float v = 0;
     private float hRaw;
@@ -29,15 +27,24 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+    
+        isGrounded = true;
+
+        bJumping = false;
     }
 
     void Update()
     {
         hRaw = Input.GetAxis("Horizontal");
         vRaw = Input.GetAxis("Vertical");
+        isGrounded = controller.isGrounded;
 
-        hTarget = Input.GetKey(KeyCode.LeftShift) && !Input.GetMouseButton(1) ? hRaw * 2.0f : hRaw;
+        Debug.Log(controller.isGrounded);
+
+        hTarget = Input.GetKey(KeyCode.LeftShift) ? hRaw * 2.0f : hRaw;
         vTarget = Input.GetKey(KeyCode.LeftShift) && !Input.GetMouseButton(1) ? vRaw * 2.0f : vRaw;
+
+        if (Input.GetMouseButton(1)) hTarget = 0;
 
         h = Mathf.Lerp(h, hTarget, Time.deltaTime * transitionSpeed);
         v = Mathf.Lerp(v, vTarget, Time.deltaTime * transitionSpeed);
@@ -47,32 +54,36 @@ public class PlayerMovement : MonoBehaviour
         camForward.Normalize(); 
 
         Vector3 playerForward = transform.forward;
+        playerForward.y = 0;
         playerForward.Normalize();
         float check = Vector3.Dot(playerForward, camForward);
 
-        if ((check > 0.3 && vRaw != 0) || Input.GetMouseButton(1))
+        Quaternion targetRot = Quaternion.LookRotation(camForward);
+
+        if ((check > 0.3 && (vRaw != 0 || transform.forward.y != 0)) || (vRaw == 0 && Input.GetMouseButton(1)))
         {
-            Quaternion targetRot = Quaternion.LookRotation(camForward);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
         }
 
         Vector3 moveDir = transform.forward * vRaw + transform.right * hRaw;
 
-        if (controller.isGrounded)
-        {
-            verticalVelocity = -0.5f;
-        }
-        else
-        {
-            verticalVelocity -= gravity * Time.deltaTime;
-        }
-
         float tmp = Input.GetKey(KeyCode.LeftShift) ? speed * 2.4f : speed;
 
         Vector3 velocity = moveDir * tmp;
-        velocity.y = verticalVelocity;
-        controller.Move(velocity * Time.deltaTime);
 
-        wasAiming = Input.GetMouseButton(1);
+        if (isGrounded && !Input.GetKey(KeyCode.Space))
+        {
+            velocity.y = -0.5f;
+        }
+        else if (isGrounded && Input.GetKey(KeyCode.Space))
+        {
+            bJumping = true;
+
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
     }
 }
