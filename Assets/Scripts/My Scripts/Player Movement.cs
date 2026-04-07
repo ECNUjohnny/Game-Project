@@ -5,21 +5,22 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Transform cam; 
-    public float speed = 2f;
+    public float Speed = 2f;
     [Tooltip("The speed turning to the pos of the cam")]
     public float turnSpeed = 2f; 
-    public float gravity = -9.8f;
+    public float gravity = -19.8f;
     public float jumpHeight = 2f;
     public bool isGrounded;
     public bool bJumping;
     private CharacterController controller;
-    private float verticalVelocity;
     public float h = 0;
     public float v = 0;
     private float hRaw;
     private float vRaw;
     private float hTarget;
     private float vTarget;
+    private float Speedy;
+    public Vector3 velocity;
     [SerializeField]
     [Tooltip("The speed for transforming walk to run")]
     private float transitionSpeed = 5f;
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         vRaw = Input.GetAxis("Vertical");
         isGrounded = controller.isGrounded;
 
-        Debug.Log(controller.isGrounded);
+        if (isGrounded) bJumping = false;
 
         hTarget = Input.GetKey(KeyCode.LeftShift) ? hRaw * 2.0f : hRaw;
         vTarget = Input.GetKey(KeyCode.LeftShift) && !Input.GetMouseButton(1) ? vRaw * 2.0f : vRaw;
@@ -67,15 +68,17 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 moveDir = transform.forward * vRaw + transform.right * hRaw;
 
-        float tmp = Input.GetKey(KeyCode.LeftShift) ? speed * 2.4f : speed;
+        Speedy = velocity.y;
 
-        Vector3 velocity = moveDir * tmp;
+        velocity = Input.GetKey(KeyCode.LeftShift) ? 2.4f * Speed * moveDir : moveDir * Speed;
 
-        if (isGrounded && !Input.GetKey(KeyCode.Space))
+        velocity.y = Speedy;
+
+        if (isGrounded && !Input.GetKeyDown(KeyCode.Space))
         {
-            velocity.y = -0.5f;
+            velocity.y = -0.1f;
         }
-        else if (isGrounded && Input.GetKey(KeyCode.Space))
+        else if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             bJumping = true;
 
