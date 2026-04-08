@@ -33,7 +33,7 @@ public class DoorControl : MonoBehaviour
     {
         while (Quaternion.Angle(transform.rotation, targetRot) > 0.01f)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 1.0f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 2f);
         
             yield return null;
         }
