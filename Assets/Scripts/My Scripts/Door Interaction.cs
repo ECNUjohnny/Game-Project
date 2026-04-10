@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DoorControl))]
 public class DoorInteraction : MonoBehaviour
 {
     public DoorControl Script;
     public string prompt = "Prees 'E' to open the door";
     private bool isPlayerNearby = false;
+    private bool isDoorOpen = false;
+    private float time;
+    public float CloseDoor = 7.0f;
+
     void Update()
     {
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
@@ -14,11 +17,20 @@ public class DoorInteraction : MonoBehaviour
             Script.OpenTheDoor();
 
             UIManager.Instance.HideInteractionPrompt();
+
+            isDoorOpen = true;
         }
-        else if (!isPlayerNearby)
+
+        if (time > CloseDoor)
         {
-            Script.OpenTheDoor();
+            if (isDoorOpen) Script.OpenTheDoor();
+            
+            isDoorOpen = false;
+
+            time = 0;
         }
+
+        time += Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,8 +38,10 @@ public class DoorInteraction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNearby = true;
+
+            //Debug.Log(1);
             
-            UIManager.Instance.ShowInteractionPrompt(prompt);
+            if (!isDoorOpen) UIManager.Instance.ShowInteractionPrompt(prompt);
         }
     }
 
@@ -36,6 +50,8 @@ public class DoorInteraction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNearby = false;
+
+            //Script.OpenTheDoor();
             
             UIManager.Instance.HideInteractionPrompt();
         }
