@@ -36,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        hRaw = Input.GetAxis("Horizontal");
-        vRaw = Input.GetAxis("Vertical");
+        hRaw = Input.GetAxisRaw("Horizontal");
+        vRaw = Input.GetAxisRaw("Vertical");
         isGrounded = controller.isGrounded;
 
         if (isGrounded) bJumping = false;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33629821886219756}
   - component: {fileID: 23528156438368990}
   - component: {fileID: 64841125210347876}
+  - component: {fileID: 4540971010405487820}
   m_Layer: 0
   m_Name: SM_Bld_Church_01
   m_TagString: Untagged
@@ -35,6 +36,7 @@ Transform:
   - {fileID: 4926981585705886}
   - {fileID: 4892445851008374}
   - {fileID: 4686404985583184}
+  - {fileID: 8078348566203322108}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33629821886219756
@@ -109,6 +111,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d7704ebc5494f5c44ab2262fcca06241, type: 3}
+--- !u!205 &4540971010405487820
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134513023205410}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 10
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.3197976
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23528156438368990}
+    - renderer: {fileID: 23170404457389194}
+    - renderer: {fileID: 23743563763280130}
+    - renderer: {fileID: 23166872923016758}
+  - screenRelativeHeight: 0.06518342
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23166872923016758}
+    - renderer: {fileID: 6942056816940037523}
+  m_Enabled: 1
 --- !u!1 &1404303191809006
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,3 +485,74 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2916038, y: 2.538355, z: 0.17768432}
   m_Center: {x: -0.6458019, y: 1.3055278, z: -0.00000045448542}
+--- !u!1001 &8617275345208912151
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4688219364215310}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5146a78f90d41354b9e048f81986a8f3, type: 2}
+    - target: {fileID: 919132149155446097, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+      propertyPath: m_Name
+      value: SM_Bld_Church_01_Low
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+--- !u!23 &6942056816940037523 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+  m_PrefabInstance: {fileID: 8617275345208912151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8078348566203322108 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b2eeb6f751372094481fdff3bf9a9571, type: 3}
+  m_PrefabInstance: {fileID: 8617275345208912151}
+  m_PrefabAsset: {fileID: 0}

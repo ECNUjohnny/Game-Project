@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PlasticPipe.PlasticProtocol.Messages;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,6 +24,39 @@ public class BatchLODSetter : MonoBehaviour
             MeshRenderer parentRenderer = obj.GetComponent<MeshRenderer>();
 
             if (parentRenderer != null) lod0Renderers.Add(parentRenderer);
+
+            List<Renderer> lod1Renderers = new List<Renderer>();
+            foreach (Transform child in obj.transform)
+            {
+                if (child.name.EndsWith("_Low") || child.name.Contains("_Low"))
+                {
+                    MeshRenderer childRenderer = child.GetComponent<MeshRenderer>();
+                    if (childRenderer != null)
+                    {
+                        lod1Renderers.Add(childRenderer);
+                    }
+                }
+                else if (parentRenderer == null)
+                {
+                    MeshRenderer cRen = child.GetComponent<MeshRenderer>();
+                    if (cRen != null) lod0Renderers.Add(cRen);
+                }
+            }
+
+            LOD[] lods = new LOD[2];
+            
+          
+            lods[0] = new LOD(0.25f, lod0Renderers.ToArray());
+            
+            
+            lods[1] = new LOD(0.05f, lod1Renderers.ToArray());
+
+            lodGroup.SetLODs(lods);
+            lodGroup.RecalculateBounds(); 
+
+        
+            EditorUtility.SetDirty(obj);
+            successcnt++;
         }
     }
 }
