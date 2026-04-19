@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class BatchLODSetter : MonoBehaviour
 {
+
+    [MenuItem("Tools/一键为物体创建lod组件(_Low)")]
     public static void SetLod()
     {
         GameObject[] selectedObjects = Selection.gameObjects;
@@ -43,14 +45,23 @@ public class BatchLODSetter : MonoBehaviour
                 }
             }
 
-            LOD[] lods = new LOD[2];
+            LOD[] lods;
             
+            if (obj.transform.childCount > 0)
+            {
+                lods = new LOD[2];
           
-            lods[0] = new LOD(0.25f, lod0Renderers.ToArray());
+                lods[0] = new LOD(0.25f, lod0Renderers.ToArray());
             
-            
-            lods[1] = new LOD(0.05f, lod1Renderers.ToArray());
+                lods[1] = new LOD(0.1f, lod1Renderers.ToArray());
+            }
+            else
+            {
+                lods = new LOD[1];
 
+                lods[0] = new LOD(0.25f, lod0Renderers.ToArray());
+            }
+            
             lodGroup.SetLODs(lods);
             lodGroup.RecalculateBounds(); 
 
@@ -58,5 +69,7 @@ public class BatchLODSetter : MonoBehaviour
             EditorUtility.SetDirty(obj);
             successcnt++;
         }
+
+        Debug.Log("[{successcnt}] objects have set up the LOD kit");
     }
 }

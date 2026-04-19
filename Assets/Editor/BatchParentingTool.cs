@@ -1,48 +1,68 @@
 using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
-public class BatchParentingTool : EditorWindow
+public class AutoLoadLODTool : EditorWindow
 {
-    [MenuItem("Tools/一键批量归类子物体(匹配_Low)")]
-    public static void GroupLODs()
+    [MenuItem("Tools/从资源库自动抓取并挂载低模(_Low)")]
+    public static void LoadAndParentLODs()
     {
-        GameObject[] allSelected = Selection.gameObjects;
-        
-    
-        Dictionary<string, GameObject> mainBuildings = new Dictionary<string, GameObject>();
-        List<GameObject> lod1Objects = new List<GameObject>();
+        GameObject[] selectedObjects = Selection.gameObjects;
+        int successCount = 0;
 
-        foreach (var obj in allSelected)
+        foreach (GameObject parentObj in selectedObjects)
         {
-            if (obj.name.EndsWith("_Low"))
-                lod1Objects.Add(obj);
-            else
-                mainBuildings[obj.name] = obj;
-        }
-
-        int count = 0;
+            string cleanName = Regex.Replace(parentObj.name, @"\s*\(\d+\)$", "");
+            
     
-        foreach (var lod1 in lod1Objects)
-        {
-          
-            string parentName = lod1.name.Replace("_Low", "");
+            string targetLowName = cleanName + "_Low";
 
-            if (mainBuildings.ContainsKey(parentName))
+    
+            string[] guids = AssetDatabase.FindAssets(targetLowName + " t:Model");
+
+            if (guids.Length > 0)
             {
-                GameObject parentObj = mainBuildings[parentName];
+                string path = AssetDatabase.GUIDToAssetPath(guids[0]);
+              
+                GameObject lowModelAsset = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+
+                if (lowModelAsset != null)
+                {
+            
+                    GameObject lowInstance = (GameObject)PrefabUtility.InstantiatePrefab(lowModelAsset);
+                    
+            
+                    Undo.RegisterCreatedObjectUndo(lowInstance, "Auto Load LOD");
+                    
                 
-               
-                Undo.SetTransformParent(lod1.transform, parentObj.transform, "Batch Parent");
-                
-                lod1.transform.localPosition = Vector3.zero;
-                lod1.transform.localRotation = Quaternion.identity;
-                lod1.transform.localScale = Vector3.one;
-                
-                count++;
+                    Undo.SetTransformParent(lowInstance.transform, parentObj.transform, "Auto Load LOD");
+                    lowInstance.transform.localPosition = Vector3.zero;
+                    lowInstance.transform.localRotation = Quaternion.identity;
+                    
+
+                    MeshRenderer parentRenderer = parentObj.GetComponent<MeshRenderer>();
+                    MeshRenderer childRenderer = lowInstance.GetComponent<MeshRenderer>();
+
+                    if (parentRenderer != null)
+                    {
+                        Undo.RecordObject(childRenderer, "Sync Material");
+
+                        childRenderer.sharedMaterials = parentRenderer.sharedMaterials;
+                    }
+                    else
+                    {
+                        Debug.Log("[{parentObj.name}] does not have MeshRenderer");
+                    }
+
+                    successCount++;
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"在资源库找不到名为 [{targetLowName}] 的模型，已跳过 [{parentObj.name}]。");
             }
         }
 
-        Debug.Log($"成功将 {count} 个 LOD1 模型设置为对应建筑的子物体！");
+        Debug.Log($"抓取完成！成功为 {successCount} 个建筑自动生成并挂载了低模！");
     }
 }
