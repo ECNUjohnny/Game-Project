@@ -4,7 +4,7 @@ using UnityEditor;
 public class RandomCityGenerator : EditorWindow
 {
     public GameObject groundCube;
-    public string folderPath = "Assets/Models/Western Model"; 
+    public string folderPath = "Assets/Prefabs/Western/Buildings"; 
     public int spawnCount = 20;
     public Transform parentContainer; 
 
@@ -60,15 +60,22 @@ public class RandomCityGenerator : EditorWindow
         }
 
         // 获取地面的边界盒子大小
-        Bounds bounds = groundCollider.bounds;
+        Bounds bounds = groundCollider.bounds; 
         int successCount = 0;
 
-        for (int i = 0; i < spawnCount; i++)
+        for (int i = 0; i < spawnCount << 5; i++)
         {
 
             string randomGuid = guids[Random.Range(0, guids.Length)];
             string assetPath = AssetDatabase.GUIDToAssetPath(randomGuid);
             GameObject assetPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+            
+            if (assetPrefab.transform.childCount == 0) continue;
+
+            if (assetPrefab.name.Contains("SM_Bld_Large") || assetPrefab.name.Contains("Back") || assetPrefab.name.Contains("Front")) 
+            {
+                continue;
+            }
 
             if (assetPrefab != null)
             {
