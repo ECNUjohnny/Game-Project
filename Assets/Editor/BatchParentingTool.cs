@@ -17,6 +17,7 @@ public class AutoLoadLODTool : EditorWindow
     
             string targetLowName = cleanName + "_Low";
 
+            if (parentObj.transform.Find(targetLowName)) continue;
     
             string[] guids = AssetDatabase.FindAssets(targetLowName + " t:Model");
 

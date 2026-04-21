@@ -51,15 +51,15 @@ public class BatchLODSetter : MonoBehaviour
             {
                 lods = new LOD[2];
           
-                lods[0] = new LOD(0.25f, lod0Renderers.ToArray());
+                lods[0] = new LOD(0.20f, lod0Renderers.ToArray());
             
-                lods[1] = new LOD(0.1f, lod1Renderers.ToArray());
+                lods[1] = new LOD(0.05f, lod1Renderers.ToArray());
             }
             else
             {
                 lods = new LOD[1];
 
-                lods[0] = new LOD(0.25f, lod0Renderers.ToArray());
+                lods[0] = new LOD(0.20f, lod0Renderers.ToArray());
             }
             
             lodGroup.SetLODs(lods);
