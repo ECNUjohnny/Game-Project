@@ -71,7 +71,7 @@ public class BatchLODSetter : MonoBehaviour
             else
             {
                 lods = new LOD[1];
-                lods[0] = new LOD(0.25f, lod0Renderers.ToArray());
+                lods[0] = new LOD(0.2f, lod0Renderers.ToArray());
             }
             
             lodGroup.SetLODs(lods);
@@ -81,7 +81,6 @@ public class BatchLODSetter : MonoBehaviour
             successcnt++;
         }
 
-        // 修复了原先字符串没有加 $ 的问题，现在可以正确打印数量了
         Debug.Log($"[{successcnt}] 个物体已成功配置自适应 LOD 组件！");
     }
 }
