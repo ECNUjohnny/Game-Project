@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4255079855141148}
   - component: {fileID: 33569920930130706}
   - component: {fileID: 23436914962154940}
+  - component: {fileID: 5560165929397497428}
   m_Layer: 0
   m_Name: SM_Bld_TrainStation_Glass
   m_TagString: Untagged
@@ -25,12 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030005840567988}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0017061234, y: 1.7221055, z: 0.0488863}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4161801630874658}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33569920930130706
 MeshFilter:
@@ -51,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -81,6 +84,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!205 &5560165929397497428
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030005840567988}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: -0.0000009536743}
+  m_Size: 7.508787
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.22526361
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23436914962154940}
+  m_Enabled: 1
 --- !u!1 &1130908925558842
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +115,7 @@ GameObject:
   - component: {fileID: 33051738827993482}
   - component: {fileID: 23119004966801664}
   - component: {fileID: 64147180227541730}
+  - component: {fileID: 1847803045507021899}
   m_Layer: 0
   m_Name: SM_Bld_TrainStation_01
   m_TagString: Untagged
@@ -107,17 +130,19 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130908925558842}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4946893437145814}
   - {fileID: 4575565177199794}
   - {fileID: 4322567674408918}
   - {fileID: 4255079855141148}
   - {fileID: 4183020792385120}
+  - {fileID: 3377880587032781982}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33051738827993482
 MeshFilter:
@@ -138,6 +163,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -176,12 +202,43 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130908925558842}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f9ed51ac5bef6c949a365d3383afc0fc, type: 3}
+--- !u!205 &1847803045507021899
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130908925558842}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 2.460103, z: -0.0000009536743}
+  m_Size: 10.3261175
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.27255023
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23119004966801664}
+  - screenRelativeHeight: 0.07
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 0}
+  m_Enabled: 1
 --- !u!1 &1382526711075020
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +251,7 @@ GameObject:
   - component: {fileID: 33389335685086838}
   - component: {fileID: 23225266018996386}
   - component: {fileID: 64871871914968654}
+  - component: {fileID: 7838618940021954382}
   m_Layer: 0
   m_Name: SM_Bld_TrainStation_Tower
   m_TagString: Untagged
@@ -208,12 +266,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382526711075020}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.0309563, y: 4.201576, z: 0.04930687}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4161801630874658}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33389335685086838
 MeshFilter:
@@ -234,6 +293,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -272,12 +332,39 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382526711075020}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 492436408a093bd46a7270dabc81fe23, type: 3}
+--- !u!205 &7838618940021954382
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382526711075020}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.00000011920929, y: 3.346609, z: -0.0000010728836}
+  m_Size: 6.693218
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1333094
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23225266018996386}
+  m_Enabled: 1
 --- !u!1 &1474529350561778
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,6 +377,7 @@ GameObject:
   - component: {fileID: 33893309915941074}
   - component: {fileID: 23160925526035870}
   - component: {fileID: 3422370094128974300}
+  - component: {fileID: 6269645005497764005}
   m_Layer: 0
   m_Name: SM_Bld_TrainStation_Door_01
   m_TagString: Untagged
@@ -304,12 +392,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474529350561778}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.1190825, y: 0.17358646, z: 2.5361364}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4161801630874658}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33893309915941074
 MeshFilter:
@@ -330,6 +419,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -368,11 +458,38 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474529350561778}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1.3198127, y: 2.1199281, z: 0.18667784}
   m_Center: {x: -0.65989393, y: 1.0599641, z: -0.0000027827919}
+--- !u!205 &6269645005497764005
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474529350561778}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.6599397, y: 1.0599641, z: -0.00012485683}
+  m_Size: 2.1199281
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23160925526035870}
+  m_Enabled: 1
 --- !u!1 &1637420154135332
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +502,7 @@ GameObject:
   - component: {fileID: 33174222999547550}
   - component: {fileID: 23965196903733722}
   - component: {fileID: 65360459854649762}
+  - component: {fileID: 8144354756214241683}
   m_Layer: 0
   m_Name: SM_Bld_TrainStation_Door_02
   m_TagString: Untagged
@@ -399,12 +517,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1637420154135332}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.1190825, y: 0.17358646, z: -2.4317644}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4161801630874658}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33174222999547550
 MeshFilter:
@@ -425,6 +544,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -463,11 +583,38 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1637420154135332}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1.3198203, y: 2.1199281, z: 0.18667403}
   m_Center: {x: 0.65989774, y: 1.0599641, z: -0.00001238659}
+--- !u!205 &8144354756214241683
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637420154135332}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.65989774, y: 1.0599641, z: -0.000012382865}
+  m_Size: 2.1199281
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23965196903733722}
+  m_Enabled: 1
 --- !u!1 &1809716441539090
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +627,7 @@ GameObject:
   - component: {fileID: 33129602188558518}
   - component: {fileID: 23904885056481558}
   - component: {fileID: 64992697796664210}
+  - component: {fileID: 5122070770861885085}
   m_Layer: 0
   m_Name: SM_Bld_TrainStation_Cover
   m_TagString: Untagged
@@ -494,12 +642,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809716441539090}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 7.345831, y: 0.11365359, z: 0.094519615}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4161801630874658}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33129602188558518
 MeshFilter:
@@ -520,6 +669,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -558,9 +708,106 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809716441539090}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 0ba8b75f41194c5478aa48a15f2b8b83, type: 3}
+--- !u!205 &5122070770861885085
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809716441539090}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 1.8958886, z: -0.0000009536743}
+  m_Size: 5.0258865
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1507766
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23904885056481558}
+  m_Enabled: 1
+--- !u!1001 &2984229598545019765
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4161801630874658}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0363b46d437346a419e1ca86ea14de9e, type: 2}
+    - target: {fileID: 919132149155446097, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_Name
+      value: SM_Bld_TrainStation_01_Low
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+--- !u!4 &3377880587032781982 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2a84b9669be339c41883ce86e9d8d8f4, type: 3}
+  m_PrefabInstance: {fileID: 2984229598545019765}
+  m_PrefabAsset: {fileID: 0}
