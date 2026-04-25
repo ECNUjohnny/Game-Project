@@ -93,6 +93,8 @@ public class WeaponManager : MonoBehaviour
         // 同步更新数据
         GetComponent<PlayerShooter>().currentWeapon = weaponDatas[currentWeaponIndex];
 
-        GetComponent<PlayerShooter>().gunMuzzle = weaponDatas[currentWeaponIndex].weaponObj.GetComponent<weaponInstance>().muzzlePoint;
+        //if (weaponDatas[currentWeaponIndex].weaponObj.GetComponent<weaponInstance>() == null) Debug.Log("Null!");
+
+        GetComponent<PlayerShooter>().gunMuzzle = preloadedWeaponModels[currentWeaponIndex].GetComponent<weaponInstance>().muzzlePoint;
     }
 }

@@ -1,5 +1,7 @@
 using UnityEngine;
-using System.Collections; // 必须引入这一行才能使用协程
+using System.Collections;
+using System.Diagnostics;
+using System; // 必须引入这一行才能使用协程
 
 public class PlayerShooter : MonoBehaviour
 {
@@ -10,13 +12,13 @@ public class PlayerShooter : MonoBehaviour
     public LineRenderer tracerEffect; // 拖入刚才设置的 LineRenderer 物体
 
     [Header("设置")]
-    public float tracerDuration = 0.05f; // 线痕迹显示的时间（非常短）
+    public float tracerDuration = 0.5f; // 线痕迹显示的时间（非常短）
 
     private float nextFireTime = 0f;
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
             Shoot();
 
@@ -62,9 +64,31 @@ public class PlayerShooter : MonoBehaviour
         tracerEffect.SetPosition(1, end);
 
         // 3. 等待极短的时间 (例如 0.05秒)
-        yield return new WaitForSeconds(tracerDuration);
+        Color initColor = tracerEffect.startColor;
 
-        // 4. 关闭线渲染器，使其消失
+        Color endColor = tracerEffect.endColor;
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < tracerDuration)
+        {
+            float t = elapsedTime / tracerDuration;
+
+            float initAlpha = Mathf.Lerp(initColor.a, 0, t);
+            float endAlpha = Mathf.Lerp(endColor.a, 0, t);
+
+            tracerEffect.startColor = new Color(initColor.r, initColor.g, initColor.b, initAlpha);
+            tracerEffect.endColor = new Color(endColor.r, endColor.g, endColor.b, endAlpha);
+        
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
         tracerEffect.enabled = false;
+
+        tracerEffect.startColor = initColor;
+        tracerEffect.endColor = endColor;
+
     }
 }

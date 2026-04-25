@@ -13770,8 +13770,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.3861122
-        value: 0.1840744
+        time: 0.14316177
+        value: 0.1293335
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -86017,7 +86017,7 @@ MonoBehaviour:
   playerCamera: {fileID: 2101945324}
   gunMuzzle: {fileID: 0}
   tracerEffect: {fileID: 527109078}
-  tracerDuration: 0.05
+  tracerDuration: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponObj: {fileID: 1908759806999368, guid: 146c5256fc521374c91ca33fc98e9603, type: 3}
   ispistol: 1
   damage: 20
-  fireRate: 0.1
+  fireRate: 0.5
   range: 200
   magSize: 30
   recoilForce: 1.5
