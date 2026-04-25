@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
         Quaternion targetRot = Quaternion.LookRotation(camForward);
 
-        if ((check > 0.01 && (vRaw != 0 || transform.forward.y != 0)) || (vRaw == 0 && Input.GetMouseButton(1)))
+        if (!Input.GetKey(KeyCode.T) && ((check > 0.01 && (vRaw != 0 || transform.forward.y != 0)) || (vRaw == 0 && Input.GetMouseButton(1))))
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
         }

@@ -142,7 +142,7 @@ public class Pivot : MonoBehaviour
             // Pitch
             xRotation -= -Input.GetAxis("Mouse Y") * _mouseSense / 5;
 
-            if (Input.GetMouseButton(1)) xRotation = Mathf.Clamp(xRotation, -50f, 50f);
+            if (Input.GetMouseButton(1)) xRotation = Mathf.Clamp(xRotation, -35f, 35f);
             else xRotation = Mathf.Clamp(xRotation, -75f, 75f);
 
             yRotation += Input.GetAxis("Mouse X") * _mouseSense; 
