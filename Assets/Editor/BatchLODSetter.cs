@@ -33,7 +33,7 @@ public class BatchLODSetter : MonoBehaviour
                 Undo.RecordObject(lodGroup, "覆盖现有 LODGroup");
             }
 
-            List<Renderer> lod0Renderers = new List<Renderer>();
+            List<Renderer> lod0Renderers = new();
             MeshRenderer parentRenderer = obj.GetComponent<MeshRenderer>();
             if (parentRenderer != null) lod0Renderers.Add(parentRenderer);
 

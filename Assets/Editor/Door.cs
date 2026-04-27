@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Text.RegularExpressions;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class Door : MonoBehaviour
 {
@@ -24,6 +25,19 @@ public class Door : MonoBehaviour
             obj.isStatic = false;
 
             obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+            if (!obj.TryGetComponent(out LODGroup lod))
+            {
+                Undo.AddComponent<LODGroup>(obj);
+
+                LOD[] lods = new LOD[1];
+
+                List<Renderer> lst = new();
+
+                lst.Add(obj.GetComponent<MeshRenderer>());
+
+                lods[0] = new LOD(0.2f, lst.ToArray());
+            }
 
             continue;
 

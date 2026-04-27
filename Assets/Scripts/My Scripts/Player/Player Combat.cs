@@ -8,7 +8,7 @@ public class PlayerCombat : MonoBehaviour
     public bool bAiming;
     public bool bShooting;
     private bool bDeadEye;
-    private float TimeScale = 0.5f;
+    private float TimeScale = 0.35f;
     private float defaultFixedDeltaTime;
     private float maxDeadEyeTime;
     private float currentTime;

@@ -9,12 +9,17 @@ public class PlayerShooter : MonoBehaviour
     public WeaponData currentWeapon;
     public Camera playerCamera;
     public Transform gunMuzzle;       // 枪口位置
-    public LineRenderer tracerEffect; // 拖入刚才设置的 LineRenderer 物体
+    public GameObject trace;  
 
     [Header("设置")]
     public float tracerDuration = 0.5f; // 线痕迹显示的时间（非常短）
 
     private float nextFireTime = 0f;
+
+    void Start()
+    {
+        nextFireTime = Time.time + 0.2f;
+    }
 
     void Update()
     {
@@ -49,46 +54,9 @@ public class PlayerShooter : MonoBehaviour
         }
 
         // 核心视觉逻辑：启动协程绘制线段
-        StartCoroutine(RenderTracerEffect(visualStartPoint, visualEndPoint));
+        GameObject newTrace = Instantiate(trace);
+
+        newTrace.GetComponent<TracerBehavior>().Init(visualStartPoint, visualEndPoint);
     }
 
-    // 协程：控制线段的生成和快速消失
-    IEnumerator RenderTracerEffect(Vector3 start, Vector3 end)
-    {
-        // 1. 启用线渲染器
-        tracerEffect.enabled = true;
-
-        // 2. 设置线的起点 (索引0) 和终点 (索引1)
-        tracerEffect.SetPosition(0, start);
-        
-        tracerEffect.SetPosition(1, end);
-
-        // 3. 等待极短的时间 (例如 0.05秒)
-        Color initColor = tracerEffect.startColor;
-
-        Color endColor = tracerEffect.endColor;
-
-        float elapsedTime = 0;
-
-        while (elapsedTime < tracerDuration)
-        {
-            float t = elapsedTime / tracerDuration;
-
-            float initAlpha = Mathf.Lerp(initColor.a, 0, t);
-            float endAlpha = Mathf.Lerp(endColor.a, 0, t);
-
-            tracerEffect.startColor = new Color(initColor.r, initColor.g, initColor.b, initAlpha);
-            tracerEffect.endColor = new Color(endColor.r, endColor.g, endColor.b, endAlpha);
-        
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-
-        tracerEffect.enabled = false;
-
-        tracerEffect.startColor = initColor;
-        tracerEffect.endColor = endColor;
-
-    }
 }
