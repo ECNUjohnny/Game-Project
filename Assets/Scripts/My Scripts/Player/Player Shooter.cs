@@ -6,9 +6,13 @@ using System; // 必须引入这一行才能使用协程
 public class PlayerShooter : MonoBehaviour
 {
     [Header("引用")]
+
     public WeaponData currentWeapon;
+
     public Camera playerCamera;
+
     public Transform gunMuzzle;       // 枪口位置
+
     public GameObject trace;  
 
     [Header("设置")]
