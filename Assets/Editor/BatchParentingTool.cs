@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Text.RegularExpressions;
+using UnityEditor.Animations;
 
 public class AutoLoadLODTool : EditorWindow
 {

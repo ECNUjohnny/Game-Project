@@ -26,9 +26,9 @@ public class Door : MonoBehaviour
 
             obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-            if (!obj.TryGetComponent(out LODGroup lod))
+            if (!obj.TryGetComponent(out LODGroup lod) || lod.size == 4)
             {
-                Undo.AddComponent<LODGroup>(obj);
+                lod = Undo.AddComponent<LODGroup>(obj);
 
                 LOD[] lods = new LOD[1];
 
@@ -37,9 +37,11 @@ public class Door : MonoBehaviour
                 lst.Add(obj.GetComponent<MeshRenderer>());
 
                 lods[0] = new LOD(0.2f, lst.ToArray());
+
+                lod.SetLODs(lods);
             }
 
-            continue;
+            //continue;
 
             BoxCollider[] boxColliders = obj.GetComponents<BoxCollider>();
 
