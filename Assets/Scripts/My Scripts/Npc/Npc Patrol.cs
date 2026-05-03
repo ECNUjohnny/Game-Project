@@ -8,22 +8,29 @@ public class OptimizedWanderNPC : MonoBehaviour
 {
     [Header("游荡设置")]
     public float wanderRadius = 25f; // 游荡半径
-    public float wanderTimer = 5f;   // 停顿时间（发呆多久再走）
+    public float wanderTimer = 8f;   // 停顿时间（发呆多久再走）
+
+    public float maxDis = 100f; // 最远可以走多远
 
     [Header("性能优化设置 (LOD)")]
     public Transform player;         // 玩家的 Transform
-    public float wakeUpDistance = 90f; // 玩家靠近多远时唤醒 NPC
+    public float wakeUpDistance = 130f; // 玩家靠近多远时唤醒 NPC
 
     private NavMeshAgent agent;
     private Animator animator;
     private float timer;
     private bool isSleeping = false;
 
+    private Vector3 originPos;
+
+    private Vector3 targetPos;
+
     void Start()
     {
         // 获取组件
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        originPos = transform.position;
 
         // 如果没有手动拖拽玩家，尝试自动寻找 (尽量在面板拖拽，FindTag 比较耗性能)
         if (player == null)
@@ -85,16 +92,36 @@ public class OptimizedWanderNPC : MonoBehaviour
         Vector3 randDirection = Random.insideUnitSphere * dist;
         randDirection += origin;
 
+        targetPos = randDirection;
+
+        float dis = Vector3.Distance(targetPos, originPos);
+
         NavMeshHit navHit;
-        
-        if (NavMesh.SamplePosition(randDirection, out navHit, dist, layermask))
+
+        for (int i = 1; i <= 3; i++)
         {
-            return navHit.position;
+            targetPos = transform.position + Random.insideUnitSphere * dist;
+
+            if (Vector3.Distance(targetPos, originPos) <= maxDis)
+            {
+                if (NavMesh.SamplePosition(targetPos, out navHit, dist, layermask))
+                {
+                    return navHit.position;
+                }
+            }
+
+            else
+            {
+                Vector3 returnPos = originPos + Random.insideUnitSphere * dist * 0.5f;
+
+                if (NavMesh.SamplePosition(returnPos, out navHit, dist, layermask))
+                {
+                    return navHit.position;
+                }
+            }
         }
-        else
-        {
-            return origin;
-        }
+    
+        return transform.position;
     }
 
    
