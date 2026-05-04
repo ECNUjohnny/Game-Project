@@ -6,19 +6,33 @@ public class PlayerCombat : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool bAiming;
+    
     public bool bShooting;
+    
     private bool bDeadEye;
+    
     private float TimeScale = 0.35f;
+    
     private float defaultFixedDeltaTime;
+    
     private float maxDeadEyeTime;
+    
     private float currentTime;
+    
     [Tooltip("Remain of the Dead Eye")]
+    
     public Image DeadEyeMeter;
+    
     [Tooltip("Material used for DeadEye PostScreen")]
+    
     public Material DeadEyeMaterial;
+    
     private Coroutine scanCoroutine;
+    
     [Tooltip("Existing time for the scanLine")]
+    
     public float scanDuration = 0.2f;
+    
     void Start()
     {
         bDeadEye = false;

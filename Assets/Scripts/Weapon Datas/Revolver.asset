@@ -17,7 +17,7 @@ MonoBehaviour:
   ispistol: 1
   damage: 20
   fireRate: 0.5
-  range: 200
+  range: 50
   magSize: 30
   recoilForce: 1.5
   muzzleFlash: {fileID: 0}

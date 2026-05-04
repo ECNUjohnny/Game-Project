@@ -5,7 +5,7 @@ using System; // 必须引入这一行才能使用协程
 
 public class PlayerShooter : MonoBehaviour
 {
-    [Header("引用")]
+    [Header("Setting")]
 
     public WeaponData currentWeapon;
 
@@ -15,10 +15,13 @@ public class PlayerShooter : MonoBehaviour
 
     public GameObject trace;  
 
-    [Header("设置")]
+    [Header("Visual Effect")]
     public float tracerDuration = 0.5f; // 线痕迹显示的时间（非常短）
 
     private float nextFireTime = 0f;
+
+    public GameObject bloodEffect;
+
 
     void Start()
     {
@@ -49,7 +52,35 @@ public class PlayerShooter : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, currentWeapon.range))
         {
             visualEndPoint = hitInfo.point;
-            // 处理伤害逻辑...
+
+            
+            if (hitInfo.collider.TryGetComponent<NpcHealth>(out var npcHealth))
+            {
+                npcHealth.TakeDamage(currentWeapon.damage);
+
+                if (bloodEffect != null)
+                {
+                    GameObject blood = Instantiate(bloodEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                
+                    Destroy(blood, 2f);
+                }
+            }
+            else
+            {
+                
+                if (hitInfo.collider.TryGetComponent<DamageForwarder>(out var forwarder))
+                {
+                    forwarder.TakeDamage(currentWeapon.damage);
+
+                    if (bloodEffect != null)
+                    {
+                        GameObject blood = Instantiate(bloodEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                
+                        Destroy(blood, 2f);
+                    }
+                }
+            }
+
         }
         else
         {

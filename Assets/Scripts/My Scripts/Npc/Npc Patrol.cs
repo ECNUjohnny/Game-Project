@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.AI;
-
-// 确保物体上一定有这些组件
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
-public class OptimizedWanderNPC : MonoBehaviour
+
+// 确保物体上一定有这些组件
+[RequireComponent(typeof(NpcHealth))]
+public class NpcMovement : MonoBehaviour
 {
+    private static readonly int SpeedHash = Animator.StringToHash("Speed");
     [Header("游荡设置")]
     public float wanderRadius = 25f; // 游荡半径
     public float wanderTimer = 8f;   // 停顿时间（发呆多久再走）
@@ -14,9 +16,10 @@ public class OptimizedWanderNPC : MonoBehaviour
 
     [Header("性能优化设置 (LOD)")]
     public Transform player;         // 玩家的 Transform
+    
     public float wakeUpDistance = 130f; // 玩家靠近多远时唤醒 NPC
 
-    private NavMeshAgent agent;
+    private NavMeshAgent agent; // 寻路系统
     private Animator animator;
     private float timer;
     private bool isSleeping = false;
@@ -25,12 +28,15 @@ public class OptimizedWanderNPC : MonoBehaviour
 
     private Vector3 targetPos;
 
+    private NpcHealth healthSystem;
+
     void Start()
     {
         // 获取组件
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         originPos = transform.position;
+        healthSystem = GetComponent<NpcHealth>();
 
         // 如果没有手动拖拽玩家，尝试自动寻找 (尽量在面板拖拽，FindTag 比较耗性能)
         if (player == null)
@@ -46,13 +52,32 @@ public class OptimizedWanderNPC : MonoBehaviour
             }
         }
 
+        healthSystem.OnDeath += Stop;
         // 初始化计时器
         timer = wanderTimer; 
+    }
+
+    private void Stop()
+    {
+        if (agent.enabled)
+        {
+            agent.isStopped = true;
+            agent.enabled = false;
+        }
     }
 
     void Update()
     {
         if (player == null) return;
+
+        if (healthSystem.isDead)
+        {
+            animator.SetFloat(SpeedHash, 0);
+            
+            animator.enabled = false;
+
+            return;
+        }
 
         
         float sqrDistToPlayer = (transform.position - player.position).sqrMagnitude;
@@ -127,49 +152,50 @@ public class OptimizedWanderNPC : MonoBehaviour
    
     private void UpdateAnimator()
     {
+        if (healthSystem.isDead) return;
+        
         if (animator != null && agent.enabled)
         {
-            
             animator.SetFloat("Speed", agent.velocity.magnitude);
         }
     }
 
-    // 休眠机制：冻结寻路和动画计算
+   
     private void Sleep()
     {
-        if (isSleeping) return; // 避免重复调用
+        if (isSleeping) return; 
 
         isSleeping = true;
 
         // 停止寻路
         if (agent.enabled) 
         {
-            agent.isStopped = true; // 先刹车
-            agent.enabled = false;  // 再关组件
+            agent.isStopped = true;
+            agent.enabled = false;  
         }
 
-        // 可选：你甚至可以关掉 Animator 彻底省性能 (如果你不介意他们突然定住的话)
+
         if (animator != null)
         {
             animator.enabled = false; 
         }
     }
 
-    // 唤醒机制：恢复寻路和动画
+    
     private void WakeUp()
     {
-        if (!isSleeping) return; // 避免重复调用
+        if (!isSleeping) return; 
 
         isSleeping = false;
 
-        // 恢复寻路
+        
         if (!agent.enabled)
         {
             agent.enabled = true;
             agent.isStopped = false;
         }
 
-        // 恢复 Animator
+        
         if (animator != null)
         {
             animator.enabled = true;
