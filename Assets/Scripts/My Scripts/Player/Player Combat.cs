@@ -5,9 +5,11 @@ using System.Collections;
 public class PlayerCombat : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool bAiming;
+    public bool[] bAiming = new bool[10];
     
     public bool bShooting;
+
+    public int weaponType;
     
     private bool bDeadEye;
     
@@ -36,17 +38,30 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         bDeadEye = false;
+        
         defaultFixedDeltaTime = Time.fixedDeltaTime;
+        
         maxDeadEyeTime = 10f;
+        
         currentTime = 0;
+        
         DeadEyeMaterial.SetFloat("_ScanLine", 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        bAiming = Input.GetMouseButton(1);
+        if (Input.GetMouseButton(1))
+        {
+            bAiming[weaponType] = true;
+        }
+        else
+        {
+            for (int i = 1; i <= 9; i++) bAiming[i] = false;
+        }
+        
         bShooting = Input.GetMouseButton(0);
+        
         if (Input.GetKeyDown(KeyCode.CapsLock))
         {
             DeadEye();

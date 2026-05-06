@@ -2,17 +2,26 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
+[RequireComponent(typeof(PlayerCombat))]
 public class WeaponManager : MonoBehaviour
 {
     [Header("配置数据")]
+    
     public List<WeaponData> weaponDatas; // 在 Inspector 里拖入你的武器数据 (ScriptableObject)
+    
     public Transform pistolSlot;       // 手部的挂载点
 
     public Transform rifleSlot;
+
+    public int weaponType;
+
+    public Transform rifleAimSlot;
     // 这个列表用来存储【已经生成出来】的实际 GameObject 模型
     private readonly List<GameObject> preloadedWeaponModels = new();
     
     private int currentWeaponIndex = 0;
+
+    private PlayerCombat playerCombat;
 
     private GameObject weaponInstance;
 
@@ -20,6 +29,8 @@ public class WeaponManager : MonoBehaviour
     {
         // 游戏一开始，执行预加载
         PreloadAllWeapons();
+
+        playerCombat = GetComponent<PlayerCombat>();
     }
 
     void PreloadAllWeapons()
@@ -87,6 +98,10 @@ public class WeaponManager : MonoBehaviour
         
         // 更新索引并显示新武器
         currentWeaponIndex = index;
+
+        weaponType = weaponDatas[currentWeaponIndex].type;
+
+        playerCombat.weaponType = weaponType;
         
         preloadedWeaponModels[currentWeaponIndex].SetActive(true);
 

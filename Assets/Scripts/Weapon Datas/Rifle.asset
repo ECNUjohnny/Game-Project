@@ -15,6 +15,7 @@ MonoBehaviour:
   weaponName: Rifle
   weaponObj: {fileID: 1191095969629160, guid: f8179cff3ce8de647b569f1f9f134767, type: 3}
   ispistol: 0
+  type: 2
   damage: 20
   fireRate: 0.1
   range: 60

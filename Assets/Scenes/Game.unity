@@ -75601,6 +75601,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3999c925c6373d46b1aeafc22f7cb0e, type: 3}
+--- !u!1 &1723491829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1723491830}
+  m_Layer: 0
+  m_Name: Gun Slot Rifle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1723491830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723491829}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.53285146, y: 0.5612824, z: -0.4360066, w: 0.4592709}
+  m_LocalPosition: {x: 0.108, y: 0.04, z: -0.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4584943059022442}
+  m_LocalEulerAnglesHint: {x: 0, y: 101.416, z: -87.023}
 --- !u!1001 &1723524649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96797,6 +96828,7 @@ Transform:
   - {fileID: 4903161278988846}
   - {fileID: 4995877131020680}
   - {fileID: 287295166375889869}
+  - {fileID: 1723491830}
   m_Father: {fileID: 4804994422385814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4588739674138056
@@ -98133,8 +98165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667395fc4c6abcf4faa7b4eaa8a64850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bAiming: 0
+  bAiming: 00000000000000000000
   bShooting: 0
+  weaponType: 0
   DeadEyeMeter: {fileID: 1529318176}
   DeadEyeMaterial: {fileID: 2100000, guid: 16ea20511f21e9140882cc34f255ef84, type: 2}
   scanDuration: 0.3
@@ -98213,6 +98246,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a55d3e3ed2151d4a903f8b856fa4a4c, type: 2}
   pistolSlot: {fileID: 287295166375889869}
   rifleSlot: {fileID: 807499688}
+  weaponType: 0
+  rifleAimSlot: {fileID: 1723491830}
 --- !u!114 &6140332653301960463
 MonoBehaviour:
   m_ObjectHideFlags: 0
