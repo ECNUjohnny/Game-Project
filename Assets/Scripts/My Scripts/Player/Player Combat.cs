@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerCombat : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool[] bAiming = new bool[10];
+    public bool bAiming;
     
     public bool bShooting;
 
@@ -51,16 +51,11 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(1))
-        {
-            bAiming[weaponType] = true;
-        }
-        else
-        {
-            for (int i = 1; i <= 9; i++) bAiming[i] = false;
-        }
+        bAiming = Input.GetMouseButton(1);
         
         bShooting = Input.GetMouseButton(0);
+
+        //Debug.Log(weaponType);
         
         if (Input.GetKeyDown(KeyCode.CapsLock))
         {

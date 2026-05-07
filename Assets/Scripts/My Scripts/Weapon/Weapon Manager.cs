@@ -27,10 +27,12 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
+        playerCombat = GetComponent<PlayerCombat>();
+        
         // 游戏一开始，执行预加载
         PreloadAllWeapons();
 
-        playerCombat = GetComponent<PlayerCombat>();
+        //playerCombat = GetComponent<PlayerCombat>();
     }
 
     void PreloadAllWeapons()
@@ -54,10 +56,14 @@ public class WeaponManager : MonoBehaviour
             preloadedWeaponModels.Add(weaponInstance);
         }
 
+        //Debug.Log(preloadedWeaponModels.Count);
+
         // 初始化完成后，默认掏出第一把武器
         if (preloadedWeaponModels.Count > 0)
         {
             EquipWeapon(0);
+
+            //Debug.Log("Yes");
         }
     }
 
@@ -67,6 +73,21 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SwitchToNextWeapon();
+        }
+
+        if (weaponType == 2 && Input.GetMouseButton(1))
+        {
+            preloadedWeaponModels[currentWeaponIndex].transform.SetParent(rifleAimSlot);
+
+            preloadedWeaponModels[currentWeaponIndex].transform.localPosition = Vector3.zero;
+            preloadedWeaponModels[currentWeaponIndex].transform.localRotation = Quaternion.identity;
+        }
+        else if (weaponType == 2)
+        {
+            preloadedWeaponModels[currentWeaponIndex].transform.SetParent(rifleSlot);
+
+            preloadedWeaponModels[currentWeaponIndex].transform.localPosition = Vector3.zero;
+            preloadedWeaponModels[currentWeaponIndex].transform.localRotation = Quaternion.identity;
         }
     }
 
@@ -88,6 +109,8 @@ public class WeaponManager : MonoBehaviour
         // 4. 同步更新你的射击脚本中的数据！
         // 这样你的射击脚本就会使用新武器的射速和伤害了
         GetComponent<PlayerShooter>().currentWeapon = weaponDatas[currentWeaponIndex];
+
+        EquipWeapon(currentWeaponIndex);
     }
 
     // 提供一个按指定索引装备武器的方法（比如用于按数字键 1,2,3 切枪）
@@ -99,9 +122,11 @@ public class WeaponManager : MonoBehaviour
         // 更新索引并显示新武器
         currentWeaponIndex = index;
 
+        //Debug.Log(1);
+
         weaponType = weaponDatas[currentWeaponIndex].type;
 
-        playerCombat.weaponType = weaponType;
+        playerCombat.weaponType = weaponDatas[currentWeaponIndex].type;
         
         preloadedWeaponModels[currentWeaponIndex].SetActive(true);
 
@@ -110,6 +135,6 @@ public class WeaponManager : MonoBehaviour
 
         //if (weaponDatas[currentWeaponIndex].weaponObj.GetComponent<weaponInstance>() == null) Debug.Log("Null!");
 
-        GetComponent<PlayerShooter>().gunMuzzle = preloadedWeaponModels[currentWeaponIndex].GetComponent<weaponInstance>().muzzlePoint;
+        GetComponent<PlayerShooter>().gunMuzzle = preloadedWeaponModels[currentWeaponIndex].GetComponent<WeaponInstance>().muzzlePoint;
     }
 }

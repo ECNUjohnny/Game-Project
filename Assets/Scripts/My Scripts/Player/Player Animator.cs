@@ -47,9 +47,7 @@ public class PlayerAnimator : MonoBehaviour
         
         animator.SetFloat("InputY", movementScript.v);
         
-        animator.SetBool("bAiming1", combatScript.bAiming[1]);
-
-        animator.SetBool("bAiming2", combatScript.bAiming[2]);
+        animator.SetBool("bAiming", combatScript.bAiming);
         
         animator.SetBool("bShooting", combatScript.bShooting);
         
@@ -58,6 +56,8 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("isGrounded", movementScript.isGrounded);
         
         animator.SetFloat("SpeedY", movementScript.velocity.y);
+
+        animator.SetInteger("weaponType", combatScript.weaponType);
 
         
         if (Input.GetMouseButton(1)) Aim.SetActive(true);
