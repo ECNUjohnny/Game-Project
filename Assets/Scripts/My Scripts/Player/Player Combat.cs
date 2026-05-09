@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent(typeof(PlayerShooter))]
 public class PlayerCombat : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -20,6 +21,8 @@ public class PlayerCombat : MonoBehaviour
     private float maxDeadEyeTime;
     
     private float currentTime;
+
+    private PlayerShooter shooter;
     
     [Tooltip("Remain of the Dead Eye")]
     
@@ -44,6 +47,8 @@ public class PlayerCombat : MonoBehaviour
         maxDeadEyeTime = 10f;
         
         currentTime = 0;
+
+        shooter = GetComponent<PlayerShooter>();
         
         DeadEyeMaterial.SetFloat("_ScanLine", 0);
     }
@@ -53,7 +58,7 @@ public class PlayerCombat : MonoBehaviour
     {
         bAiming = Input.GetMouseButton(1);
         
-        bShooting = Input.GetMouseButton(0);
+        bShooting = Input.GetMouseButton(0) && Time.time >= shooter.NextFireTime;
 
         //Debug.Log(weaponType);
         

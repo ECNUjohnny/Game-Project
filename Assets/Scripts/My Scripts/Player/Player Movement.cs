@@ -5,24 +5,43 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Transform cam; 
+    
     public float Speed = 2f;
+    
     [Tooltip("The speed turning to the pos of the cam")]
+    
     public float turnSpeed = 2f; 
+    
     public float gravity = -19.8f;
+    
     public float jumpHeight = 2f;
+    
     public bool isGrounded;
+    
     public bool bJumping;
+    
     private CharacterController controller;
+    
     public float h = 0;
+    
     public float v = 0;
+    
     private float hRaw;
+    
     private float vRaw;
+    
     private float hTarget;
+    
     private float vTarget;
+    
     private float Speedy;
+    
     public Vector3 velocity;
+    
     [SerializeField]
+    
     [Tooltip("The speed for transforming walk to run")]
+    
     private float transitionSpeed = 5f;
 
     void Start()

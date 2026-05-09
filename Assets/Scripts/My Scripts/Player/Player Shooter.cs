@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Diagnostics;
-using System; // 必须引入这一行才能使用协程
+using System;
+using Unity.VisualScripting; // 必须引入这一行才能使用协程
 
 public class PlayerShooter : MonoBehaviour
 {
@@ -18,23 +19,23 @@ public class PlayerShooter : MonoBehaviour
     [Header("Visual Effect")]
     public float tracerDuration = 0.5f; // 线痕迹显示的时间（非常短）
 
-    private float nextFireTime = 0f;
+    public float NextFireTime {get; private set; } = 0f;
 
     public GameObject bloodEffect;
 
 
     void Start()
     {
-        nextFireTime = Time.time + 0.2f;
+        NextFireTime = Time.time + 0.2f;
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        if (Input.GetMouseButton(0) && Time.time >= NextFireTime)
         {
             Shoot();
 
-            nextFireTime = Time.time + currentWeapon.fireRate;
+            NextFireTime = Time.time + currentWeapon.fireRate;
         }
     }
 
@@ -54,30 +55,15 @@ public class PlayerShooter : MonoBehaviour
             visualEndPoint = hitInfo.point;
 
             
-            if (hitInfo.collider.TryGetComponent<NpcHealth>(out var npcHealth))
+            if (hitInfo.collider.TryGetComponent<DamageForwarder>(out var forwarder))
             {
-                npcHealth.TakeDamage(currentWeapon.damage);
+                forwarder.TakeDamage(currentWeapon.damage);
 
                 if (bloodEffect != null)
                 {
                     GameObject blood = Instantiate(bloodEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
                 
                     Destroy(blood, 2f);
-                }
-            }
-            else
-            {
-                
-                if (hitInfo.collider.TryGetComponent<DamageForwarder>(out var forwarder))
-                {
-                    forwarder.TakeDamage(currentWeapon.damage);
-
-                    if (bloodEffect != null)
-                    {
-                        GameObject blood = Instantiate(bloodEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                
-                        Destroy(blood, 2f);
-                    }
                 }
             }
 

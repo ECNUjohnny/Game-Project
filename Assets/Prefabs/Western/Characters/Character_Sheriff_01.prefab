@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4457282994381246}
   - component: {fileID: 95474626191974340}
   - component: {fileID: 5519243947088630221}
-  - component: {fileID: 6380183374881870658}
   - component: {fileID: 2185936976642541773}
   - component: {fileID: 5997250615745198201}
   - component: {fileID: 7530628435410462726}
@@ -91,29 +90,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8943583312139273904}
   m_Enabled: 1
---- !u!136 &6380183374881870658
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040643676778012}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Height: 1.9
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &2185936976642541773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1066076589045488
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 0.5
 --- !u!1 &1094254464406506
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,6 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1141145204574712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1244376998115838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,6 +1723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1337263341791156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,6 +2066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1378609742239884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,6 +2345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1457481040427878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,6 +2455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1513930814131124
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,6 +2566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1562072083259454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2825,6 +2810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1600836206787968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3199,6 +3185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1668323181210912
 GameObject:
   m_ObjectHideFlags: 0
@@ -3454,6 +3441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1788344854511366
 GameObject:
   m_ObjectHideFlags: 0
@@ -3500,6 +3488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1794210180853268
 GameObject:
   m_ObjectHideFlags: 0
@@ -3639,6 +3628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 0.5
 --- !u!1 &1855240856681724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3751,6 +3741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1894103656980748
 GameObject:
   m_ObjectHideFlags: 0
@@ -3807,7 +3798,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.0954895
+  m_Radius: 0.15
   m_Center: {x: 0, y: 0.0954895, z: 0}
 --- !u!54 &4887424709176390886
 Rigidbody:
@@ -3895,6 +3886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 10
 --- !u!1 &1912354000382478
 GameObject:
   m_ObjectHideFlags: 0
@@ -3993,6 +3985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &1965630563313740
 GameObject:
   m_ObjectHideFlags: 0
@@ -4168,6 +4161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7530628435410462726}
+  DamIntensor: 1
 --- !u!1 &4850803463870515786
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 
 [RequireComponent(typeof(Collider))]
-public class NpcRagdoll : MonoBehaviour
+public class NpcAnimator : MonoBehaviour
 {
     
     private Animator animator;

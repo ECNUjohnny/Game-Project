@@ -10,6 +10,7 @@ public class NpcMovement : MonoBehaviour
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
     [Header("游荡设置")]
     public float wanderRadius = 25f; // 游荡半径
+    
     public float wanderTimer = 8f;   // 停顿时间（发呆多久再走）
 
     public float maxDis = 100f; // 最远可以走多远
@@ -20,8 +21,11 @@ public class NpcMovement : MonoBehaviour
     public float wakeUpDistance = 130f; // 玩家靠近多远时唤醒 NPC
 
     private NavMeshAgent agent; // 寻路系统
+    
     private Animator animator;
+    
     private float timer;
+    
     private bool isSleeping = false;
 
     private Vector3 originPos;
