@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
 
 [RequireComponent(typeof(CharacterController))]
@@ -23,7 +22,13 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private PlayerMovement movement; 
 
-    public bool isDead {get; private set; } = false; 
+    [Header("External setting")]
+
+    public Image HealthSystemMeter;
+
+    public Camera playerCamera;
+
+    public bool isDead = false; 
 
     void Start()
     {
@@ -39,13 +44,17 @@ public class PlayerHealthSystem : MonoBehaviour
         SetRagdollState(false);
     }
 
-    void TakeDamage(float amount)
+    public void TakeDamage(float amount)
     {
+        if (isDead) return;
+        
         Health -= amount;
 
         if (Health <= 0)
         {
             isDead = true;
+
+            EnableRagdoll();
         }
     }
 
@@ -66,7 +75,7 @@ public class PlayerHealthSystem : MonoBehaviour
     }
 
     public void EnableRagdoll()
-    {
+    {   
         controller.enabled = false;
 
         movement.enabled = false;
@@ -75,15 +84,19 @@ public class PlayerHealthSystem : MonoBehaviour
 
         animator.enabled = false;
 
-        Camera camera = Camera.main;
+        // Camera camera = Camera.main;
 
-        camera.transform.SetParent(null);
+        // playerCamera.transform.SetParent(null);
 
         SetRagdollState(true);
     }
 
     void Update()
     {
-        
+        // if (Input.GetKey(KeyCode.K))
+        // {
+            // TakeDamage(10000f);
+        // }
     }
+
 }

@@ -23,6 +23,8 @@ public class PlayerShooter : MonoBehaviour
 
     public GameObject bloodEffect;
 
+    // public GameObject GunShootFire;
+
 
     void Start()
     {
@@ -43,14 +45,17 @@ public class PlayerShooter : MonoBehaviour
     {
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-        RaycastHit hitInfo;
 
         // 确定可视化的起点和终点
         Vector3 visualStartPoint = gunMuzzle.position;
-        
+
         Vector3 visualEndPoint;
 
-        if (Physics.Raycast(ray, out hitInfo, currentWeapon.range))
+        GameObject fire = Instantiate(currentWeapon.muzzleFlash, gunMuzzle.position, Quaternion.LookRotation(gunMuzzle.forward)).gameObject;
+
+        Destroy(fire, 0.25f);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, currentWeapon.range))
         {
             visualEndPoint = hitInfo.point;
 

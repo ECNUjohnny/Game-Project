@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2185936976642541773}
   - component: {fileID: 5997250615745198201}
   - component: {fileID: 7530628435410462726}
+  - component: {fileID: 6263307592252745525}
   m_Layer: 0
   m_Name: Character_Sheriff_01
   m_TagString: Untagged
@@ -142,6 +143,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &6263307592252745525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040643676778012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be8d77e335958c46873c5863472b1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1064908387003072
 GameObject:
   m_ObjectHideFlags: 0

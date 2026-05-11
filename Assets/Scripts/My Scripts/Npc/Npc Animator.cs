@@ -1,16 +1,12 @@
 using UnityEngine;
 [RequireComponent(typeof(NpcHealth))]
 [RequireComponent(typeof(Animator))]
-
-[RequireComponent(typeof(Collider))]
 public class NpcAnimator : MonoBehaviour
 {
     
     private Animator animator;
     
     private NpcHealth healthSystem;
-    
-    private Collider mainCollider; 
     
     private Rigidbody[] ragdollRigidbodies;
     
@@ -19,8 +15,7 @@ public class NpcAnimator : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        healthSystem = GetComponent<NpcHealth>();
-        mainCollider = GetComponent<Collider>(); 
+        healthSystem = GetComponent<NpcHealth>(); 
 
         
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
@@ -47,10 +42,8 @@ public class NpcAnimator : MonoBehaviour
         foreach (Collider col in ragdollColliders)
         {
             
-            if (col != mainCollider)
-            {
-                col.isTrigger = !isRagdollActive;
-            }
+            col.isTrigger = !isRagdollActive;
+        
         }
     }
 
@@ -60,12 +53,6 @@ public class NpcAnimator : MonoBehaviour
         if (animator != null)
         {
             animator.enabled = false;
-        }
-
-        
-        if (mainCollider != null)
-        {
-            mainCollider.enabled = false;
         }
 
         
@@ -79,5 +66,10 @@ public class NpcAnimator : MonoBehaviour
         {
             healthSystem.OnDeath -= EnableRagdoll;
         }
+    }
+
+    void Update()
+    {
+        
     }
 }

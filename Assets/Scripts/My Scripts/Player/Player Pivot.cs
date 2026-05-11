@@ -61,6 +61,8 @@ public class Pivot : MonoBehaviour
 
     private Vector3 offset = new(0, 1.33f, 0);
 
+    public PlayerHealthSystem healthSystem;
+
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -122,6 +124,15 @@ public class Pivot : MonoBehaviour
         SetCursorState();
 
         if (Cursor.visible) return;
+
+        // if (healthSystem.isDead)
+        // {
+               
+        // }
+        // else
+        // {
+            // transform.position = target.position + offset;
+        // }
 
         transform.position = target.position + offset;
 
