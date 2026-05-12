@@ -21,5 +21,6 @@ MonoBehaviour:
   range: 60
   magSize: 30
   recoilForce: 1.5
-  muzzleFlash: {fileID: 0}
+  muzzleFlash: {fileID: 19885060, guid: 2574ca206a571a342a7fab69fdfb87aa, type: 3}
   fireSound: {fileID: 0}
+  blood: {fileID: 19808544, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}

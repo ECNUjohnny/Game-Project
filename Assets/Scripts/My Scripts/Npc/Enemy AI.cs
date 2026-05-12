@@ -24,19 +24,19 @@ public class EnemyAI : MonoBehaviour
 
     public Transform gunMuzzle;
 
+    public float shootFreq = 2.0f;
+
     public WeaponData weapon;
 
     private NavMeshAgent agent;
 
     public GameObject trace;
 
-    private Vector3 randDir;
-
-    private Vector3 randPos;
-
     private NpcHealth healthSystem;
 
     private Animator animator;
+
+    private NpcAnimator npcAnimator;
 
     private float nextFireTime;
 
@@ -55,6 +55,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         healthSystem = GetComponent<NpcHealth>();
         animator = GetComponent<Animator>();
+        npcAnimator = GetComponent<NpcAnimator>();
 
         agent.stoppingDistance = shootingRange;
 
@@ -77,16 +78,20 @@ public class EnemyAI : MonoBehaviour
 
         if (weapon.type == 1)
         {
-            gun = Instantiate(weapon.weaponObj, gunSlot.position, Quaternion.identity);
+            gun = Instantiate(weapon.weaponObj, gunSlot);
         }
 
         else if (weapon.type == 2)
         {
-            gun = Instantiate(weapon.weaponObj, rifleSlot.position, Quaternion.identity);
+            gun = Instantiate(weapon.weaponObj, rifleSlot);
         }
         // gunMuzzle = weapon.
 
+        gun.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
         gunMuzzle = gun.GetComponent<WeaponInstance>().muzzlePoint;
+
+        npcAnimator.type = weapon.type;
     }
 
     void FaceTarget()
@@ -99,14 +104,16 @@ public class EnemyAI : MonoBehaviour
 
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 1.5f);
     
+        npcAnimator.bAiming = true;
 
+        npcAnimator.bShooting = false;
     }
    
     void ShootPlayer()
     {
         if (Time.time < nextFireTime) return;
 
-        nextFireTime = Time.time + weapon.fireRate;
+        nextFireTime = Time.time + weapon.fireRate * shootFreq;
 
         Vector3 target = player.position + Vector3.up * 1.45f;
 
@@ -115,6 +122,12 @@ public class EnemyAI : MonoBehaviour
         Vector3 visualStartPoint = gunMuzzle.position;
 
         Vector3 visualEndPoint;
+
+        GameObject fire = Instantiate(weapon.muzzleFlash, gunMuzzle.position, Quaternion.LookRotation(gunMuzzle.forward)).gameObject;
+
+        Destroy(fire, 0.25f);
+
+        npcAnimator.bShooting = true;
 
         if (Physics.Raycast(gunMuzzle.position, shootDirection, out RaycastHit hit, shootingRange))
         {
@@ -125,6 +138,9 @@ public class EnemyAI : MonoBehaviour
 
                 Debug.Log("You are hited!");
 
+                GameObject blood = Instantiate(weapon.blood, hit.point, Quaternion.identity).gameObject;
+            
+                Destroy(blood, 2f);
             }
 
             else
@@ -163,8 +179,8 @@ public class EnemyAI : MonoBehaviour
             // agent.isStopped = false;
 
             agent.SetDestination(player.position);
-
-            /*if (Vector3.Distance(transform.position, player.position) >= shootingRange)
+            /*
+            if (Vector3.Distance(transform.position, player.position) >= shootingRange)
             {
                 randDir = Random.insideUnitSphere * 2f;
 
@@ -185,7 +201,7 @@ public class EnemyAI : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
             }*/
 
-            UpdateAnimator();
+            // UpdateAnimator();
 
             if (Vector3.Distance(player.position, transform.position) <= shootingRange)
             {
@@ -197,6 +213,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    /*
     private void UpdateAnimator()
     {
         if (healthSystem.isDead) return;
@@ -206,7 +223,7 @@ public class EnemyAI : MonoBehaviour
             animator.SetFloat("Speed", agent.velocity.magnitude);
         }
     }
-
+    */
 
     private void Stop()
     {

@@ -32,4 +32,6 @@ public class WeaponData : ScriptableObject
     public ParticleSystem muzzleFlash; // 枪口火焰特效
     
     public AudioClip fireSound;     // 开火音效
+
+    public ParticleSystem blood;
 }

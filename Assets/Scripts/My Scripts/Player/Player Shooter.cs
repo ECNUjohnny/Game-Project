@@ -21,7 +21,7 @@ public class PlayerShooter : MonoBehaviour
 
     public float NextFireTime {get; private set; } = 0f;
 
-    public GameObject bloodEffect;
+    // public GameObject bloodEffect;
 
     // public GameObject GunShootFire;
 
@@ -64,12 +64,9 @@ public class PlayerShooter : MonoBehaviour
             {
                 forwarder.TakeDamage(currentWeapon.damage);
 
-                if (bloodEffect != null)
-                {
-                    GameObject blood = Instantiate(bloodEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                
-                    Destroy(blood, 2f);
-                }
+                GameObject blood = Instantiate(currentWeapon.blood, hitInfo.point, Quaternion.identity).gameObject;
+            
+                Destroy(blood, 2f);
             }
 
         }

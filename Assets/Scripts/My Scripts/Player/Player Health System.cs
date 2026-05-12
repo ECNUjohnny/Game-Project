@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
@@ -8,7 +9,9 @@ public class PlayerHealthSystem : MonoBehaviour
 
     [Header("Health Setting")]
 
-    public float Health = 1500f;
+    public float fullHealth = 1500f;
+
+    private float Health;
 
     private Animator animator;
 
@@ -30,6 +33,8 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public bool isDead = false; 
 
+    public event Action Dead;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -42,6 +47,8 @@ public class PlayerHealthSystem : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
 
         SetRagdollState(false);
+
+        Health = fullHealth;
     }
 
     public void TakeDamage(float amount)
@@ -97,6 +104,10 @@ public class PlayerHealthSystem : MonoBehaviour
         // {
             // TakeDamage(10000f);
         // }
+
+        // ratio = Health / fullHealth;
+
+        HealthSystemMeter.fillAmount = Health / fullHealth;
     }
 
 }
