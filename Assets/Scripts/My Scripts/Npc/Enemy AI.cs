@@ -50,6 +50,8 @@ public class EnemyAI : MonoBehaviour
 
     public Transform rifleAimSlot;
 
+    public Transform spine;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -102,7 +104,7 @@ public class EnemyAI : MonoBehaviour
 
         Quaternion lookRot = Quaternion.LookRotation(dir);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 1.5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 4.5f);
     
         npcAnimator.bAiming = true;
 
@@ -213,6 +215,21 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    
+    void LateUpdate()
+    {
+        
+        if (healthSystem.isDead || Vector3.Distance(player.position, transform.position) > shootingRange) return;
+        
+        Vector3 targetChest = player.position + Vector3.up * 1.45f;
+
+        Vector3 dirToTarget = targetChest - spine.position;
+
+        float pitchAngle = Vector3.SignedAngle(transform.forward, dirToTarget, transform.right);
+
+        spine.Rotate(transform.right, pitchAngle, Space.World);
+    }
+    
     /*
     private void UpdateAnimator()
     {

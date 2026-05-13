@@ -7,8 +7,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform cam; 
     
     public float Speed = 2f;
+
+    public Transform spine;
     
-    [Tooltip("The speed turning to the pos of the cam")]
+    [Header("The speed turning to the pos of the cam")]
     
     public float turnSpeed = 2f; 
     
@@ -40,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField]
     
-    [Tooltip("The speed for transforming walk to run")]
+    [Header("The speed for transforming walk to run")]
     
     private float transitionSpeed = 5f;
 
@@ -70,17 +72,17 @@ public class PlayerMovement : MonoBehaviour
         v = Mathf.Lerp(v, vTarget, Time.deltaTime * transitionSpeed);
 
         Vector3 camForward = cam.forward;
-        if (!Input.GetMouseButton(1)) camForward.y = 0f; 
+        camForward.y = 0f; 
         camForward.Normalize(); 
 
         Vector3 playerForward = transform.forward;
         playerForward.y = 0;
         playerForward.Normalize();
-        float check = Vector3.Dot(playerForward, camForward);
+        // float check = Vector3.Dot(playerForward, camForward);
 
         Quaternion targetRot = Quaternion.LookRotation(camForward);
 
-        if (!Input.GetKey(KeyCode.T) && ((check > 0.01 && (vRaw != 0 || transform.forward.y != 0)) || (vRaw == 0 && Input.GetMouseButton(1))))
+        if (!Input.GetKey(KeyCode.T) && ((vRaw != 0 || transform.forward.y != 0) || (vRaw == 0 && Input.GetMouseButton(1))))
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
         }
@@ -111,6 +113,17 @@ public class PlayerMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        
+        if (Input.GetMouseButton(1))
+        {
+    
+            float pitchAngle = cam.eulerAngles.x;
+
+            if (pitchAngle > 180f)
+            {
+                pitchAngle -= 360f;
+            }
+
+            spine.Rotate(cam.right, pitchAngle, Space.World);
+        }
     }
 }
