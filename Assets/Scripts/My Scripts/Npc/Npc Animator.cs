@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
-
 [RequireComponent(typeof(NpcHealth))]
 [RequireComponent(typeof(Animator))]
+
+[RequireComponent(typeof(NavMeshAgent))]
 public class NpcAnimator : MonoBehaviour
 {
     private static readonly int TypeHash = Animator.StringToHash("type");

@@ -57,9 +57,13 @@ public class PlayerHealthSystem : MonoBehaviour
         
         Health -= amount;
 
+        HealthSystemMeter.fillAmount = Health / fullHealth;
+
         if (Health <= 0)
         {
             isDead = true;
+
+            Dead?.Invoke();
 
             EnableRagdoll();
         }
@@ -100,14 +104,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     void Update()
     {
-        // if (Input.GetKey(KeyCode.K))
-        // {
-            // TakeDamage(10000f);
-        // }
-
-        // ratio = Health / fullHealth;
-
-        HealthSystemMeter.fillAmount = Health / fullHealth;
+        
     }
 
 }

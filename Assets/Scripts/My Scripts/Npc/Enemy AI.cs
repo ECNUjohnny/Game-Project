@@ -249,5 +249,29 @@ public class EnemyAI : MonoBehaviour
             agent.isStopped = true;
             agent.enabled = false;
         }
+
+        StartCoroutine(CleanUpCorpse());
+    }
+
+    IEnumerator CleanUpCorpse()
+    {
+        float waitTime = Random.Range(60, 120);
+
+        yield return new WaitForSeconds(waitTime);
+
+        float sinkRate = 0.5f;
+        float sinkDuration = 3f;
+        float time = 0;
+
+        while (time < sinkDuration)
+        {
+            time += Time.deltaTime;
+
+            transform.Translate(Vector3.down * sinkRate * Time.deltaTime, Space.World);
+
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }

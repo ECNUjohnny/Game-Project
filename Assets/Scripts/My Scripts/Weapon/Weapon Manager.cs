@@ -15,6 +15,8 @@ public class WeaponManager : MonoBehaviour
 
     public int weaponType;
 
+    public KeyCode Change = KeyCode.Q;
+
     public Transform rifleAimSlot;
     // 这个列表用来存储【已经生成出来】的实际 GameObject 模型
     private readonly List<GameObject> preloadedWeaponModels = new();
@@ -70,7 +72,7 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         // 测试按键：按 Q 键切换下一把武器
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (!Input.GetMouseButton(1) && Input.GetKeyDown(Change))
         {
             SwitchToNextWeapon();
         }

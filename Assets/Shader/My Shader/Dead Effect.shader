@@ -1,13 +1,19 @@
-Shader "Unlit/Dead Effect"
+Shader "MyShader/Dead Effect"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+
+        _Blend ("Grayscale Blend", Range(0, 1)) = 0
+
+        _Brightness ("Brightness", Range(0, 1)) = 0
     }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
+
+        Cull Off ZWrite Off ZTest Always
 
         Pass
         {
@@ -28,19 +34,18 @@ Shader "Unlit/Dead Effect"
             struct v2f
             {
                 float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
             };
 
             sampler2D _MainTex;
-            float4 _MainTex_ST;
+            float _Blend;
+            float _Brightness;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
+                o.uv = v.uv;
                 return o;
             }
 
@@ -48,8 +53,19 @@ Shader "Unlit/Dead Effect"
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                
+                float2 uvFromCenter = i.uv - float2(0.5, 0.5);
+
+                float dis = length(uvFromCenter);
+
+                float vignette = smoothstep(0.5, 0.1, dis);
+
+                float gray = dot(col.rgb, float3(0.299, 0.587, 0.114));
+
+                col.rgb = lerp(col.rgb, float3(gray, gray, gray), _Blend);
+
+                col.rgb = lerp(col.rgb, col.rgb * 0.05f, _Brightness * (1.0 - vignette));
+
                 return col;
             }
             ENDCG
