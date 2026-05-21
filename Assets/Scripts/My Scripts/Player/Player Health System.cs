@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
@@ -8,6 +9,8 @@ public class PlayerHealthSystem : MonoBehaviour
 {
 
     [Header("Health Setting")]
+
+    public float deathTime = 2f;
 
     public float fullHealth = 1500f;
 
@@ -30,6 +33,8 @@ public class PlayerHealthSystem : MonoBehaviour
     public Image HealthSystemMeter;
 
     public Camera playerCamera;
+
+    public DeathScreen deathUI;
 
     public bool isDead = false; 
 
@@ -66,7 +71,23 @@ public class PlayerHealthSystem : MonoBehaviour
             Dead?.Invoke();
 
             EnableRagdoll();
+
+            StartCoroutine(setDeathUI());
         }
+
+        // StartCoroutine(setDeathUI());
+    }
+
+    IEnumerator setDeathUI()
+    {
+        yield return new WaitForSecondsRealtime(deathTime);
+
+        if (deathUI != null)
+        {
+            deathUI.SlideIn();
+        }
+
+        Time.timeScale = 0f;
     }
 
     private void SetRagdollState(bool isRagdollActive)
@@ -102,9 +123,5 @@ public class PlayerHealthSystem : MonoBehaviour
         SetRagdollState(true);
     }
 
-    void Update()
-    {
-        
-    }
 
 }
