@@ -4,8 +4,11 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance {get; private set;}
+    
     public GameObject interactPromptPanel;
+    
     public TextMeshProUGUI interactText;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -17,6 +20,7 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
     void Start()
     {
         HideInteractionPrompt();

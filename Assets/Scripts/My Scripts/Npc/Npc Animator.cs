@@ -3,10 +3,11 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NpcHealth))]
 [RequireComponent(typeof(Animator))]
 
-[RequireComponent(typeof(NavMeshAgent))]
+
 public class NpcAnimator : MonoBehaviour
 {
     private static readonly int TypeHash = Animator.StringToHash("type");
+    
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
 
     private static readonly int BShootingHash = Animator.StringToHash("bShooting");
@@ -40,6 +41,8 @@ public class NpcAnimator : MonoBehaviour
         
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         ragdollColliders = GetComponentsInChildren<Collider>();
+
+        Debug.Log(ragdollColliders.Length);
 
         
         SetRagdollState(false);
@@ -96,6 +99,6 @@ public class NpcAnimator : MonoBehaviour
 
         animator.SetInteger(TypeHash, type);
 
-        if (agent.enabled) animator.SetFloat(SpeedHash, agent.velocity.magnitude);
+        if (agent && agent.enabled) animator.SetFloat(SpeedHash, agent.velocity.magnitude);
     }
 }

@@ -1,6 +1,5 @@
+
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
@@ -75,7 +74,7 @@ public class EnemyAI : MonoBehaviour
                 Debug.Log("Cannot find the player!");
             }
 
-            healthSystem.OnDeath += Stop;
+            // healthSystem.OnDeath += Stop;
         }
 
         if (weapon.type == 1)
@@ -94,6 +93,8 @@ public class EnemyAI : MonoBehaviour
         gunMuzzle = gun.GetComponent<WeaponInstance>().muzzlePoint;
 
         npcAnimator.type = weapon.type;
+
+        healthSystem.OnDeath += Stop;
     }
 
     void FaceTarget()
@@ -250,12 +251,14 @@ public class EnemyAI : MonoBehaviour
             agent.enabled = false;
         }
 
+        Debug.Log("Dying");
+
         StartCoroutine(CleanUpCorpse());
     }
 
     IEnumerator CleanUpCorpse()
     {
-        float waitTime = Random.Range(60, 120);
+        float waitTime = Random.Range(5, 5);
 
         yield return new WaitForSeconds(waitTime);
 
@@ -267,7 +270,7 @@ public class EnemyAI : MonoBehaviour
         {
             time += Time.deltaTime;
 
-            transform.Translate(Vector3.down * sinkRate * Time.deltaTime, Space.World);
+            transform.Translate(sinkRate * Time.deltaTime * Vector3.down, Space.World);
 
             yield return null;
         }
