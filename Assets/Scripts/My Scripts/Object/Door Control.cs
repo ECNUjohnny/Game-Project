@@ -13,11 +13,21 @@ public class DoorControl : MonoBehaviour
     private Quaternion closeRot;
     
     private Quaternion openRot;
+
+    private string Name;
+
+
     void Start()
     {
         openRot = transform.rotation;
 
-        closeRot = transform.rotation * Quaternion.Euler(0, -90f, 0);
+        Name = gameObject.name; 
+
+        closeRot = ((Name[^1] - '0') & 1) == 1
+            ? transform.rotation * Quaternion.Euler(0, -90f, 0)
+            : transform.rotation * Quaternion.Euler(0, 90f, 0);
+
+        if (Name.Contains("Window")) closeRot = openRot;
     }
 
     public void OpenTheDoor()

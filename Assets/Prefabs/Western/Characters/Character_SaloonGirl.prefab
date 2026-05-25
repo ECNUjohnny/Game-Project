@@ -3174,7 +3174,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4311985319127210}
   - component: {fileID: 137199535781093346}
-  - component: {fileID: 453591980093676699}
   m_Layer: 0
   m_Name: Character_WorkingGirl_01
   m_TagString: Untagged
@@ -3299,28 +3298,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000000059604645, y: 0.9186249, z: -0.053145856}
     m_Extent: {x: 1.0224478, y: 1.0200772, z: 0.31832534}
   m_DirtyAABB: 0
---- !u!64 &453591980093676699
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668323181210912}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -553751879696562476, guid: 6157b5ba44da0f043a7c27a5f9f2dc01, type: 3}
 --- !u!1 &1773452045744286
 GameObject:
   m_ObjectHideFlags: 0
@@ -4098,7 +4075,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8419388806596064296}
   - component: {fileID: 7297258323077383372}
-  - component: {fileID: 880526655576295496}
   m_Layer: 0
   m_Name: Character_WorkingGirl_low
   m_TagString: Untagged
@@ -4223,28 +4199,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000000059604645, y: 0.9186249, z: -0.053145856}
     m_Extent: {x: 1.0224478, y: 1.0200772, z: 0.31832534}
   m_DirtyAABB: 0
---- !u!64 &880526655576295496
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1886867823890376410}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -553751879696562476, guid: 6157b5ba44da0f043a7c27a5f9f2dc01, type: 3}
 --- !u!1 &6639148505534373689
 GameObject:
   m_ObjectHideFlags: 0

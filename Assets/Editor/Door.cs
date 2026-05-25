@@ -22,6 +22,8 @@ public class Door : MonoBehaviour
         {
             if (!obj.name.Contains("Door")) continue;
 
+            if (obj.name.Contains("Window")) continue;
+
             obj.isStatic = false;
 
             obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
