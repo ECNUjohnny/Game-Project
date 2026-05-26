@@ -1,5 +1,3 @@
-
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
@@ -253,28 +251,7 @@ public class EnemyAI : MonoBehaviour
 
         Debug.Log("Dying");
 
-        StartCoroutine(CleanUpCorpse());
+        // StartCoroutine(CleanUpCorpse());
     }
 
-    IEnumerator CleanUpCorpse()
-    {
-        float waitTime = Random.Range(5, 5);
-
-        yield return new WaitForSeconds(waitTime);
-
-        float sinkRate = 0.5f;
-        float sinkDuration = 3f;
-        float time = 0;
-
-        while (time < sinkDuration)
-        {
-            time += Time.deltaTime;
-
-            transform.Translate(sinkRate * Time.deltaTime * Vector3.down, Space.World);
-
-            yield return null;
-        }
-
-        Destroy(gameObject);
-    }
 }

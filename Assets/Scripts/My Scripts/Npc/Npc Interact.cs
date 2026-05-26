@@ -14,9 +14,17 @@ public class NpcInteract : MonoBehaviour
 
     private bool Interact = false;
 
+    private BoxCollider col;
+
     void Start()
     {
-        GetComponent<BoxCollider>().isTrigger = true;
+        col = GetComponent<BoxCollider>();
+
+        col.isTrigger = true;
+
+        col.center = new(0, 1.4f, 1.25f);
+
+        col.size = new(2f, 2f, 2.5f);
     }
 
     void Update()

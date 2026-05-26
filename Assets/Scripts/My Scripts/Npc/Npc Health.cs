@@ -1,5 +1,5 @@
 using System;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
 public class NpcHealth : MonoBehaviour
@@ -8,6 +8,8 @@ public class NpcHealth : MonoBehaviour
     [Header("Health Parameter")]
     
     public float health = 100f;
+
+    public float clearDelay = 20f;
 
     private float currentHealth = 100f;
 
@@ -47,6 +49,30 @@ public class NpcHealth : MonoBehaviour
         {
             collider.enabled = false;
         }
+
+        StartCoroutine(CleanUpCorpse());
+    }
+
+    IEnumerator CleanUpCorpse()
+    {
+        float waitTime = clearDelay;
+
+        yield return new WaitForSeconds(waitTime);
+
+        float sinkRate = 0.5f;
+        float sinkDuration = 3f;
+        float time = 0;
+
+        while (time < sinkDuration)
+        {
+            time += Time.deltaTime;
+
+            transform.Translate(sinkRate * Time.deltaTime * Vector3.down, Space.World);
+
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 
 }
