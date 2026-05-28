@@ -13,6 +13,8 @@ public class NPCSpawner : MonoBehaviour
 
     public float minSpawnDis = 20f;
 
+    public DialogueData dialogueData;
+
     [Header("Reference")]
 
     public Transform player;
@@ -20,6 +22,8 @@ public class NPCSpawner : MonoBehaviour
     private GameObject currentNpcInstance;
     
     private NpcHealth currentNpcHealth;
+
+    private NpcInteract npcInteract;
 
     void Start()
     {
@@ -29,6 +33,13 @@ public class NPCSpawner : MonoBehaviour
         }
 
         SpawnNpc();
+
+        npcInteract = currentNpcInstance.GetComponent<NpcInteract>();
+
+        if (npcInteract != null)
+        {
+            npcInteract.dialogueData = dialogueData;
+        }
     }
 
     private void SpawnNpc()

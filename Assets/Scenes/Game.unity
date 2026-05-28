@@ -45630,7 +45630,7 @@ GameObject:
   - component: {fileID: 674283512}
   - component: {fileID: 674283511}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55411,6 +55411,7 @@ MonoBehaviour:
   npcPrefab: {fileID: 1040643676778012, guid: 62fba6d76d1b8fd4299a4ef6ac498913, type: 3}
   respawnDelay: 30
   minSpawnDis: 20
+  dialogueData: {fileID: 11400000, guid: 4ddb6f631c891bb4dab690fd9a6d26ff, type: 2}
   player: {fileID: 4670766067664836}
 --- !u!1001 &830986050
 PrefabInstance:
@@ -118448,7 +118449,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactPromptPanel: {fileID: 854619831}
+  dialoguePanel: {fileID: 1303765749}
   interactText: {fileID: 1886768549}
+  dialogueText: {fileID: 674283511}
+  timebetweenDialogue: 5
 --- !u!4 &1529238332 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 47bc87d51a94da14ab818bab8ce8f290, type: 3}
@@ -163101,6 +163105,7 @@ MonoBehaviour:
   npcPrefab: {fileID: 1040643676778012, guid: a3e69f0c7a05ea245bd589fd955342dc, type: 3}
   respawnDelay: 30
   minSpawnDis: 20
+  dialogueData: {fileID: 0}
   player: {fileID: 4670766067664836}
 --- !u!4 &2099710605
 Transform:

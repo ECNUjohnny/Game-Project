@@ -1,6 +1,6 @@
 using System.Collections;
+using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -19,6 +19,10 @@ public class UIManager : MonoBehaviour
 
     private bool isInDialogue;
 
+    private bool isInEvent;
+
+    private Action onDialogueCompleteCallback;
+
     
     private void Awake()
     {
@@ -35,6 +39,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         HideInteractionPrompt();
+        HideDialoguePanle();
     }
 
     public void HideInteractionPrompt()
@@ -57,19 +62,38 @@ public class UIManager : MonoBehaviour
     public void HideDialoguePanle()
     {
         dialoguePanel.SetActive(false);
+
     }
 
-    public void StartDialogue(string message)
+    public void StartDialogue(DialogueData dialogueData, Action onComplete = null)
     {
-        ShowDialoguePanel(message);
+        if (isInDialogue) return;
 
-        StartCoroutine(Dialogue());
+        isInDialogue = true;
+
+        onDialogueCompleteCallback = onComplete;
+
+        StartCoroutine(Dialogue(dialogueData));
     }
 
-    IEnumerator Dialogue()
+    public void EndDialogue()
     {
-        yield return new WaitForSeconds(timebetweenDialogue);
+        if (!isInDialogue) return;
 
-        HideDialoguePanle();
+        isInDialogue = false;
+
+        onDialogueCompleteCallback?.Invoke();
+
+        onDialogueCompleteCallback = null;
+    }
+
+    IEnumerator Dialogue(DialogueData dialogueData)
+    {
+        for (int i = 0; i < dialogueData.dialogues.Length; i++)
+        {
+            ShowDialoguePanel(dialogueData.dialogues[i]);
+
+            yield return new WaitForSeconds(timebetweenDialogue);
+        }
     }
 }

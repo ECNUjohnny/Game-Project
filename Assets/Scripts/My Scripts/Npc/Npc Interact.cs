@@ -1,18 +1,34 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
 public class NpcInteract : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [Header("Dialog Setting")]
+    [Header("Dialogue")]
+
+    public DialogueData dialogueData;
+
+    [Header("Mission and Store and other options")]
+
+    public KeyCode actionKey = KeyCode.E;
+
+    public UnityEvent onTaskAccepted;
+
+    [Header("Dialogue Setting")]
     
     public string npcName;
 
     public KeyCode interactKey = KeyCode.E;
 
+    public Transform cameraFocusPoint;
+
     private bool isPlayerInRange = false;
 
-    private bool Interact = false;
+    private bool isInteract = false;
+
+    private bool isWaitingforTask = false;
 
     private BoxCollider col;
 
@@ -29,16 +45,32 @@ public class NpcInteract : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerInRange && Interact)
+        if (!isPlayerInRange) return;
+        
+        if (!isInteract && !isWaitingforTask)
         {
             UIManager.Instance.ShowInteractionPrompt($"Press {interactKey} to talk with the people");
         
             if (Input.GetKey(interactKey))
             {
                 UIManager.Instance.HideInteractionPrompt();
+
+                UIManager.Instance.StartDialogue(dialogueData, () => {
+                    
+                    isWaitingforTask = true;
+                    UIManager.Instance.ShowInteractionPrompt($"Press {actionKey} to start the mission");
+                });
             
-                Interact = false;
+                isInteract = true;
             }
+        }
+        else if (isWaitingforTask && Input.GetKey(actionKey))
+        {
+            onTaskAccepted?.Invoke();
+
+            isWaitingforTask = false;
+
+            UIManager.Instance.HideInteractionPrompt();
         }
     }
 
@@ -48,7 +80,7 @@ public class NpcInteract : MonoBehaviour
         {
             isPlayerInRange = true;
 
-            Interact = true;
+            isInteract = false;
 
             // Debug.Log("Player nearby");
         }    
@@ -61,4 +93,6 @@ public class NpcInteract : MonoBehaviour
             isPlayerInRange = false;
         }
     }  
+
+    
 }
