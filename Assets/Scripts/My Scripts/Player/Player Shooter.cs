@@ -1,8 +1,5 @@
 using UnityEngine;
-using System.Collections;
-using System.Diagnostics;
-using System;
-using Unity.VisualScripting; // 必须引入这一行才能使用协程
+
 
 public class PlayerShooter : MonoBehaviour
 {

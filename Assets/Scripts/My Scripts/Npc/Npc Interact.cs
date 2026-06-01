@@ -51,7 +51,7 @@ public class NpcInteract : MonoBehaviour
         {
             UIManager.Instance.ShowInteractionPrompt($"Press {interactKey} to talk with the people");
         
-            if (Input.GetKey(interactKey))
+            if (!isWaitingforTask && Input.GetKey(interactKey))
             {
                 UIManager.Instance.HideInteractionPrompt();
 
@@ -59,6 +59,7 @@ public class NpcInteract : MonoBehaviour
                     
                     isWaitingforTask = true;
                     UIManager.Instance.ShowInteractionPrompt($"Press {actionKey} to start the mission");
+                
                 });
             
                 isInteract = true;
@@ -91,6 +92,14 @@ public class NpcInteract : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInRange = false;
+            isWaitingforTask = false;
+            
+            UIManager.Instance.HideInteractionPrompt();
+        
+            if (UIManager.Instance.isInDialogue)
+            {
+                UIManager.Instance.EndDialogue(); 
+            }
         }
     }  
 

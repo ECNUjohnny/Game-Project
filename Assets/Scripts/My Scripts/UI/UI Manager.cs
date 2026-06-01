@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance {get; private set;}
+    public static UIManager Instance { get; private set; }
     
     public GameObject interactPromptPanel;
 
@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
 
     public float timebetweenDialogue = 5f;
 
-    private bool isInDialogue;
+    public bool isInDialogue { get; private set; }
 
     private bool isInEvent;
 
@@ -95,5 +95,9 @@ public class UIManager : MonoBehaviour
 
             yield return new WaitForSeconds(timebetweenDialogue);
         }
+
+        HideDialoguePanle();
+
+        EndDialogue();
     }
 }
