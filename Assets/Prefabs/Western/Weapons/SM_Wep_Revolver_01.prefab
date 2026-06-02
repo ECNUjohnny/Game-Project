@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 64860775137797984}
   - component: {fileID: 64560954855894062}
   - component: {fileID: 978305231574019630}
+  - component: {fileID: 4806806560168063970}
   m_Layer: 0
   m_Name: SM_Wep_Revolver_01
   m_TagString: Untagged
@@ -396,6 +397,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzlePoint: {fileID: 1434145127746048096}
+--- !u!114 &4806806560168063970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908759806999368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ec8849a1b128a4fa8b1179ca8b3185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trace: {fileID: 8902003051578745812, guid: dd2a81bd5e312d04fa057c36bb80479a, type: 3}
+  gunMuzzle: {fileID: 1434145127746048096}
 --- !u!1 &1393765106539353116
 GameObject:
   m_ObjectHideFlags: 0

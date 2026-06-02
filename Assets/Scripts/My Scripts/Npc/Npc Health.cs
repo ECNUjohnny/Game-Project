@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class NpcHealth : MonoBehaviour
+public class NpcHealth : MonoBehaviour, IDamageable
 {
     // Start is called before the first frame update
     [Header("Health Parameter")]
@@ -19,19 +19,28 @@ public class NpcHealth : MonoBehaviour
 
     public event Action OnDeath; // 控制死亡的广播
 
+    public GameObject bloodEffect;
+
 
     void Start()
     {
         currentHealth = health;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         if (isDead) return;
 
         currentHealth -= damage;
 
         OnTakeDamage?.Invoke();
+
+        if (bloodEffect != null)
+        {
+            GameObject blood = Instantiate(bloodEffect, hitPoint, Quaternion.LookRotation(hitNormal));
+        
+            Destroy(blood, 1.5f);
+        }
 
         if (currentHealth <= 0)
         {

@@ -70177,6 +70177,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7530628435410462726, guid: 15a550206f811c346b37f3a3f4495178, type: 3}
+      propertyPath: bloodEffect
+      value: 
+      objectReference: {fileID: 166404, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -170236,6 +170240,7 @@ MonoBehaviour:
   fullHealth: 1500
   HealthSystemMeter: {fileID: 469089290}
   playerCamera: {fileID: 2101945324}
+  bloodEffect: {fileID: 166404, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}
   deathUI: {fileID: 1673983497}
   isDead: 0
 --- !u!114 &6140332653301960465

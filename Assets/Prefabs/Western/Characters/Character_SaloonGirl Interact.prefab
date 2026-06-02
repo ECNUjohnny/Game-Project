@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   clearDelay: 20
+  bloodEffect: {fileID: 166404, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}
 --- !u!114 &4635133144713970557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,8 +154,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4c6630f8d158a478879e1b42678c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueData: {fileID: 0}
+  actionKey: 101
+  onTaskAccepted:
+    m_PersistentCalls:
+      m_Calls: []
   npcName: 
   interactKey: 101
+  cameraFocusPoint: {fileID: 0}
 --- !u!1 &1064908387003072
 GameObject:
   m_ObjectHideFlags: 0

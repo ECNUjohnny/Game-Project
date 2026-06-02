@@ -143,6 +143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  clearDelay: 20
+  bloodEffect: {fileID: 166404, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}
 --- !u!114 &6263307592252745525
 MonoBehaviour:
   m_ObjectHideFlags: 0

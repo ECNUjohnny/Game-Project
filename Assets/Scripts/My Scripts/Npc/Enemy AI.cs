@@ -39,6 +39,8 @@ public class EnemyAI : MonoBehaviour
 
     private GameObject gun;
 
+    private WeaponController weaponController;
+
     [Header("Body Setting")]
 
     public Transform gunSlot;
@@ -52,8 +54,11 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        
         healthSystem = GetComponent<NpcHealth>();
+        
         animator = GetComponent<Animator>();
+        
         npcAnimator = GetComponent<NpcAnimator>();
 
         agent.stoppingDistance = shootingRange;
@@ -92,6 +97,11 @@ public class EnemyAI : MonoBehaviour
 
         npcAnimator.type = weapon.type;
 
+        if (gun.TryGetComponent(out weaponController))
+        {
+            weaponController.Init(weapon);
+        }
+
         healthSystem.OnDeath += Stop;
     }
 
@@ -120,48 +130,10 @@ public class EnemyAI : MonoBehaviour
 
         Vector3 shootDirection = target - gunMuzzle.position;
 
-        Vector3 visualStartPoint = gunMuzzle.position;
-
-        Vector3 visualEndPoint;
-
-        GameObject fire = Instantiate(weapon.muzzleFlash, gunMuzzle.position, Quaternion.LookRotation(gunMuzzle.forward)).gameObject;
-
-        Destroy(fire, 0.25f);
-
-        npcAnimator.bShooting = true;
-
-        if (Physics.Raycast(gunMuzzle.position, shootDirection, out RaycastHit hit, shootingRange))
+        if (weaponController != null)
         {
-
-            if (hit.collider.TryGetComponent<PlayerHealthSystem>(out var playerHealth))
-            {
-                playerHealth.TakeDamage(weapon.damage);
-
-                Debug.Log("You are hited!");
-
-                GameObject blood = Instantiate(weapon.blood, hit.point, Quaternion.identity).gameObject;
-            
-                Destroy(blood, 2f);
-            }
-
-            else
-            {
-                Debug.Log("Lucky!");
- 
-            }
-
-            visualEndPoint = hit.point;
+            weaponController.Shoot(gunMuzzle.position, shootDirection);
         }
-
-        else
-        {
-            visualEndPoint = gunMuzzle.position + gunMuzzle.forward * weapon.range;
-        }
-
-        GameObject newTrace = Instantiate(trace);
-
-
-        newTrace.GetComponent<TracerBehavior>().Init(visualStartPoint, visualEndPoint);
     }
 
     void Update()

@@ -1,15 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+
 
 [RequireComponent(typeof(PlayerCombat))]
+
+[RequireComponent(typeof(PlayerShooter))]
 public class WeaponManager : MonoBehaviour
 {
     [Header("配置数据")]
     
-    public List<WeaponData> weaponDatas; // 在 Inspector 里拖入你的武器数据 (ScriptableObject)
+    public List<WeaponData> weaponDatas; 
     
-    public Transform pistolSlot;       // 手部的挂载点
+    public Transform pistolSlot;       
 
     public Transform rifleSlot;
 
@@ -18,28 +20,29 @@ public class WeaponManager : MonoBehaviour
     public KeyCode Change = KeyCode.Q;
 
     public Transform rifleAimSlot;
-    // 这个列表用来存储【已经生成出来】的实际 GameObject 模型
+    
     private readonly List<GameObject> preloadedWeaponModels = new();
     
     private int currentWeaponIndex = 0;
 
     private PlayerCombat playerCombat;
 
-    private GameObject weaponInstance;
+    private PlayerShooter playerShooter;
+
+    public GameObject weaponInstance { get; private set; }
 
     void Start()
     {
         playerCombat = GetComponent<PlayerCombat>();
-        
-        // 游戏一开始，执行预加载
-        PreloadAllWeapons();
 
-        //playerCombat = GetComponent<PlayerCombat>();
+        playerShooter = GetComponent<PlayerShooter>();
+        
+        PreloadAllWeapons();
     }
 
     void PreloadAllWeapons()
     {
-        // 遍历所有你配置的武器数据
+
         foreach (WeaponData data in weaponDatas)
         {
             // 1. 生成模型

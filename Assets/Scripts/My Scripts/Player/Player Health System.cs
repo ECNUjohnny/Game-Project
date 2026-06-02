@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerHealthSystem : MonoBehaviour
+public class PlayerHealthSystem : MonoBehaviour, IDamageable
 {
 
     [Header("Health Setting")]
@@ -34,6 +34,8 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public Camera playerCamera;
 
+    public GameObject bloodEffect;
+
     public DeathScreen deathUI;
 
     public bool isDead = false; 
@@ -56,13 +58,20 @@ public class PlayerHealthSystem : MonoBehaviour
         Health = fullHealth;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Vector3 hitPoint, Vector3 hitNormal)
     {
         if (isDead) return;
         
         Health -= amount;
 
         HealthSystemMeter.fillAmount = Health / fullHealth;
+
+        if (bloodEffect != null)
+        {
+            GameObject blood = Instantiate(bloodEffect, hitPoint, Quaternion.LookRotation(hitNormal));
+
+            Destroy(blood, 1.5f);
+        }
 
         if (Health <= 0)
         {

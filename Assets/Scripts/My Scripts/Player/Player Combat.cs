@@ -113,7 +113,9 @@ public class PlayerCombat : MonoBehaviour
         while (elapsedTime < scanDuration)
         {
             elapsedTime += Time.unscaledDeltaTime * 2f;
+            
             float ratio = elapsedTime / scanDuration;
+            
             float currentVal = Mathf.Lerp(stVal, enVal, ratio);
 
             DeadEyeMaterial.SetFloat("_ScanLine", currentVal);

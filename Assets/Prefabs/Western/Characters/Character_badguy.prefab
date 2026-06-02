@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  clearDelay: 20
+  bloodEffect: {fileID: 166404, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}
 --- !u!114 &4635133144713970557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +184,7 @@ MonoBehaviour:
   gunSlot: {fileID: 6828489776359254298}
   rifleSlot: {fileID: 4406226456743601315}
   rifleAimSlot: {fileID: 1777548088014633959}
-  spine: {fileID: 0}
+  spine: {fileID: 4266014512831808}
 --- !u!1 &1064908387003072
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,8 @@ public class WeaponData : ScriptableObject
 
     public int ammoType;
 
+    public int ammo;
+
     public int clipSize;
 
     [Header("射击参数")]
