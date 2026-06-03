@@ -65,6 +65,11 @@ public class PlayerAnimator : MonoBehaviour
         //transform.position += new Vector3(0.1f, 0, 0);
     }
 
+    public void TriggerReloadAnimation()
+    {
+        animator.SetTrigger("tReload");
+    }
+
     /*void LateUpdate()
     {
         if (Input.GetMouseButton(1))

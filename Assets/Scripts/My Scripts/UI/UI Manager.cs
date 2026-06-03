@@ -7,6 +7,11 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
     
+    [Header("Data source")]
+
+    public PlayerInventory playerInventory;
+
+    [Header("UI setting")]
     public GameObject interactPromptPanel;
 
     public GameObject dialoguePanel;
@@ -16,6 +21,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     public float timebetweenDialogue = 5f;
+
+    public TextMeshProUGUI goldText; 
+
+    public TextMeshProUGUI ammoText;
 
     public bool isInDialogue { get; private set; }
 
@@ -29,6 +38,7 @@ public class UIManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+
         }
         else
         {
@@ -39,6 +49,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         HideInteractionPrompt();
+        
         HideDialoguePanle();
     }
 
@@ -99,5 +110,18 @@ public class UIManager : MonoBehaviour
         HideDialoguePanle();
 
         EndDialogue();
+    }
+
+    private void RefreshUI()
+    {
+        if (goldText != null)
+        {
+            goldText.text = $"money: {playerInventory.gold}";
+        }
+
+        if (ammoText != null)
+        {
+            ammoText.text = $"ammo: {playerInventory.ammo[(int)playerInventory.ammoType]}";
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -9,13 +10,13 @@ public class WeaponController : MonoBehaviour
     
     public Transform gunMuzzle;
 
-    private int currentAmmo;
-
     private float nextFireTime;
 
-    private WeaponData weaponData; 
+    public WeaponData weaponData; 
 
-    private bool isReloading;
+    public bool IsReloading { get; private set; }
+
+    public int CurrentAmmo { get; private set; } 
 
     private Vector3 visualEndPoint;
 
@@ -23,16 +24,18 @@ public class WeaponController : MonoBehaviour
     {
         nextFireTime = 0;
 
-        currentAmmo = data.ammo;
+        CurrentAmmo = data.ammo;
 
         weaponData = data;
     }
 
     public void Shoot(Vector3 aimOrigin, Vector3 aimDirection)
     {
-        if (Time.time < nextFireTime || isReloading) return;
+        if (Time.time < nextFireTime || IsReloading || CurrentAmmo <= 0) return;
 
         nextFireTime = Time.time + weaponData.fireRate;
+
+        CurrentAmmo--;
 
         GameObject fire = Instantiate(weaponData.muzzleFlash, gunMuzzle.position, Quaternion.LookRotation(gunMuzzle.forward)).gameObject;
     
@@ -57,8 +60,21 @@ public class WeaponController : MonoBehaviour
         newTrace.GetComponent<TracerBehavior>().Init(gunMuzzle.position, visualEndPoint);
     }
 
-    public void Reload()
+    public void Reload(int bulletsReceived)
     {
-        
+        if (IsReloading || bulletsReceived <= 0) return;
+
+        StartCoroutine(Reloading(bulletsReceived));
+    }
+
+    private IEnumerator Reloading(int bulletsReceived)
+    {
+        IsReloading = true;
+
+        yield return new WaitForSeconds(weaponData.reloadRate);
+
+        CurrentAmmo += bulletsReceived;
+
+        IsReloading = false;
     }
 }

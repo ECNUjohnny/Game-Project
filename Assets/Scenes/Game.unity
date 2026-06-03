@@ -167068,6 +167068,7 @@ GameObject:
   - component: {fileID: 6140332653301960463}
   - component: {fileID: 6140332653301960464}
   - component: {fileID: 6140332653301960465}
+  - component: {fileID: 6140332653301960466}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -169235,7 +169236,7 @@ Animator:
   m_GameObject: {fileID: 1800372759495774}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4837235d67e136e4b883adb2bafc73e8, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9abebdfdbf0aa34458d563ca941675d3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 26293ca9024e3b740853fc5e4bf6abac, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -170223,7 +170224,9 @@ MonoBehaviour:
   playerCamera: {fileID: 2101945324}
   gunMuzzle: {fileID: 0}
   trace: {fileID: 8902003051578745812, guid: dd2a81bd5e312d04fa057c36bb80479a, type: 3}
+  gun: {fileID: 0}
   tracerDuration: 0.75
+  currentWeaponController: {fileID: 0}
 --- !u!114 &6140332653301960464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170258,6 +170261,23 @@ MonoBehaviour:
   spine: {fileID: 4087047801826664}
   targetAngle: 45
   rotateSpeed: 5
+--- !u!114 &6140332653301960466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800372759495774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2fc8786a8d59f41b7f716dee549c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: 100
+  ammo: 
+  ammoType: 0
+  goldText: {fileID: 0}
+  reserveAmmoText: {fileID: 0}
 --- !u!1 &9210155180069934126 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9210155180838810052, guid: 5af417d5f43066540a1b3f195b102235, type: 3}

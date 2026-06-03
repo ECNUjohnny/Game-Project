@@ -15,11 +15,10 @@ public class WeaponData : ScriptableObject
     
     public int type;
 
-    public int ammoType;
+    public WeaponType ammoType;
 
     public int ammo;
-
-    public int clipSize;
+    
 
     [Header("射击参数")]
     
@@ -29,7 +28,9 @@ public class WeaponData : ScriptableObject
     
     public float range = 100f;      // 射程
     
-    public int magSize = 30;        // 弹匣容量
+    public int clipSize = 30;        // 弹匣容量
+
+    public float reloadRate = 1.5f;
 
     [Header("反馈与效果")]
     
