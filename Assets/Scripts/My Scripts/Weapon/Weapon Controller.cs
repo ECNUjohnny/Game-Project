@@ -32,8 +32,6 @@ public class WeaponController : MonoBehaviour
         OnAmmoChanged?.Invoke();
 
         weaponData = data;
-
-        UIManager.Instance.weaponController = this;
     }
 
     public void Shoot(Vector3 aimOrigin, Vector3 aimDirection)

@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
 
     public WeaponManager weaponManager;
 
-    public WeaponController weaponController;
+    private WeaponController weaponController;
 
     [Header("UI setting")]
     public GameObject interactPromptPanel;
