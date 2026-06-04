@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 [RequireComponent(typeof(WeaponManager))]
 
@@ -17,6 +18,8 @@ public class PlayerShooter : MonoBehaviour
     public GameObject trace;  
 
     public GameObject gun;
+
+    public KeyCode Reload = KeyCode.R;
 
     [Header("Visual Effect")]
     
@@ -52,7 +55,7 @@ public class PlayerShooter : MonoBehaviour
             NextFireTime += currentWeapon.fireRate;
         }
 
-        if (currentWeaponController.CurrentAmmo == 0 && Input.GetMouseButton(0))
+        if (Input.GetKey(Reload) || (currentWeaponController.CurrentAmmo == 0 && Input.GetMouseButton(0)))
         {
             HandleReload();
         }

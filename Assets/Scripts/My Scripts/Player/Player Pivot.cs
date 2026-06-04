@@ -169,11 +169,5 @@ public class Pivot : MonoBehaviour
             transform.Rotate(0, 180, 0);
         }
 
-        // Return to init position
-        if (Input.GetKeyDown(_initPositonButton))
-        {
-            transform.position = _initPosition;
-            transform.eulerAngles = _initRotation;
-        }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using TMPro;
 using UnityEngine;
+using System.Net;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class UIManager : MonoBehaviour
     [Header("Data source")]
 
     public PlayerInventory playerInventory;
+
+    public PlayerShooter playerShooter;
+
+    public WeaponManager weaponManager;
+
+    public WeaponController weaponController;
 
     [Header("UI setting")]
     public GameObject interactPromptPanel;
@@ -25,6 +32,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI goldText; 
 
     public TextMeshProUGUI ammoText;
+
 
     public bool isInDialogue { get; private set; }
 
@@ -51,6 +59,30 @@ public class UIManager : MonoBehaviour
         HideInteractionPrompt();
         
         HideDialoguePanle();
+
+        if (playerInventory != null)
+        {
+            playerInventory.OnInventoryChanged += RefreshUI;
+
+            RefreshUI();
+        }
+
+        if (weaponController != null)
+        {
+            weaponController.OnAmmoChanged += RefreshUI;
+
+            RefreshUI();
+        }
+
+        if (weaponManager != null)
+        {
+            
+        }
+    }
+
+    private void HandleWeaponSwitch(WeaponController newWeapon)
+    {
+        
     }
 
     public void HideInteractionPrompt()
@@ -116,12 +148,12 @@ public class UIManager : MonoBehaviour
     {
         if (goldText != null)
         {
-            goldText.text = $"money: {playerInventory.gold}";
+            goldText.text = $"{playerInventory.gold}";
         }
 
         if (ammoText != null)
         {
-            ammoText.text = $"ammo: {playerInventory.ammo[(int)playerInventory.ammoType]}";
+            ammoText.text = $"{playerInventory.ammo[(int)playerInventory.ammoType]}/{weaponController.CurrentAmmo}";
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 
 public class WeaponController : MonoBehaviour
@@ -16,17 +17,23 @@ public class WeaponController : MonoBehaviour
 
     public bool IsReloading { get; private set; }
 
-    public int CurrentAmmo { get; private set; } 
+    public int CurrentAmmo { get; private set; } // 当前枪里还有多少子弹
 
     private Vector3 visualEndPoint;
+
+    public event Action OnAmmoChanged;
 
     public void Init(WeaponData data)
     {
         nextFireTime = 0;
 
-        CurrentAmmo = data.ammo;
+        CurrentAmmo = data.clipSize;
+
+        OnAmmoChanged?.Invoke();
 
         weaponData = data;
+
+        UIManager.Instance.weaponController = this;
     }
 
     public void Shoot(Vector3 aimOrigin, Vector3 aimDirection)
@@ -36,6 +43,8 @@ public class WeaponController : MonoBehaviour
         nextFireTime = Time.time + weaponData.fireRate;
 
         CurrentAmmo--;
+
+        OnAmmoChanged?.Invoke();
 
         GameObject fire = Instantiate(weaponData.muzzleFlash, gunMuzzle.position, Quaternion.LookRotation(gunMuzzle.forward)).gameObject;
     
@@ -74,6 +83,8 @@ public class WeaponController : MonoBehaviour
         yield return new WaitForSeconds(weaponData.reloadRate);
 
         CurrentAmmo += bulletsReceived;
+
+        OnAmmoChanged?.Invoke();
 
         IsReloading = false;
     }

@@ -1,5 +1,8 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
+
+
 [RequireComponent(typeof(PlayerCombat))]
 [RequireComponent(typeof(PlayerShooter))]
 
@@ -7,14 +10,22 @@ using System.Collections.Generic;
 public class WeaponManager : MonoBehaviour
 {
     [Header("配置数据")]
-    public List<WeaponData> weaponDatas; 
-    public Transform pistolSlot;       
-    public Transform rifleSlot;
-    public int weaponType;
-    public KeyCode Change = KeyCode.Q;
-    public Transform rifleAimSlot;
     
-    // 👇 核心修改 1：这里改为存 WeaponController 的列表
+    public List<WeaponData> weaponDatas; 
+    
+    public Transform pistolSlot;       
+    
+    public Transform rifleSlot;
+    
+    public int weaponType;
+    
+    public KeyCode Change = KeyCode.Q;
+    
+    public Transform rifleAimSlot;
+
+    public event Action<WeaponController> OnWeaponChanged;
+    
+    // 核心修改 1：这里改为存 WeaponController 的列表
     private readonly List<WeaponController> preloadedWeapons = new();
     
     private int currentWeaponIndex = 0;
@@ -100,6 +111,8 @@ public class WeaponManager : MonoBehaviour
     {
         if (preloadedWeapons.Count == 0) return;
 
+        
+
         // 1. 隐藏当前武器
         preloadedWeapons[currentWeaponIndex].gameObject.SetActive(false);
         
@@ -117,5 +130,7 @@ public class WeaponManager : MonoBehaviour
         playerShooter.currentWeapon = weaponDatas[currentWeaponIndex];
         
         playerInventory.ChangeWeapon(weaponType);
+
+        OnWeaponChanged?.Invoke(playerShooter.currentWeaponController);
     }
 }

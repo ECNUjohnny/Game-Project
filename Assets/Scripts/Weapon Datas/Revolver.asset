@@ -16,11 +16,15 @@ MonoBehaviour:
   weaponObj: {fileID: 1908759806999368, guid: 146c5256fc521374c91ca33fc98e9603, type: 3}
   ispistol: 1
   type: 1
+  ammoType: 1
+  ammo: 0
   damage: 20
   fireRate: 0.5
   range: 50
-  magSize: 30
+  clipSize: 6
+  reloadRate: 1.5
   recoilForce: 1.5
   muzzleFlash: {fileID: 19885060, guid: 2574ca206a571a342a7fab69fdfb87aa, type: 3}
   fireSound: {fileID: 0}
+  reloadSound: {fileID: 0}
   blood: {fileID: 19808544, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}

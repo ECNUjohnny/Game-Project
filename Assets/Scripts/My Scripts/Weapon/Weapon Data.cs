@@ -16,8 +16,6 @@ public class WeaponData : ScriptableObject
     public int type;
 
     public WeaponType ammoType;
-
-    public int ammo;
     
 
     [Header("射击参数")]
