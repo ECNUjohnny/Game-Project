@@ -118563,6 +118563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 6140332653301960466}
   playerShooter: {fileID: 6140332653301960463}
+  weaponManager: {fileID: 6140332653301960462}
   interactPromptPanel: {fileID: 854619831}
   dialoguePanel: {fileID: 1303765749}
   interactText: {fileID: 1886768549}
@@ -170634,6 +170635,8 @@ MonoBehaviour:
   weaponType: 0
   Change: 113
   rifleAimSlot: {fileID: 1723491830}
+  preloadedWeapons: []
+  currentWeaponIndex: 0
 --- !u!114 &6140332653301960463
 MonoBehaviour:
   m_ObjectHideFlags: 0

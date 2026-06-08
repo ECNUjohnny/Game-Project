@@ -2,7 +2,7 @@ using System.Collections;
 using System;
 using TMPro;
 using UnityEngine;
-using System.Net;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -64,25 +64,40 @@ public class UIManager : MonoBehaviour
         {
             playerInventory.OnInventoryChanged += RefreshUI;
 
+        }
+
+        if (weaponManager != null)
+        {
+            weaponManager.OnWeaponChanged += HandleWeaponSwitch;
+        }
+
+        if (playerShooter != null && playerShooter.currentWeaponController != null)
+        {
+            HandleWeaponSwitch(playerShooter.currentWeaponController);
+        }
+        else
+        {
             RefreshUI();
         }
+
+    }
+
+    private void HandleWeaponSwitch(WeaponController newWeapon)
+    {
+        if (weaponController != null)
+        {
+            weaponController.OnAmmoChanged -= RefreshUI;
+        }
+
+        weaponController = newWeapon;
 
         if (weaponController != null)
         {
             weaponController.OnAmmoChanged += RefreshUI;
 
-            RefreshUI();
         }
 
-        if (weaponManager != null)
-        {
-            
-        }
-    }
-
-    private void HandleWeaponSwitch(WeaponController newWeapon)
-    {
-        
+        RefreshUI();
     }
 
     public void HideInteractionPrompt()
@@ -151,7 +166,12 @@ public class UIManager : MonoBehaviour
             goldText.text = $"{playerInventory.gold}";
         }
 
-        if (ammoText != null)
+        if (playerInventory == null) Debug.Log("1");
+
+        if (weaponController == null) Debug.Log("2");
+
+
+        if (playerInventory != null && weaponController != null && ammoText != null)
         {
             ammoText.text = $"{playerInventory.ammo[(int)playerInventory.ammoType]}/{weaponController.CurrentAmmo}";
         }

@@ -42,7 +42,7 @@ public class NpcAnimator : MonoBehaviour
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         ragdollColliders = GetComponentsInChildren<Collider>();
 
-        Debug.Log(ragdollColliders.Length);
+        // Debug.Log(ragdollColliders.Length);
 
         
         SetRagdollState(false);

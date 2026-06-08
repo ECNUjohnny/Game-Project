@@ -25,7 +25,7 @@ public class PlayerShooter : MonoBehaviour
     
     public float tracerDuration = 0.5f; // 线痕迹显示的时间（非常短）
 
-    public float NextFireTime {get; private set; } = 0f;
+    public float NextFireTime { get; private set; } = 0f;
 
     [HideInInspector]
 

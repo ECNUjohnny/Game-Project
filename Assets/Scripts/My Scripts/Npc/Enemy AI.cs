@@ -221,7 +221,7 @@ public class EnemyAI : MonoBehaviour
             agent.enabled = false;
         }
 
-        Debug.Log("Dying");
+        // Debug.Log("Dying");
 
         // StartCoroutine(CleanUpCorpse());
     }

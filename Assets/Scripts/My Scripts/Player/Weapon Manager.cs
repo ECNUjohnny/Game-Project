@@ -25,10 +25,10 @@ public class WeaponManager : MonoBehaviour
 
     public event Action<WeaponController> OnWeaponChanged;
     
-    // 核心修改 1：这里改为存 WeaponController 的列表
-    private readonly List<WeaponController> preloadedWeapons = new();
     
-    private int currentWeaponIndex = 0;
+    public List<WeaponController> preloadedWeapons = new();
+    
+    public int currentWeaponIndex = 0;
     
     private PlayerCombat playerCombat;
     
