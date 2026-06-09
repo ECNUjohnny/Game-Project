@@ -126,7 +126,7 @@ public class EnemyAI : MonoBehaviour
 
         nextFireTime = Time.time + weapon.fireRate * shootFreq;
 
-        Vector3 target = player.position + Vector3.up * 1.45f;
+        Vector3 target = player.position + Vector3.up * 0.9f;
 
         Vector3 shootDirection = target - gunMuzzle.position;
 

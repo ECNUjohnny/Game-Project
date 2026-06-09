@@ -21,7 +21,7 @@ public class WeaponController : MonoBehaviour
 
     private Vector3 visualEndPoint;
 
-    public event Action OnAmmoChanged;
+    public event Action<bool> OnAmmoChanged;
 
     public void Init(WeaponData data)
     {
@@ -29,7 +29,7 @@ public class WeaponController : MonoBehaviour
 
         CurrentAmmo = data.clipSize;
 
-        OnAmmoChanged?.Invoke();
+        OnAmmoChanged?.Invoke(false);
 
         weaponData = data;
     }
@@ -38,11 +38,13 @@ public class WeaponController : MonoBehaviour
     {
         if (Time.time < nextFireTime || IsReloading || CurrentAmmo <= 0) return;
 
+        // Debug.Log(gunMuzzle.position);
+
         nextFireTime = Time.time + weaponData.fireRate;
 
         CurrentAmmo--;
 
-        OnAmmoChanged?.Invoke();
+        OnAmmoChanged?.Invoke(false);
 
         GameObject fire = Instantiate(weaponData.muzzleFlash, gunMuzzle.position, Quaternion.LookRotation(gunMuzzle.forward)).gameObject;
     
@@ -82,7 +84,7 @@ public class WeaponController : MonoBehaviour
 
         CurrentAmmo += bulletsReceived;
 
-        OnAmmoChanged?.Invoke();
+        OnAmmoChanged?.Invoke(false);
 
         IsReloading = false;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using TMPro;
 using UnityEngine;
+using Unity.VisualScripting;
 
 
 public class UIManager : MonoBehaviour
@@ -33,12 +34,24 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI ammoText;
 
+    public GameObject goldPanel;
+
+    public CanvasGroup goldCanvasGroup;
+
+    public KeyCode showGoldPanel = KeyCode.Z;
+
 
     public bool isInDialogue { get; private set; }
 
     private bool isInEvent;
 
     private Action onDialogueCompleteCallback;
+
+    private float fadeDuration = 0.5f;
+
+    private float duration = 4.0f;
+
+    private Coroutine fadeCoroutine;
 
     
     private void Awake()
@@ -77,9 +90,64 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            RefreshUI();
+            RefreshUI(false);
         }
 
+        goldPanel.SetActive(false);
+
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(showGoldPanel))
+        {
+            ShowGoldPanle();
+        }
+    }
+
+    IEnumerator GoldPanelCoroutine()
+    {
+        float time = 0;
+
+        goldPanel.SetActive(true);
+
+        goldCanvasGroup.alpha = 0;
+
+        while (time < fadeDuration)
+        {
+            goldCanvasGroup.alpha = Mathf.Lerp(0, 1, time / fadeDuration);
+            
+            time += Time.deltaTime;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        time = 0;
+
+        while (time < fadeDuration)
+        {
+            goldCanvasGroup.alpha = Mathf.Lerp(1, 0, time / fadeDuration);
+            
+            time += Time.deltaTime;
+
+            yield return null;
+        }
+
+        goldCanvasGroup.alpha = 0;
+
+        goldPanel.SetActive(false);
+    }
+
+    void ShowGoldPanle()
+    {
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+        }
+
+        fadeCoroutine = StartCoroutine(GoldPanelCoroutine());
     }
 
     private void HandleWeaponSwitch(WeaponController newWeapon)
@@ -97,7 +165,7 @@ public class UIManager : MonoBehaviour
 
         }
 
-        RefreshUI();
+        RefreshUI(false);
     }
 
     public void HideInteractionPrompt()
@@ -158,22 +226,26 @@ public class UIManager : MonoBehaviour
 
         EndDialogue();
     }
-
-    private void RefreshUI()
+    
+    private void RefreshUI(bool gold)
     {
         if (goldText != null)
         {
             goldText.text = $"{playerInventory.gold}";
+
+            if (gold)
+            {
+
+                ShowGoldPanle();
+            }
         }
-
-        if (playerInventory == null) Debug.Log("1");
-
-        if (weaponController == null) Debug.Log("2");
 
 
         if (playerInventory != null && weaponController != null && ammoText != null)
         {
             ammoText.text = $"{playerInventory.ammo[(int)playerInventory.ammoType]}/{weaponController.CurrentAmmo}";
         }
+
+    
     }
 }

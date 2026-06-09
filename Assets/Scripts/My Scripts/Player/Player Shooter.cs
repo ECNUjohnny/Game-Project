@@ -13,7 +13,7 @@ public class PlayerShooter : MonoBehaviour
 
     public Camera playerCamera;
 
-    public Transform gunMuzzle;       // 枪口位置
+    public Transform gunMuzzle;       
 
     public GameObject trace;  
 
@@ -44,14 +44,24 @@ public class PlayerShooter : MonoBehaviour
 
     void Update()
     {
+
+        gunMuzzle = currentWeaponController.gunMuzzle;
+
+        // Debug.Log(gunMuzzle.position);
+        
         if (currentWeaponController == null) return;
         
         if (Input.GetMouseButton(0) && NextFireTime <= Time.time)
         {
             Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-            currentWeaponController.Shoot(ray.origin, ray.direction);
-        
+            if (Input.GetMouseButton(1)) currentWeaponController.Shoot(ray.origin, ray.direction);
+            else
+            {
+                
+            }    
+
+
             NextFireTime += currentWeapon.fireRate;
         }
 

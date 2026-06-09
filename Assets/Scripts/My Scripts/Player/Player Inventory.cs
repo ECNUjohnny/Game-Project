@@ -25,7 +25,7 @@ public class PlayerInventory : MonoBehaviour
     private PlayerShooter playerShooter;
 
 
-    public event Action OnInventoryChanged;
+    public event Action<bool> OnInventoryChanged;
 
     void Awake()
     {
@@ -39,7 +39,7 @@ public class PlayerInventory : MonoBehaviour
         {
             gold -= amount;
 
-            OnInventoryChanged?.Invoke();
+            OnInventoryChanged?.Invoke(true);
         
             return true;
         }
@@ -51,14 +51,14 @@ public class PlayerInventory : MonoBehaviour
     {
         ammo[type] += amount;
 
-        OnInventoryChanged?.Invoke();
+        OnInventoryChanged?.Invoke(false);
     }
     
     public void ChangeWeapon(int type)
     {
         ammoType = (WeaponType)type;
 
-        OnInventoryChanged?.Invoke();
+        OnInventoryChanged?.Invoke(false);
     }
 
     public int ExtractAmmo(WeaponType type, int need)
@@ -69,7 +69,7 @@ public class PlayerInventory : MonoBehaviour
 
         ammo[(int)type] -= ammoToGive;
 
-        OnInventoryChanged?.Invoke();
+        OnInventoryChanged?.Invoke(false);
 
         return ammoToGive;
     }
