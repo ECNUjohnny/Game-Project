@@ -7,6 +7,8 @@ public class CameraMovement : MonoBehaviour
 
     public Vector3 aimLocalPos = new(0.42f, 0.45f, -0.75f);
 
+    public Vector3 shootLocalPos = new();
+
     public Vector3 aimPreciseLocalPos = new(0.42f, 0.45f, -0.15f);
 
     public float transitionSpeed = 10f;

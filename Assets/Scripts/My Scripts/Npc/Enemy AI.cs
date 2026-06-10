@@ -149,32 +149,10 @@ public class EnemyAI : MonoBehaviour
                 return;
             }
             
-            // agent.isStopped = false;
+            
 
             agent.SetDestination(player.position);
-            /*
-            if (Vector3.Distance(transform.position, player.position) >= shootingRange)
-            {
-                randDir = Random.insideUnitSphere * 2f;
-
-                randPos = player.position + randDir;
-
-                agent.SetDestination(randPos);
-            }
-            else
-            {
-                agent.isStopped = true;
-
-                Vector3 dir = player.position - transform.position;
-
-                dir.Normalize();
-
-                Quaternion targetRot = Quaternion.LookRotation(dir);
-
-                transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
-            }*/
-
-            // UpdateAnimator();
+            
 
             if (Vector3.Distance(player.position, transform.position) <= shootingRange)
             {
@@ -201,17 +179,7 @@ public class EnemyAI : MonoBehaviour
         spine.Rotate(transform.right, pitchAngle, Space.World);
     }
     
-    /*
-    private void UpdateAnimator()
-    {
-        if (healthSystem.isDead) return;
-        
-        if (animator != null && agent.enabled)
-        {
-            animator.SetFloat("Speed", agent.velocity.magnitude);
-        }
-    }
-    */
+    
 
     private void Stop()
     {
@@ -221,9 +189,7 @@ public class EnemyAI : MonoBehaviour
             agent.enabled = false;
         }
 
-        // Debug.Log("Dying");
 
-        // StartCoroutine(CleanUpCorpse());
     }
 
 }

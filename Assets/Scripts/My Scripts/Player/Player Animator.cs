@@ -5,6 +5,27 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerAnimator : MonoBehaviour
 {
+    private static readonly int TDrawHash = Animator.StringToHash("tDraw");
+    private static readonly int TShootHash = Animator.StringToHash("tShoot");
+    
+    private static readonly int TReloadHash = Animator.StringToHash("tReload");
+    
+    private static readonly int WeaponTypeHash = Animator.StringToHash("weaponType");
+    
+    private static readonly int SpeedYHash = Animator.StringToHash("SpeedY");
+    
+    private static readonly int IsGroundedHash = Animator.StringToHash("isGrounded");
+    
+    private static readonly int BJumpingHash = Animator.StringToHash("bJumping");
+    
+    private static readonly int BShootingHash = Animator.StringToHash("bShooting");
+    
+    private static readonly int BAimingHash = Animator.StringToHash("bAiming");
+    
+    private static readonly int InputYHash = Animator.StringToHash("InputY");
+    
+    private static readonly int InputXHash = Animator.StringToHash("InputX");
+    
     private Animator animator;
     
     private PlayerCombat combatScript;
@@ -43,31 +64,38 @@ public class PlayerAnimator : MonoBehaviour
     void Update()
     {
         
-        animator.SetFloat("InputX", movementScript.h);
+        animator.SetFloat(InputXHash, movementScript.h);
         
-        animator.SetFloat("InputY", movementScript.v);
+        animator.SetFloat(InputYHash, movementScript.v);
         
-        animator.SetBool("bAiming", combatScript.bAiming);
+        animator.SetBool(BAimingHash, combatScript.bAiming);
         
-        animator.SetBool("bShooting", combatScript.bShooting);
+        animator.SetBool(BShootingHash, combatScript.bShooting);
         
-        animator.SetBool("bJumping", movementScript.bJumping);
+        animator.SetBool(BJumpingHash, movementScript.bJumping);
         
-        animator.SetBool("isGrounded", movementScript.isGrounded);
+        animator.SetBool(IsGroundedHash, movementScript.isGrounded);
         
-        animator.SetFloat("SpeedY", movementScript.velocity.y);
+        animator.SetFloat(SpeedYHash, movementScript.velocity.y);
 
-        animator.SetInteger("weaponType", combatScript.weaponType);
+        animator.SetInteger(WeaponTypeHash, combatScript.weaponType);
 
         
-        if (Input.GetMouseButton(1)) Aim.SetActive(true);
-        else Aim.SetActive(false);
-        //transform.position += new Vector3(0.1f, 0, 0);
+        if (Aim != null)
+        {
+            Aim.SetActive(combatScript.bAiming);
+        }
+        
     }
 
     public void TriggerReloadAnimation()
     {
-        animator.SetTrigger("tReload");
+        animator.SetTrigger(TReloadHash);
+    }
+
+    public void TriggerShootAnimation()
+    {
+        animator.SetTrigger(TDrawHash);
     }
 
     /*void LateUpdate()

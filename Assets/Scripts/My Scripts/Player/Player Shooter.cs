@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(WeaponManager))]
 
@@ -7,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInventory))]
 public class PlayerShooter : MonoBehaviour
 {
+    private static WaitForSeconds _waitForSeconds2_5 = new(2.5f);
+    
     [Header("Setting")]
 
     public WeaponData currentWeapon;
@@ -26,6 +29,12 @@ public class PlayerShooter : MonoBehaviour
     public float tracerDuration = 0.5f; // 线痕迹显示的时间（非常短）
 
     public float NextFireTime { get; private set; } = 0f;
+
+    [Header("Weapon State")]
+
+    public bool isWeaponDrawn = false;
+
+    public bool isDrawing = false;
 
     [HideInInspector]
 
@@ -47,7 +56,6 @@ public class PlayerShooter : MonoBehaviour
 
         gunMuzzle = currentWeaponController.gunMuzzle;
 
-        // Debug.Log(gunMuzzle.position);
         
         if (currentWeaponController == null) return;
         
@@ -56,11 +64,15 @@ public class PlayerShooter : MonoBehaviour
             Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
             if (Input.GetMouseButton(1)) currentWeaponController.Shoot(ray.origin, ray.direction);
+
             else
             {
-                
-            }    
+                StartDrawingWeapon();
 
+                Debug.Log(isWeaponDrawn);
+
+                if (isWeaponDrawn) currentWeaponController.Shoot(gunMuzzle.position, transform.forward);
+            }
 
             NextFireTime += currentWeapon.fireRate;
         }
@@ -92,4 +104,27 @@ public class PlayerShooter : MonoBehaviour
             Debug.Log("换弹失败：背包里没有这种备用子弹了！");
         }
     }
+
+    private void StartDrawingWeapon()
+    {
+        isDrawing = true;
+
+        playerAnimator.TriggerShootAnimation();
+
+        Debug.Log("Drawing");
+
+        StartCoroutine(DrawWeaponRoutine());
+    }
+
+    IEnumerator DrawWeaponRoutine()
+    {
+        yield return _waitForSeconds2_5;
+
+        isDrawing = false;
+
+        isWeaponDrawn = true;
+
+        
+    }
+
 }   
