@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     private static readonly int TDrawHash = Animator.StringToHash("tDraw");
+    
     private static readonly int TShootHash = Animator.StringToHash("tShoot");
     
     private static readonly int TReloadHash = Animator.StringToHash("tReload");

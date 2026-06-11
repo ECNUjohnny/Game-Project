@@ -101,7 +101,7 @@ public class PlayerShooter : MonoBehaviour
         }
         else
         {
-            Debug.Log("换弹失败：背包里没有这种备用子弹了！");
+            Debug.Log("No more bullets");
         }
     }
 
