@@ -65,6 +65,11 @@ public class PlayerAnimator : MonoBehaviour
     void Update()
     {
         
+        if (combatScript.bAiming)
+        {
+            animator.ResetTrigger(TDrawHash);
+        }
+        
         animator.SetFloat(InputXHash, movementScript.h);
         
         animator.SetFloat(InputYHash, movementScript.v);

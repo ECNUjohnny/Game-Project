@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float Speed = 2f;
 
     public Transform spine;
+
+    public KeyCode Vision = KeyCode.T;
     
     [Header("The speed turning to the pos of the cam")]
     
@@ -82,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
         Quaternion targetRot = Quaternion.LookRotation(camForward);
 
-        if (!Input.GetKey(KeyCode.T) && ((vRaw != 0 || transform.forward.y != 0) || (vRaw == 0 && Input.GetMouseButton(1))))
+        if (!Input.GetKey(Vision) && ((vRaw != 0 || transform.forward.y != 0) || (vRaw == 0 && Input.GetMouseButton(1))))
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
         }
@@ -113,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetMouseButton(1))
+        if (!Input.GetKey(Vision) && Input.GetMouseButton(1))
         {
     
             float pitchAngle = cam.eulerAngles.x;

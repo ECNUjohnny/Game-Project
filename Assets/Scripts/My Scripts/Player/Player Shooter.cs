@@ -6,9 +6,10 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(PlayerInventory))]
+[RequireComponent(typeof(PlayerAnimator))]
 public class PlayerShooter : MonoBehaviour
 {
-    private static WaitForSeconds _waitForSeconds2_5 = new(2.5f);
+    private static readonly WaitForSeconds _waitForSeconds2_5 = new(1f);
     
     [Header("Setting")]
 
