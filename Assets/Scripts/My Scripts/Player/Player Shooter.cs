@@ -60,7 +60,7 @@ public class PlayerShooter : MonoBehaviour
         
         if (currentWeaponController == null) return;
         
-        if (Input.GetMouseButton(0) && NextFireTime <= Time.time)
+        if (currentWeaponController.CurrentAmmo != 0 && Input.GetMouseButton(0) && NextFireTime <= Time.time)
         {
             Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 

@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.AI;
+
 [RequireComponent(typeof(NpcHealth))]
 [RequireComponent(typeof(Animator))]
-
-
+[RequireComponent(typeof(NavMeshAgent))]
 public class NpcAnimator : MonoBehaviour
 {
+    private static readonly int TReloadHash = Animator.StringToHash("tReload");
+
     private static readonly int TypeHash = Animator.StringToHash("type");
     
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
@@ -90,6 +92,11 @@ public class NpcAnimator : MonoBehaviour
             healthSystem.OnDeath -= EnableRagdoll;
         }
     }
+
+    public void TriggerReloadAnimation()
+    {
+        animator.SetTrigger(TReloadHash);
+    } 
 
     void Update()
     {

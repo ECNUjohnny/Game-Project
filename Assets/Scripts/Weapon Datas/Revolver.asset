@@ -17,10 +17,9 @@ MonoBehaviour:
   ispistol: 1
   type: 1
   ammoType: 1
-  ammo: 0
   damage: 20
   fireRate: 0.5
-  range: 50
+  range: 100
   clipSize: 6
   reloadRate: 1.5
   recoilForce: 1.5

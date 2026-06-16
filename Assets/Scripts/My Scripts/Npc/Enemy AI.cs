@@ -1,11 +1,14 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NpcHealth))]
+[RequireComponent(typeof(NpcAnimator))]
 public class EnemyAI : MonoBehaviour
 {
+    private static readonly WaitForSeconds _waitForSeconds0_9 = new(0.9f);
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
 
 
@@ -50,6 +53,14 @@ public class EnemyAI : MonoBehaviour
     public Transform rifleAimSlot;
 
     public Transform spine;
+
+    [Header("Aiming Limit Setting")]
+
+    public float maxSpineUp = -30f;
+    
+    public float maxSpineDown = 30f;
+
+    private bool bReloading = false;
 
     void Start()
     {
@@ -103,6 +114,8 @@ public class EnemyAI : MonoBehaviour
         }
 
         healthSystem.OnDeath += Stop;
+
+        bReloading = false;
     }
 
     void FaceTarget()
@@ -126,13 +139,19 @@ public class EnemyAI : MonoBehaviour
 
         nextFireTime = Time.time + weapon.fireRate * shootFreq;
 
-        Vector3 target = player.position + Vector3.up * 0.9f;
+        Vector3 target = player.position + Vector3.up * 1.45f;
 
-        Vector3 shootDirection = target - gunMuzzle.position;
+        // Debug.Log(target);
 
-        if (weaponController != null)
+        Vector3 shootDirection = (target - gunMuzzle.position).normalized;
+
+        if (weaponController.CurrentAmmo != 0 && weaponController != null)
         {
             weaponController.Shoot(gunMuzzle.position, shootDirection);
+        }
+        else
+        {
+            HandleReload();
         }
     }
 
@@ -149,12 +168,10 @@ public class EnemyAI : MonoBehaviour
                 return;
             }
             
-            
-
             agent.SetDestination(player.position);
             
 
-            if (Vector3.Distance(player.position, transform.position) <= shootingRange)
+            if (Vector3.Distance(player.position, transform.position) <= shootingRange && !bReloading)
             {
                 FaceTarget();
 
@@ -164,22 +181,58 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    
     void LateUpdate()
     {
-        
         if (healthSystem.isDead || Vector3.Distance(player.position, transform.position) > shootingRange) return;
-        
+    
         Vector3 targetChest = player.position + Vector3.up * 1.45f;
 
-        Vector3 dirToTarget = targetChest - spine.position;
+        Vector3 dirToTarget = (targetChest - spine.position).normalized;
+
 
         float pitchAngle = Vector3.SignedAngle(transform.forward, dirToTarget, transform.right);
 
+
+        pitchAngle = Mathf.Clamp(pitchAngle, maxSpineUp, maxSpineDown);
+
+    
         spine.Rotate(transform.right, pitchAngle, Space.World);
     }
+
     
     
+    private void HandleReload()
+    {
+        if (weaponController.IsReloading) return;
+
+        int ammoNeed = weaponController.weaponData.clipSize - weaponController.CurrentAmmo;
+
+        if (ammoNeed <= 0) return;
+
+        int ammoGotFromBag = weapon.clipSize;
+    
+        if (ammoGotFromBag > 0)
+        {
+            weaponController.Reload(ammoGotFromBag);
+
+            npcAnimator.TriggerReloadAnimation();
+
+            bReloading = true;
+
+            StartCoroutine(Reload());
+        }
+        else
+        {
+            Debug.Log("No more bullets");
+        }
+    }    
+
+    private IEnumerator Reload()
+    {
+        yield return _waitForSeconds0_9;
+
+        bReloading = false;
+    }
 
     private void Stop()
     {
