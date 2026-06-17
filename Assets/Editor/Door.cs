@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEditor;
-using System.Text.RegularExpressions;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
 public class Door : MonoBehaviour
