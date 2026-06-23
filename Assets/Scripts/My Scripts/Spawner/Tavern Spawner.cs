@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +8,7 @@ public class TavernSpawner : MonoBehaviour
 {
 
     [Tooltip("代表自由站立区域的 Collider")]
-    public BoxCollider freeStandArea;
+    public List<BoxCollider> freeStandAreas;
 
     private static readonly WaitForSeconds _waitForSeconds0_1 = new(0.1f);
     [Header("System Ref")]
@@ -30,13 +31,17 @@ public class TavernSpawner : MonoBehaviour
     
     [Tooltip("Day Market")]
     
-    public float morningStartTime = 12f;
+    public float morningStartTime = 10f;
 
-    public float morningEndTime = 2f;  
+    public float morningEndTime = 14f;  
 
     private List<GameObject> spawnedNPCs = new(); // 记录当前刷出来的客人
     
     private bool isPlayerInside = false; // 防止重复触发
+
+    private enum TimePeriod { Night, Morning, Day, None }
+
+    private TimePeriod lastSpawnedPeriod = TimePeriod.None;
 
     
     private void OnTriggerEnter(Collider other)
@@ -54,13 +59,39 @@ public class TavernSpawner : MonoBehaviour
         if (other.CompareTag("Player") && isPlayerInside)
         {
             isPlayerInside = false;
-            ClearNPCs(); 
+            HideNPCs(); 
         }
+    }
+
+    private TimePeriod GetCurrentTimePeriod()
+    {
+        float t = timeManager.timeOfDay;
+
+        if (t >= nightStartTime || t <= nightEndTime) return TimePeriod.Night;
+
+        else if (morningStartTime <= t && t <= morningEndTime) return TimePeriod.Morning;
+
+        return TimePeriod.Day;
     }
 
     private void CheckTimeAndSpawn()
     {
-       
+        TimePeriod currentPeriod = GetCurrentTimePeriod();
+
+        if (lastSpawnedPeriod == currentPeriod && spawnedNPCs.Count > 0)
+        {
+            foreach (var npc in spawnedNPCs)
+            {
+                if (npc != null) npc.SetActive(true);
+            }
+
+            return;
+        }
+        
+        DestroyNPCs();
+
+        lastSpawnedPeriod = currentPeriod;
+        
         if (timeManager.timeOfDay >= nightStartTime || timeManager.timeOfDay <= nightEndTime)
         {
             StartCoroutine(SpawnNPCsCoroutine(Random.Range(minGuests, 24)));
@@ -80,9 +111,7 @@ public class TavernSpawner : MonoBehaviour
     
     private IEnumerator SpawnNPCsCoroutine(int spawnCount)
     {
-        
-        // int spawnCount = Random.Range(1, spawnPoints.Count + 1); 
-        
+    
         
         List<Transform> shuffledSeats = new(spawnPoints);
         
@@ -110,12 +139,42 @@ public class TavernSpawner : MonoBehaviour
 
         for (int i = 0; i < standCount; i++)
         {
+            Vector3 finalPosition = Vector3.zero;
+            bool foundValidPoint = false;
             
+            BoxCollider selectedArea = freeStandAreas[Random.Range(0, freeStandAreas.Count)];
+            Bounds bounds = selectedArea.bounds;
+
+            Vector3 randomPos = new(Random.Range(bounds.min.x, bounds.max.x), bounds.center.y, Random.Range(bounds.min.z, bounds.max.z));
+
+            if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
+            {
+                finalPosition = hit.position;
+                
+                foundValidPoint = true;
+
+                break;
+            }
+
+            if (foundValidPoint)
+            {
+                int index = Random.Range(0, npcPrefabs.Count);
+
+                Quaternion randomRot = Quaternion.Euler(0, Random.Range(0, 360f), 0);
+
+                GameObject npc = Instantiate(npcPrefabs[index], finalPosition, randomRot);
+
+                spawnedNPCs.Add(npc);
+
+                yield return _waitForSeconds0_1;
+            }
         }
+
+
 
     }
 
-    private void ClearNPCs()
+    private void HideNPCs()
     {
         
         StopAllCoroutines(); 
@@ -123,8 +182,20 @@ public class TavernSpawner : MonoBehaviour
         
         foreach (var npc in spawnedNPCs)
         {
-            if (npc != null) Destroy(npc);
+            if (npc != null) npc.SetActive(false);
         }
+
+    }
+
+    private void DestroyNPCs()
+    {
+        StopAllCoroutines();
+
+        foreach (var npc in spawnedNPCs)
+        {
+            if (npc != null) Destroy(npc, 0.1f);
+        }
+
         spawnedNPCs.Clear();
     }
 }
