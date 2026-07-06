@@ -6,11 +6,14 @@ public class DamageForwarder : MonoBehaviour, IDamageable
 
     public float DamIntensor = 1.0f;
     
-    public void TakeDamage(float amount, Vector3 hitPoint, Vector3 hitNormal)
+    public void TakeDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
+        
+        Debug.Log(name);
+        
         if (healthSystem != null)
         {
-            healthSystem.TakeDamage(amount * DamIntensor, hitPoint, hitNormal);
+            healthSystem.Damage(damage * DamIntensor, hitPoint, hitNormal);
         }
     } 
 }

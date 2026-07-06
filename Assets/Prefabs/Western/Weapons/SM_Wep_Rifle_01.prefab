@@ -329,6 +329,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trace: {fileID: 8902003051578745812, guid: dd2a81bd5e312d04fa057c36bb80479a, type: 3}
   gunMuzzle: {fileID: 999790367349814628}
+  weaponData: {fileID: 11400000, guid: 3a55d3e3ed2151d4a903f8b856fa4a4c, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 254
 --- !u!1 &1449471429018050
 GameObject:
   m_ObjectHideFlags: 0

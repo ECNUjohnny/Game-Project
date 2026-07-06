@@ -84,7 +84,7 @@ public class PlayerHealthSystem : MonoBehaviour, IDamageable
             StartCoroutine(setDeathUI());
         }
 
-        // StartCoroutine(setDeathUI());
+        
     }
 
     IEnumerator setDeathUI()

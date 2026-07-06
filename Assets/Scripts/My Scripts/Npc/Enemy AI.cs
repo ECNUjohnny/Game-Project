@@ -157,6 +157,8 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        // Debug.Log("OK");
+        
         if (player != null)
         {
             if (healthSystem.isDead)

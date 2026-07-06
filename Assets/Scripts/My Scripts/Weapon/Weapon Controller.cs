@@ -15,6 +15,8 @@ public class WeaponController : MonoBehaviour
 
     public WeaponData weaponData; 
 
+    public LayerMask layerMask;
+
     public bool IsReloading { get; private set; }
 
     public int CurrentAmmo { get; private set; } // 当前枪里还有多少子弹
@@ -50,7 +52,7 @@ public class WeaponController : MonoBehaviour
     
         Destroy(fire, 0.25f);
 
-        if (Physics.Raycast(aimOrigin, aimDirection, out RaycastHit hitInfo, weaponData.range))
+        if (Physics.Raycast(aimOrigin, aimDirection, out RaycastHit hitInfo, weaponData.range, layerMask))
         {
             visualEndPoint = hitInfo.point;
 

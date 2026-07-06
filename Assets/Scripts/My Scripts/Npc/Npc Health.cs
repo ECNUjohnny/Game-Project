@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class NpcHealth : MonoBehaviour, IDamageable
+public class NpcHealth : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("Health Parameter")]
@@ -27,7 +27,7 @@ public class NpcHealth : MonoBehaviour, IDamageable
         currentHealth = health;
     }
 
-    public void TakeDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
+    public void Damage(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         if (isDead) return;
 

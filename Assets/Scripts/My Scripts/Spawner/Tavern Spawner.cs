@@ -91,6 +91,8 @@ public class TavernSpawner : MonoBehaviour
         DestroyNPCs();
 
         lastSpawnedPeriod = currentPeriod;
+
+        if (npcPrefabs.Count == 0) return;
         
         if (timeManager.timeOfDay >= nightStartTime || timeManager.timeOfDay <= nightEndTime)
         {
@@ -112,7 +114,9 @@ public class TavernSpawner : MonoBehaviour
     private IEnumerator SpawnNPCsCoroutine(int spawnCount)
     {
     
-        
+        // if (npcPrefabs.Count == 0) yield return null;
+
+
         List<Transform> shuffledSeats = new(spawnPoints);
         
         for (int i = 0; i < shuffledSeats.Count; i++)
