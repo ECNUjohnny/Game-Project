@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7530628435410462726}
   - component: {fileID: 6263307592252745525}
   - component: {fileID: 3194271972873329630}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Character_Sheriff_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
