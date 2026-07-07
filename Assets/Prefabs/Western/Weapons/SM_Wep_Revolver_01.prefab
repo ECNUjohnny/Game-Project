@@ -414,7 +414,7 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 4f90e2c0d58274c438b0b796201b02fd, type: 2}
   layerMask:
     serializedVersion: 2
-    m_Bits: 254
+    m_Bits: 255
 --- !u!1 &1393765106539353116
 GameObject:
   m_ObjectHideFlags: 0

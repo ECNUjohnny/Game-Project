@@ -138,7 +138,6 @@ GameObject:
   - component: {fileID: 7184635185809936880}
   - component: {fileID: 7153312151969367902}
   - component: {fileID: 6733829411683300003}
-  - component: {fileID: 7408958641607778426}
   m_Layer: 0
   m_Name: UpperLeg_R
   m_TagString: Untagged
@@ -219,7 +218,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064908387003072}
-  m_ConnectedBody: {fileID: 8618651973450846195}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
@@ -258,20 +257,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &7408958641607778426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1064908387003072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1066076589045488
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +266,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4464281448620750}
-  - component: {fileID: 7163180505863582715}
   m_Layer: 0
   m_Name: Clavicle_L
   m_TagString: Untagged
@@ -305,20 +289,6 @@ Transform:
   - {fileID: 4332587950557318}
   m_Father: {fileID: 4987152943282040}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7163180505863582715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066076589045488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1094254464406506
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +381,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094254464406506}
-  m_ConnectedBody: {fileID: 5655855389097710313}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
@@ -542,7 +512,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103090368857938}
-  m_ConnectedBody: {fileID: 3907049158285760446}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
@@ -624,7 +594,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735501151107662}
-  - component: {fileID: 3538414156138554192}
   m_Layer: 0
   m_Name: Toes_L
   m_TagString: Untagged
@@ -647,20 +616,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4852177839758298}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3538414156138554192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137520874128914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1141145204574712
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +888,6 @@ GameObject:
   - component: {fileID: 4177046887060329809}
   - component: {fileID: 1705022740001770014}
   - component: {fileID: 8675111727356487975}
-  - component: {fileID: 6612005292023683014}
   m_Layer: 0
   m_Name: LowerLeg_L
   m_TagString: Untagged
@@ -1014,7 +968,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229758081317358}
-  m_ConnectedBody: {fileID: 3755507106712845954}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
@@ -1053,20 +1007,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &6612005292023683014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229758081317358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1244376998115838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,7 +1099,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244376998115838}
-  m_ConnectedBody: {fileID: 5655855389097710313}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
@@ -1574,7 +1514,6 @@ GameObject:
   - component: {fileID: 7179376787882478203}
   - component: {fileID: 5273195802436314312}
   - component: {fileID: 4194755550998474397}
-  - component: {fileID: 3615519230679679523}
   m_Layer: 0
   m_Name: LowerLeg_R
   m_TagString: Untagged
@@ -1655,7 +1594,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319799634514680}
-  m_ConnectedBody: {fileID: 7153312151969367902}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
@@ -1694,20 +1633,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3615519230679679523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319799634514680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1337263341791156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,7 +1842,6 @@ GameObject:
   - component: {fileID: 5058364322208967784}
   - component: {fileID: 3755507106712845954}
   - component: {fileID: 3939813392222685430}
-  - component: {fileID: 3011067297917088486}
   m_Layer: 0
   m_Name: UpperLeg_L
   m_TagString: Untagged
@@ -1998,7 +1922,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360510357825038}
-  m_ConnectedBody: {fileID: 8618651973450846195}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
@@ -2037,20 +1961,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3011067297917088486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360510357825038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1378609742239884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,7 +2202,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4820396507015538}
-  - component: {fileID: 5333462030009995404}
   m_Layer: 0
   m_Name: Ball_R
   m_TagString: Untagged
@@ -2316,20 +2225,6 @@ Transform:
   - {fileID: 4414122107019718}
   m_Father: {fileID: 4521286112359524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5333462030009995404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444500416300438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1457481040427878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2403,7 +2298,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4414122107019718}
-  - component: {fileID: 5207918787431115763}
   m_Layer: 0
   m_Name: Toes_R
   m_TagString: Untagged
@@ -2426,20 +2320,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4820396507015538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5207918787431115763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490460861239540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1513930814131124
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,7 +2393,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4325514172161840}
-  - component: {fileID: 2167941130015944798}
   m_Layer: 0
   m_Name: Ankle_L
   m_TagString: Untagged
@@ -2537,20 +2416,6 @@ Transform:
   - {fileID: 4852177839758298}
   m_Father: {fileID: 4823911394869574}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2167941130015944798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1559878021326494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1562072083259454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,7 +2622,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4521286112359524}
-  - component: {fileID: 8519936978618224455}
   m_Layer: 0
   m_Name: Ankle_R
   m_TagString: Untagged
@@ -2781,20 +2645,6 @@ Transform:
   - {fileID: 4820396507015538}
   m_Father: {fileID: 4269294076589370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8519936978618224455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583498408702016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1600836206787968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3052,7 +2902,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1606279323307882}
-  m_ConnectedBody: {fileID: 9042310144797096895}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
@@ -3132,7 +2982,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4904707942336796}
-  - component: {fileID: 5234969705472867509}
   m_Layer: 0
   m_Name: Spine_02
   m_TagString: Untagged
@@ -3156,20 +3005,6 @@ Transform:
   - {fileID: 4987152943282040}
   m_Father: {fileID: 4266014512831808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5234969705472867509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621876685744880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1668323181210912
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,7 +3223,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4635515220956126}
-  - component: {fileID: 8220647141606142231}
   m_Layer: 0
   m_Name: Neck
   m_TagString: Untagged
@@ -3412,20 +3246,6 @@ Transform:
   - {fileID: 4521899970174138}
   m_Father: {fileID: 4987152943282040}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8220647141606142231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773452045744286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1788344854511366
 GameObject:
   m_ObjectHideFlags: 0
@@ -3435,7 +3255,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4852177839758298}
-  - component: {fileID: 8898037264818747441}
   m_Layer: 0
   m_Name: Ball_L
   m_TagString: Untagged
@@ -3459,20 +3278,6 @@ Transform:
   - {fileID: 4735501151107662}
   m_Father: {fileID: 4325514172161840}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8898037264818747441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1788344854511366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1794210180853268
 GameObject:
   m_ObjectHideFlags: 0
@@ -3575,7 +3380,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4018726595560980}
-  - component: {fileID: 2664365706305220145}
   m_Layer: 0
   m_Name: Clavicle_R
   m_TagString: Untagged
@@ -3599,20 +3403,6 @@ Transform:
   - {fileID: 4655360148627734}
   m_Father: {fileID: 4987152943282040}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2664365706305220145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853816759499418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1855240856681724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,7 +3476,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4987152943282040}
-  - component: {fileID: 3759194530264203095}
   m_Layer: 0
   m_Name: Spine_03
   m_TagString: Untagged
@@ -3712,20 +3501,6 @@ Transform:
   - {fileID: 4635515220956126}
   m_Father: {fileID: 4904707942336796}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3759194530264203095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890559184816788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1894103656980748
 GameObject:
   m_ObjectHideFlags: 0
@@ -3738,7 +3513,6 @@ GameObject:
   - component: {fileID: 520679100344654120}
   - component: {fileID: 4887424709176390886}
   - component: {fileID: 1228220302589772491}
-  - component: {fileID: 5908958330723370396}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -3782,7 +3556,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.15
+  m_Radius: 0.13
   m_Center: {x: 0, y: 0.0954895, z: 0}
 --- !u!54 &4887424709176390886
 Rigidbody:
@@ -3818,7 +3592,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894103656980748}
-  m_ConnectedBody: {fileID: 5655855389097710313}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
@@ -3857,20 +3631,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &5908958330723370396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1894103656980748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 10
 --- !u!1 &1912354000382478
 GameObject:
   m_ObjectHideFlags: 0
@@ -3882,7 +3642,6 @@ GameObject:
   - component: {fileID: 4586633719938828}
   - component: {fileID: 5919388087493870285}
   - component: {fileID: 8618651973450846195}
-  - component: {fileID: 7999800306105054761}
   m_Layer: 0
   m_Name: Hips
   m_TagString: Untagged
@@ -3956,20 +3715,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7999800306105054761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912354000382478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &1965630563313740
 GameObject:
   m_ObjectHideFlags: 0
@@ -4014,7 +3759,6 @@ GameObject:
   - component: {fileID: 1565550445485563269}
   - component: {fileID: 5655855389097710313}
   - component: {fileID: 8239541556172186520}
-  - component: {fileID: 6700241317115837893}
   m_Layer: 0
   m_Name: Spine_01
   m_TagString: Untagged
@@ -4093,7 +3837,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993036924306508}
-  m_ConnectedBody: {fileID: 8618651973450846195}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
@@ -4132,20 +3876,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &6700241317115837893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993036924306508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81f6c2c010128749bcd5b00f336316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7530628435410462726}
-  DamIntensor: 1
 --- !u!1 &7898275010298223785
 GameObject:
   m_ObjectHideFlags: 0
