@@ -1,5 +1,4 @@
-using System.Linq;
-using Codice.Client.Common.WebApi.Responses;
+
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -10,7 +9,7 @@ public class BoneSetupCopier : EditorWindow
 
     private Transform targetRoot;
 
-    [MenuItem("Tools/Bone Setup copier")]
+    [MenuItem("Tools/一键复制骨架配置")]
     public static void ShowWindow()
     {
         GetWindow<BoneSetupCopier>("复制人物骨骼设置");
@@ -39,6 +38,8 @@ public class BoneSetupCopier : EditorWindow
 
                 
 
+                Undo.CollapseUndoOperations(undoGroupIndex); 
+
                 Debug.Log($"<color=green><b>同步完成！</b></color> 已将 {sourceRoot.name} 的配置完美克隆给 {targetRoot.name}。");
             }
             else
@@ -50,10 +51,7 @@ public class BoneSetupCopier : EditorWindow
 
     private void CopyBonesRecursively(Transform src, Transform dst)
     {
-        if (dst.TryGetComponent<DamageForwarder>(out var damageForwarder))
-        {
-            Undo.DestroyObjectImmediate(damageForwarder);
-        }
+       
         
         CopySpecificComponent<Collider>(src, dst);
         CopySpecificComponent<Rigidbody>(src, dst);
@@ -79,23 +77,41 @@ public class BoneSetupCopier : EditorWindow
 
         for (int i = 0; i < srcComponents.Length; i++)
         {
+            System.Type realType = srcComponents[i].GetType();
+
             if (i < dstComponents.Length)
             {
-                Undo.RecordObject(dstComponents[i], "Sync Bone Setup");
-
-                EditorUtility.CopySerialized(srcComponents[i], dstComponents[i]);
+                // 检查：如果目标身上原有的组件类型，和源组件一模一样，才直接覆盖数据
+                if (dstComponents[i].GetType() == realType)
+                {
+                    Undo.RecordObject(dstComponents[i], "Sync Bone Setup");
+                    EditorUtility.CopySerialized(srcComponents[i], dstComponents[i]);
+                }
+                else
+                {
+                    // 如果类型不一样 (比如源是 Capsule，目标却是 Box)，必须先删掉旧的，再加新的
+                    Undo.DestroyObjectImmediate(dstComponents[i]);
+                    Component newComp = Undo.AddComponent(dst.gameObject, realType);
+                    EditorUtility.CopySerialized(srcComponents[i], newComp);
+                }
             }
             else
             {
-                T newComp = Undo.AddComponent<T>(dst.gameObject);
-
-                EditorUtility.CopySerialized(srcComponents[i], newComp);
+                Component newComp = Undo.AddComponent(dst.gameObject, realType);
+                if (newComp != null)
+                {
+                    EditorUtility.CopySerialized(srcComponents[i], newComp);
+                }
             }
         }
 
+        // 删掉目标身上多余的组件
         for (int i = srcComponents.Length; i < dstComponents.Length; i++)
         {
-            Undo.DestroyObjectImmediate(dstComponents[i]);
+            if (dstComponents[i] != null)
+            {
+                Undo.DestroyObjectImmediate(dstComponents[i]);
+            }
         }
     }
 
@@ -105,16 +121,20 @@ public class BoneSetupCopier : EditorWindow
 
         foreach (var joint in joints)
         {
-            string path = GetRelativePath(srcRoot, joint.connectedBody.transform);
-
-            Transform targetBone = dstRoot.Find(path);
-            if (targetBone != null)
+            if (joint.connectedBody != null)
             {
-                if (targetBone.TryGetComponent<Rigidbody>(out var targetRb))
-                {
-                    Undo.RecordObject(joint, "Remap Joint");
+                   
+               string path = GetRelativePath(srcRoot, joint.connectedBody.transform);
 
-                    joint.connectedBody = targetRb;
+                Transform targetBone = dstRoot.Find(path);
+                if (targetBone != null)
+                {
+                    if (targetBone.TryGetComponent<Rigidbody>(out var targetRb))
+                    {
+                        Undo.RecordObject(joint, "Remap Joint");
+
+                        joint.connectedBody = targetRb;
+                    }
                 }
             }
         }
