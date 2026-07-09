@@ -66,6 +66,11 @@ public class NpcAnimator : MonoBehaviour
         
         foreach (Collider col in ragdollColliders)
         {
+            if (col.gameObject == this.gameObject)
+            {
+                continue;
+            }
+            
             
             col.isTrigger = !isRagdollActive;
         

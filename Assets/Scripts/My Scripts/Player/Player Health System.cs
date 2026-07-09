@@ -108,6 +108,11 @@ public class PlayerHealthSystem : MonoBehaviour, IDamageable
 
         foreach (Collider col in ragdollCollider)
         {
+            if (col.gameObject == this.gameObject)
+            {
+                continue;
+            }
+            
             if (col != controller) 
             {
                 col.isTrigger = !isRagdollActive;
