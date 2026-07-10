@@ -23,7 +23,11 @@ public class WeaponController : MonoBehaviour
 
     private Vector3 visualEndPoint;
 
+    public PlayerCombat combatScript;
+
     public event Action<bool> OnAmmoChanged;
+
+    private float timeScale;
 
     public void Init(WeaponData data)
     {
@@ -38,11 +42,13 @@ public class WeaponController : MonoBehaviour
 
     public void Shoot(Vector3 aimOrigin, Vector3 aimDirection)
     {
-        if (Time.time < nextFireTime || IsReloading || CurrentAmmo <= 0) return;
+        if (Time.unscaledTime < nextFireTime || IsReloading || CurrentAmmo <= 0) return;
 
         // Debug.Log(gunMuzzle.position);
 
-        nextFireTime = Time.time + weaponData.fireRate;
+        // timeScale = combatScript.GetCurrentPlayerTimeScale();
+
+        nextFireTime = Time.unscaledTime + weaponData.fireRate;
 
         CurrentAmmo--;
 

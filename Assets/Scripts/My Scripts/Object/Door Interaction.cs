@@ -14,7 +14,7 @@ public class DoorInteraction : MonoBehaviour
     
     private float time = 0;
     
-    public float CloseDoor = 7.0f;
+    public float CloseDoor = 14.0f;
 
     void Update()
     {
@@ -36,7 +36,7 @@ public class DoorInteraction : MonoBehaviour
             time = 0;
         }
 
-        time += Time.deltaTime;
+        if (isDoorOpen) time += Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -1,7 +1,8 @@
 using UnityEngine;
-
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterController))]
+
+[RequireComponent(typeof(PlayerCombat))]
 public class PlayerMovement : MonoBehaviour
 {
     public Transform cam; 
@@ -41,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
     private float Speedy;
     
     public Vector3 velocity;
+
+    public PlayerCombat combatScript;
+    
     
     [SerializeField]
     
@@ -48,9 +52,13 @@ public class PlayerMovement : MonoBehaviour
     
     private float transitionSpeed = 5f;
 
+    private float deltaTime = 0f;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
+        combatScript = GetComponent<PlayerCombat>();
     
         isGrounded = true;
 
@@ -63,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         vRaw = Input.GetAxisRaw("Vertical");
         isGrounded = controller.isGrounded;
 
+
         if (isGrounded) bJumping = false;
 
         hTarget = Input.GetKey(KeyCode.LeftShift) ? hRaw * 2.0f : hRaw;
@@ -70,23 +79,25 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButton(1)) hTarget = 0;
 
-        h = Mathf.Lerp(h, hTarget, Time.deltaTime * transitionSpeed);
-        v = Mathf.Lerp(v, vTarget, Time.deltaTime * transitionSpeed);
+        deltaTime = combatScript.GetPlayerDeltaTime();
+
+        h = Mathf.Lerp(h, hTarget, transitionSpeed * deltaTime);
+        v = Mathf.Lerp(v, vTarget, transitionSpeed * deltaTime);
 
         Vector3 camForward = cam.forward;
         camForward.y = 0f; 
-        camForward.Normalize(); 
+        // camForward.Normalize(); 
 
         Vector3 playerForward = transform.forward;
         playerForward.y = 0;
-        playerForward.Normalize();
+        // playerForward.Normalize();
         // float check = Vector3.Dot(playerForward, camForward);
 
         Quaternion targetRot = Quaternion.LookRotation(camForward);
 
         if (!Input.GetKey(Vision) && ((vRaw != 0 || transform.forward.y != 0) || (vRaw == 0 && Input.GetMouseButton(1))))
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * deltaTime);
         }
 
         Vector3 moveDir = transform.forward * vRaw + transform.right * hRaw;
@@ -108,9 +119,9 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        velocity.y += gravity * Time.deltaTime;
+        velocity.y += gravity * deltaTime;
 
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move(velocity * deltaTime);
     }
 
     void LateUpdate()

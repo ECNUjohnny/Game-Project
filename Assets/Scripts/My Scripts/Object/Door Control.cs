@@ -6,7 +6,7 @@ public class DoorControl : MonoBehaviour
     
     public bool isOpen = false;
     
-    public float OpenSpeed = 2.5f;
+    public float OpenSpeed = 7.5f;
     
     private Coroutine Animation;
     
