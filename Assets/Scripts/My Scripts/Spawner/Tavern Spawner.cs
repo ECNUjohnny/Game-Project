@@ -21,6 +21,8 @@ public class TavernSpawner : MonoBehaviour
     
     public int minGuests = 8;
 
+    public int maxGuests = 24;
+
 
     [Tooltip("Night Market")]
     
@@ -95,12 +97,12 @@ public class TavernSpawner : MonoBehaviour
         
         if (timeManager.timeOfDay >= nightStartTime || timeManager.timeOfDay <= nightEndTime)
         {
-            StartCoroutine(SpawnNPCsCoroutine(Random.Range(minGuests, 24)));
+            StartCoroutine(SpawnNPCsCoroutine(Random.Range(minGuests, maxGuests)));
         }
 
         else if (timeManager.timeOfDay >= morningStartTime && timeManager.timeOfDay <= morningEndTime)
         {
-            StartCoroutine(SpawnNPCsCoroutine(Random.Range(minGuests, 24)));
+            StartCoroutine(SpawnNPCsCoroutine(Random.Range(minGuests, maxGuests)));
         }
 
         else
@@ -126,9 +128,27 @@ public class TavernSpawner : MonoBehaviour
             shuffledSeats[randomIndex] = temp;
         }
 
-        int sitCount = Random.Range(0, Mathf.Min(spawnCount, shuffledSeats.Count));
+        int sitCount;
 
-        int standCount = spawnCount - sitCount;
+        int standCount;
+
+        if (freeStandAreas.Count != 0 && spawnPoints.Count != 0)
+        {
+            sitCount = Random.Range(0, Mathf.Min(spawnCount, shuffledSeats.Count));
+            standCount =  spawnCount - sitCount;
+
+        }
+        else if (freeStandAreas.Count == 0)
+        {
+            sitCount = Mathf.Min(spawnCount, shuffledSeats.Count);
+            standCount = 0;  
+        }
+        else
+        {
+            sitCount = 0;
+            standCount = spawnCount;
+        }
+
 
         for (int i = 0; i < sitCount; i++)
         {
@@ -136,6 +156,13 @@ public class TavernSpawner : MonoBehaviour
 
             GameObject npc = Instantiate(npcPrefabs[index], shuffledSeats[i].position, shuffledSeats[i].rotation);
             spawnedNPCs.Add(npc);
+
+            // Debug.Log(shuffledSeats[i].position);
+
+            if (npc.TryGetComponent(out NpcAnimator animator))
+            {
+                animator.SetSeat(shuffledSeats[i]);   
+            }
 
             yield return _waitForSeconds0_1;
         }
@@ -156,7 +183,7 @@ public class TavernSpawner : MonoBehaviour
                 
                 foundValidPoint = true;
 
-                break;
+                // break;
             }
 
             if (foundValidPoint)

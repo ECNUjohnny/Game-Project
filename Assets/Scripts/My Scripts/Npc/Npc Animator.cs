@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
-
 [RequireComponent(typeof(NpcHealth))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
+
+[RequireComponent(typeof(CapsuleCollider))]
 public class NpcAnimator : MonoBehaviour
 {
+    private static readonly int BSittingHash = Animator.StringToHash("bSitting");
+
     private static readonly int TReloadHash = Animator.StringToHash("tReload");
 
     private static readonly int TypeHash = Animator.StringToHash("type");
@@ -19,6 +22,8 @@ public class NpcAnimator : MonoBehaviour
     private Animator animator;
     
     private NpcHealth healthSystem;
+
+    private CapsuleCollider mainCollider;
     
     private Rigidbody[] ragdollRigidbodies;
     
@@ -34,7 +39,7 @@ public class NpcAnimator : MonoBehaviour
 
     public int type;
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
         healthSystem = GetComponent<NpcHealth>(); 
@@ -43,9 +48,12 @@ public class NpcAnimator : MonoBehaviour
         
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         ragdollColliders = GetComponentsInChildren<Collider>();
+        mainCollider = GetComponent<CapsuleCollider>();
+    }
 
+    void Start()
+    {
         // Debug.Log(ragdollColliders.Length);
-
         
         SetRagdollState(false);
 
@@ -113,4 +121,35 @@ public class NpcAnimator : MonoBehaviour
 
         if (agent && agent.enabled) animator.SetFloat(SpeedHash, agent.velocity.magnitude);
     }
+
+    public void SetSeat(Transform seatAnchor)
+    {   
+        if (agent != null)
+        {
+            agent.enabled = false;
+        }
+
+
+        transform.SetPositionAndRotation(seatAnchor.position, seatAnchor.rotation);
+
+        if (animator != null) animator.SetBool(BSittingHash, true);
+
+        AdjustColliderForSitting(); 
+
+    }
+
+    private void AdjustColliderForSitting()
+    {
+        if (mainCollider != null)
+        {
+            float originHeight = mainCollider.height;
+            mainCollider.height = originHeight * 0.5f;
+
+            Vector3 newCenter = mainCollider.center;
+            newCenter.y = mainCollider.center.y * 0.5f;
+            mainCollider.center = newCenter;
+        }
+    }
+
+    
 }
