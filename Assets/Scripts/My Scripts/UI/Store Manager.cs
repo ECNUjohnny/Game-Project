@@ -61,7 +61,7 @@ public class StoreManager : MonoBehaviour
             slotGO.GetComponent<StoreItemSlot>().Setup(item);
         } 
 
-        
+        StartCoroutine(CameraTransition(focusPoint.position, focusPoint.rotation, true)); 
     }
 
     public void CloseStore()
@@ -70,7 +70,7 @@ public class StoreManager : MonoBehaviour
 
         storeUIContainer.SetActive(false);
 
-
+        StartCoroutine(CameraTransition(originalCameraPos, originalCameraRot, false));
     }
 
     private IEnumerator CameraTransition(Vector3 targetPos, Quaternion targetRot, bool isOpen)

@@ -215,12 +215,17 @@ public class UIManager : MonoBehaviour
 
     IEnumerator Dialogue(DialogueData dialogueData)
     {
-        for (int i = 0; i < dialogueData.dialogues.Length; i++)
+        if (dialogueData != null)
         {
-            ShowDialoguePanel(dialogueData.dialogues[i]);
+             for (int i = 0; i < dialogueData.dialogues.Length; i++)
+            {
+                ShowDialoguePanel(dialogueData.dialogues[i]);
 
-            yield return new WaitForSeconds(timebetweenDialogue);
-        }
+                yield return new WaitForSeconds(timebetweenDialogue);
+            }    
+        }        
+        
+       
 
         HideDialoguePanle();
 

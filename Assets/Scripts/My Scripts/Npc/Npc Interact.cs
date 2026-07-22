@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
-
 [RequireComponent(typeof(BoxCollider))]
+
+[RequireComponent(typeof(StoreInventory))]
 public class NpcInteract : MonoBehaviour
 {
     [Header("NPC Roles (可多选开关)")]
@@ -45,6 +46,7 @@ public class NpcInteract : MonoBehaviour
     private bool isPlayerInRange = false;
 
     private bool isInteract = false;
+
 
     private bool isWaitingForAction = false;
 
@@ -100,7 +102,9 @@ public class NpcInteract : MonoBehaviour
 
     public void OpenStore()
     {
-           
+        StoreInventory myInventory = GetComponent<StoreInventory>();
+
+        StoreManager.Instance.OpenStore(myInventory, cameraFocusPoint);
     }
 
     // 核心逻辑：动态生成交互提示
