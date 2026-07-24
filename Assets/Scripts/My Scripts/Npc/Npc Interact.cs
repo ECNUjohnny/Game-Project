@@ -100,7 +100,7 @@ public class NpcInteract : MonoBehaviour
         }
     }
 
-    public void OpenStore()
+    public void TriggerStore()
     {
         StoreInventory myInventory = GetComponent<StoreInventory>();
 

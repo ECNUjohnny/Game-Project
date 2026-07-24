@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7530628435410462726}
   - component: {fileID: 4635133144713970557}
   - component: {fileID: 7245425058615674037}
+  - component: {fileID: 6797824816689890976}
   m_Layer: 8
   m_Name: Character_Gunman Pedestrain
   m_TagString: Untagged
@@ -167,6 +168,34 @@ CapsuleCollider:
   m_Height: 1.9
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &6797824816689890976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040643676778012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcebbc62c67790d4ba6d5845f0d154d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRenderer: {fileID: 137952567973539364}
+  LODtargetRenderer: {fileID: 4146547988354491306}
+  materialIndex: 0
+  clothMaterials:
+  - {fileID: 2100000, guid: 66a8a6e30880caa48908020cf5388217, type: 2}
+  - {fileID: 2100000, guid: a15da839caab97b4f9cd9586f4ff31e6, type: 2}
+  - {fileID: 2100000, guid: e611177a3c87f9746befe4d104a33201, type: 2}
+  - {fileID: 2100000, guid: 5146a78f90d41354b9e048f81986a8f3, type: 2}
+  - {fileID: 2100000, guid: 5e3d175f3d5b8914cb1c010383991d6d, type: 2}
+  - {fileID: 2100000, guid: 67cb02df386c44e4b9da736f1a3688f9, type: 2}
+  - {fileID: 2100000, guid: 389b1eed39cf63c4fb8efea61e9976c5, type: 2}
+  - {fileID: 2100000, guid: 0363b46d437346a419e1ca86ea14de9e, type: 2}
+  - {fileID: 2100000, guid: dd9a2415c6257cb4ba1738d92c094497, type: 2}
+  - {fileID: 2100000, guid: 3b20901891546e04999f06509086c9bf, type: 2}
+  - {fileID: 2100000, guid: 0e05935a90b6d7849a0fff4320edec77, type: 2}
+  - {fileID: 2100000, guid: e8a12213ace71464e991b09e2e492540, type: 2}
 --- !u!1 &1064908387003072
 GameObject:
   m_ObjectHideFlags: 0

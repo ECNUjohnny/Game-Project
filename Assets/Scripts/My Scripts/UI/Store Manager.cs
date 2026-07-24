@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class StoreManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class StoreManager : MonoBehaviour
 
     public GameObject itemSlotPrefab;
 
+    public GameObject goldPanel;
+
 
     [Header("Camera Transition")]
 
@@ -21,7 +24,7 @@ public class StoreManager : MonoBehaviour
 
     public float transitionDuration = 1.0f;
 
-    public MonoBehaviour playerCameraController;
+    public MonoBehaviour[] playerScripts;
 
     private Vector3 originalCameraPos;
 
@@ -44,7 +47,13 @@ public class StoreManager : MonoBehaviour
         if (isStoreOpen) return;
         isStoreOpen = true;
 
-        if (playerCameraController != null) playerCameraController.enabled = false;
+        if (playerScripts.Length != 0)
+        {
+            foreach (MonoBehaviour script in playerScripts)
+            {
+                script.enabled = false;
+            }
+        }
 
         originalCameraPos = mainCamera.transform.position;
         originalCameraRot = mainCamera.transform.rotation;
@@ -62,15 +71,22 @@ public class StoreManager : MonoBehaviour
         } 
 
         StartCoroutine(CameraTransition(focusPoint.position, focusPoint.rotation, true)); 
+    
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        goldPanel.SetActive(true);
     }
 
     public void CloseStore()
     {
         if (!isStoreOpen) return;
 
-        storeUIContainer.SetActive(false);
+        storeUIContainer.SetActive(false); 
 
         StartCoroutine(CameraTransition(originalCameraPos, originalCameraRot, false));
+    
+        goldPanel.SetActive(false);  
     }
 
     private IEnumerator CameraTransition(Vector3 targetPos, Quaternion targetRot, bool isOpen)
@@ -99,9 +115,19 @@ public class StoreManager : MonoBehaviour
         }
         else
         {
-            if (playerCameraController != null) playerCameraController.enabled = true;
+ 
+            if (playerScripts.Length != 0)
+            {
+                foreach (MonoBehaviour script in playerScripts)
+                {
+                    script.enabled = true;
+                }
+            }            
 
             isStoreOpen = false;            
+        
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }
