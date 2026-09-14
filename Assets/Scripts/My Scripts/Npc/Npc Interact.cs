@@ -81,6 +81,8 @@ public class NpcInteract : MonoBehaviour
                 });
             }
         }
+
+
         // 阶段二：对话结束，等待玩家执行后续动作
         else if (isWaitingForAction)
         {

@@ -15,9 +15,10 @@ public class NpcHealth : MonoBehaviour
 
     public bool isDead {get; private set; } = false;
 
-    public event Action OnTakeDamage; // 控制伤害的广播
+    public event Action OnTakeDamage; 
 
-    public event Action OnDeath; // 控制死亡的广播
+
+    public event Action OnDeath; 
 
     public GameObject bloodEffect;
 
@@ -34,6 +35,8 @@ public class NpcHealth : MonoBehaviour
         currentHealth -= damage;
 
         OnTakeDamage?.Invoke();
+
+        // Debug.Log("Damage!");
 
         if (bloodEffect != null)
         {
