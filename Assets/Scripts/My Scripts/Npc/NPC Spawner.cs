@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCSpawner : MonoBehaviour
@@ -23,11 +24,13 @@ public class NPCSpawner : MonoBehaviour
 
     private NpcInteract npcInteract;
 
+    public List<ItemData> inventory;
+
     void Start()
     {
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("player")?.transform;
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
         }
 
         SpawnNpc();
@@ -37,6 +40,13 @@ public class NPCSpawner : MonoBehaviour
         if (npcInteract != null)
         {
             npcInteract.dialogueData = dialogueData;
+        
+            npcInteract.inventory = inventory;
+
+            // foreach (ItemData item in npcInteract.inventory)
+            // {
+            //     Debug.Log($"{item.name}\n");
+            // }
         }
     }
 
@@ -55,7 +65,7 @@ public class NPCSpawner : MonoBehaviour
         }
         else
         {
-            Debug.Log("There is no health system on this npc");
+            Debug.Log($"There is no health system on this npc: {npcPrefab.name}");
         }
     }
 

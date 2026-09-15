@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StoreManager : MonoBehaviour
@@ -25,6 +26,8 @@ public class StoreManager : MonoBehaviour
 
     public MonoBehaviour[] playerScripts;
 
+    public PlayerShooter playerShooter;
+
     private Vector3 originalCameraPos;
 
     private Quaternion originalCameraRot;
@@ -41,7 +44,7 @@ public class StoreManager : MonoBehaviour
         storeUIContainer.SetActive(false);
     }
 
-    public void OpenStore(StoreInventory inventory, Transform focusPoint)
+    public void OpenStore(List<ItemData> inventory, Transform focusPoint)
     {
         if (isStoreOpen) return;
         isStoreOpen = true;
@@ -54,6 +57,11 @@ public class StoreManager : MonoBehaviour
             }
         }
 
+        if (playerShooter != null)
+        {
+            playerShooter.enabled = false;
+        }
+
         originalCameraPos = mainCamera.transform.position;
         originalCameraRot = mainCamera.transform.rotation;
 
@@ -62,12 +70,24 @@ public class StoreManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (ItemData item in inventory.inventory )
+        // Debug.Log("OK\n");
+
+        if (inventory.Count == 0)
+        {
+            Debug.Log("No Items in inventory");
+            return;
+        }
+
+        // Debug.Log("OK\n");
+
+        foreach (ItemData item in inventory)
         {
             GameObject slotGO = Instantiate(itemSlotPrefab, contentPanel);
 
             slotGO.GetComponent<StoreItemSlot>().Setup(item);
         } 
+
+        Debug.Log("OK\n");
 
         StartCoroutine(CameraTransition(focusPoint.position, focusPoint.rotation, true)); 
     
@@ -122,6 +142,11 @@ public class StoreManager : MonoBehaviour
                     script.enabled = true;
                 }
             }            
+
+            if (playerShooter != null)
+            {
+                playerShooter.enabled = true;
+            }
 
             isStoreOpen = false;            
         

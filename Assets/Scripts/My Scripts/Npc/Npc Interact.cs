@@ -1,8 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider))]
 
-[RequireComponent(typeof(StoreInventory))]
 public class NpcInteract : MonoBehaviour
 {
     [Header("NPC Roles (可多选开关)")]
@@ -35,6 +35,9 @@ public class NpcInteract : MonoBehaviour
     public UnityEvent onTaskAccepted;
 
     public UnityEvent onStoreOpened;
+
+    public List<ItemData> inventory;
+    
 
     [Header("Camera Setting")]
 
@@ -104,15 +107,24 @@ public class NpcInteract : MonoBehaviour
 
     public void TriggerStore()
     {
-        StoreInventory myInventory = GetComponent<StoreInventory>();
+        // StoreInventory myInventory = GetComponent<StoreInventory>();
 
-        StoreManager.Instance.OpenStore(myInventory, cameraFocusPoint);
+        // StoreManager.Instance.OpenStore(myInventory, cameraFocusPoint);
+
+        if (inventory.Count == 0)
+        {
+            Debug.Log("No items in inventory");
+            return;
+        }
+
+        StoreManager.Instance.OpenStore(inventory, cameraFocusPoint);
+        
+
     }
 
-    // 核心逻辑：动态生成交互提示
+    
     private void HandleDialogueEnd()
     {
-        // 如果两个都没勾，说明是纯聊天 NPC
         if (!isMissionGiver && !isMerchant)
         {
             isInteract = false; 

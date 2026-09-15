@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7530628435410462726}
   - component: {fileID: 4635133144713970557}
   - component: {fileID: 3577253364970279766}
-  - component: {fileID: 5941254267764901096}
   - component: {fileID: 1824543956704706402}
   - component: {fileID: 6335840397745533307}
   m_Layer: 0
@@ -171,20 +170,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5941254267764901096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040643676778012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aa1c23d81dc4c64095cca51989a9c58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory:
-  - {fileID: 0}
 --- !u!65 &1824543956704706402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -243,6 +228,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  inventory: []
   cameraFocusPoint: {fileID: 4515744115347394388}
 --- !u!1 &1064908387003072
 GameObject:
