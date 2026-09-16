@@ -24,6 +24,6 @@ MonoBehaviour:
   reloadRate: 1.5
   recoilForce: 1.5
   muzzleFlash: {fileID: 19885060, guid: 2574ca206a571a342a7fab69fdfb87aa, type: 3}
-  fireSound: {fileID: 0}
-  reloadSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: 9d158eb6aeb103345b92eddd6fd830b6, type: 3}
+  reloadSound: {fileID: 8300000, guid: ae2ad550d1fc359449ed3c33fed4a794, type: 3}
   blood: {fileID: 19808544, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}

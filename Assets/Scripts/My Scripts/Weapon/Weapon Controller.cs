@@ -27,6 +27,8 @@ public class WeaponController : MonoBehaviour
 
     public event Action<bool> OnAmmoChanged;
 
+    public AudioSource audioSource;
+
     private float timeScale;
 
     public void Init(WeaponData data)
@@ -55,7 +57,10 @@ public class WeaponController : MonoBehaviour
         OnAmmoChanged?.Invoke(false);
 
         GameObject fire = Instantiate(weaponData.muzzleFlash, gunMuzzle.position, Quaternion.LookRotation(gunMuzzle.forward)).gameObject;
-    
+
+        audioSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
+        audioSource.PlayOneShot(weaponData.fireSound);
+
         Destroy(fire, 0.25f);
 
         if (Physics.Raycast(aimOrigin, aimDirection, out RaycastHit hitInfo, weaponData.range, layerMask))
@@ -80,6 +85,9 @@ public class WeaponController : MonoBehaviour
     public void Reload(int bulletsReceived)
     {
         if (IsReloading || bulletsReceived <= 0) return;
+
+        audioSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
+        audioSource.PlayOneShot(weaponData.reloadSound);
 
         StartCoroutine(Reloading(bulletsReceived));
     }

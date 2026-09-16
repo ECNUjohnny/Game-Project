@@ -11,7 +11,7 @@ public class NpcMovement : MonoBehaviour
     [Header("游荡设置")]
     public float wanderRadius = 25f; // 游荡半径
     
-    public float wanderTimer = 8f;   // 停顿时间（发呆多久再走）
+    public float wanderTimer = 4f;   // 停顿时间（发呆多久再走）
 
     public float maxDis = 100f; // 最远可以走多远
 
@@ -19,6 +19,8 @@ public class NpcMovement : MonoBehaviour
     public Transform player;         // 玩家的 Transform
     
     public float wakeUpDistance = 130f; // 玩家靠近多远时唤醒 NPC
+
+    public int chances = 5; // 最多尝试次数
 
     private NavMeshAgent agent; // 寻路系统
     
@@ -127,7 +129,7 @@ public class NpcMovement : MonoBehaviour
 
         NavMeshHit navHit;
 
-        for (int i = 1; i <= 3; i++)
+        for (int i = 1; i <= chances; i++)
         {
             targetPos = transform.position + Random.insideUnitSphere * dist;
 

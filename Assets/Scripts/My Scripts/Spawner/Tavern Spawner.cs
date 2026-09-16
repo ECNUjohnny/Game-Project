@@ -155,6 +155,12 @@ public class TavernSpawner : MonoBehaviour
             int index = Random.Range(0, npcPrefabs.Count);
 
             GameObject npc = Instantiate(npcPrefabs[index], shuffledSeats[i].position, shuffledSeats[i].rotation);
+            
+            if (npc.TryGetComponent<NpcMovement>(out var npcMovement))
+            {     
+                npcMovement.enabled = false;
+            }
+            
             spawnedNPCs.Add(npc);
 
             // Debug.Log(shuffledSeats[i].position);
@@ -193,6 +199,11 @@ public class TavernSpawner : MonoBehaviour
                 Quaternion randomRot = Quaternion.Euler(0, Random.Range(0, 360f), 0);
 
                 GameObject npc = Instantiate(npcPrefabs[index], finalPosition, randomRot);
+
+                if (npc.TryGetComponent(out NpcMovement npcMovement))
+                {
+                    npcMovement.enabled = false;
+                }
 
                 spawnedNPCs.Add(npc);
 

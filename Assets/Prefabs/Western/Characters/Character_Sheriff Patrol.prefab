@@ -14,13 +14,12 @@ GameObject:
   - component: {fileID: 5997250615745198201}
   - component: {fileID: 7530628435410462726}
   - component: {fileID: 4635133144713970557}
-  - component: {fileID: 7245425058615674037}
-  - component: {fileID: 6797824816689890976}
-  - component: {fileID: 6965248542925091605}
-  - component: {fileID: 478070822686413410}
-  - component: {fileID: -5133881445225186891}
-  m_Layer: 8
-  m_Name: Character_Gunman Pedestrain
+  - component: {fileID: 2065600598664072250}
+  - component: {fileID: 3577253364970279766}
+  - component: {fileID: -8530527878965616007}
+  - component: {fileID: -5339197218137534082}
+  m_Layer: 0
+  m_Name: Character_Sheriff Patrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,11 +89,11 @@ LODGroup:
   - screenRelativeHeight: 0.2999881
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 137952567973539364}
+    - renderer: {fileID: 137127946073595292}
   - screenRelativeHeight: 0.0875
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 4146547988354491306}
+    - renderer: {fileID: 8943583312139273904}
   m_Enabled: 1
 --- !u!195 &5997250615745198201
 NavMeshAgent:
@@ -148,7 +147,24 @@ MonoBehaviour:
   bAiming: 0
   bShooting: 0
   type: 0
---- !u!136 &7245425058615674037
+--- !u!114 &2065600598664072250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040643676778012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719a1df0f283f3049bea9f5796ad1f6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wanderRadius: 25
+  wanderTimer: 8
+  maxDis: 100
+  player: {fileID: 0}
+  wakeUpDistance: 130
+--- !u!136 &3577253364970279766
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +174,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 265
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -167,62 +183,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.18
-  m_Height: 1.9
+  m_Radius: 0.5
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &6797824816689890976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040643676778012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcebbc62c67790d4ba6d5845f0d154d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clothMaterial: {fileID: 0}
-  targetRenderer: {fileID: 137952567973539364}
-  LODtargetRenderer: {fileID: 4146547988354491306}
-  materialIndex: 0
-  clothMaterials:
-  - {fileID: 2100000, guid: 66a8a6e30880caa48908020cf5388217, type: 2}
-  - {fileID: 2100000, guid: a15da839caab97b4f9cd9586f4ff31e6, type: 2}
-  - {fileID: 2100000, guid: e611177a3c87f9746befe4d104a33201, type: 2}
-  - {fileID: 2100000, guid: 5146a78f90d41354b9e048f81986a8f3, type: 2}
-  - {fileID: 2100000, guid: 5e3d175f3d5b8914cb1c010383991d6d, type: 2}
-  - {fileID: 2100000, guid: 67cb02df386c44e4b9da736f1a3688f9, type: 2}
-  - {fileID: 2100000, guid: 389b1eed39cf63c4fb8efea61e9976c5, type: 2}
-  - {fileID: 2100000, guid: 0363b46d437346a419e1ca86ea14de9e, type: 2}
-  - {fileID: 2100000, guid: dd9a2415c6257cb4ba1738d92c094497, type: 2}
-  - {fileID: 2100000, guid: 3b20901891546e04999f06509086c9bf, type: 2}
-  - {fileID: 2100000, guid: 0e05935a90b6d7849a0fff4320edec77, type: 2}
-  - {fileID: 2100000, guid: e8a12213ace71464e991b09e2e492540, type: 2}
---- !u!114 &6965248542925091605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040643676778012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22db963ca67a1e34b9b6fe5a2b37b52f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 478070822686413410}
-  footstepClips:
-  - {fileID: 8300000, guid: 4369f434b84a63a4e8180242e8729e5b, type: 3}
-  - {fileID: 8300000, guid: 5f2a56a7ee3bfb64f8362ac258e78a2d, type: 3}
-  - {fileID: 8300000, guid: e0c5936ddcebc14418558e01df36400b, type: 3}
-  - {fileID: 8300000, guid: 49ef1600e96426d47b49b372deddc103, type: 3}
-  movement: {fileID: 0}
-  animator: {fileID: 95474626191974340}
-  speedParamName: Speed
-  threshold: 0.4
---- !u!82 &478070822686413410
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &-8530527878965616007
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,7 +283,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-5133881445225186891
+--- !u!114 &-5339197218137534082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,15 +292,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1040643676778012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 719a1df0f283f3049bea9f5796ad1f6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 22db963ca67a1e34b9b6fe5a2b37b52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderRadius: 25
-  wanderTimer: 4
-  maxDis: 100
-  player: {fileID: 0}
-  wakeUpDistance: 130
-  chances: 5
+  audioSource: {fileID: -8530527878965616007}
+  footstepClips: []
+  movement: {fileID: 0}
+  animator: {fileID: 95474626191974340}
+  speedParamName: Speed
+  threshold: 0.4
 --- !u!1 &1064908387003072
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +399,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.041157685, y: -0.026920708, z: -0.09896705}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -612,7 +577,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.23371816, y: -0.0078566745, z: 0.19098924}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -758,7 +723,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.33947462, y: 0.0014475845, z: 0.0014363416}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1229,7 +1194,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.39930925, y: -0.00000037252903, z: 0.000000044703484}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -1375,7 +1340,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.23371544, y: -0.007857092, z: -0.190989}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1503,7 +1468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4168811911461252
 Transform:
   m_ObjectHideFlags: 0
@@ -1637,7 +1602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4481177413361810
 Transform:
   m_ObjectHideFlags: 0
@@ -1885,7 +1850,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.39930925, y: -0.000000007450581, z: -0.000000022351742}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2228,7 +2193,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0411578, y: -0.026920758, z: 0.098967105}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3225,7 +3190,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.33947402, y: -0.0014490094, z: -0.0014363006}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -3402,7 +3367,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.28183734, y: 0.036005557, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3968,7 +3933,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.40415385, y: 0.061366018, z: 1.9335352e-15}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -4190,12 +4155,12 @@ GameObject:
   - component: {fileID: 9051301789564247533}
   - component: {fileID: 4146547988354491306}
   m_Layer: 0
-  m_Name: Character_Gunman_low
+  m_Name: Character_Badguy_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9051301789564247533
 Transform:
   m_ObjectHideFlags: 0
@@ -4256,7 +4221,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -1514769745251299774, guid: 6157b5ba44da0f043a7c27a5f9f2dc01, type: 3}
+  m_Mesh: {fileID: 30807008720738146, guid: 6157b5ba44da0f043a7c27a5f9f2dc01, type: 3}
   m_Bones:
   - {fileID: 4428671021545846}
   - {fileID: 4586633719938828}
@@ -4329,7 +4294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4862473800419343935
 Transform:
   m_ObjectHideFlags: 0

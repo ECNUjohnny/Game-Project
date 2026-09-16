@@ -1,9 +1,11 @@
-
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NpcRandomAppearance : MonoBehaviour
 {
+    [Header("regular material")]
+    [Tooltip("If this material exists, random material won't work")]
+    public Material clothMaterial;
+
     [Header("Renderer Setting")]
     [Tooltip("Drag in SkinnnedMeshRenderer that contained npc's clothes")]
     public SkinnedMeshRenderer targetRenderer;
@@ -20,6 +22,21 @@ public class NpcRandomAppearance : MonoBehaviour
 
     void Start()
     {
+        if (targetRenderer != null && clothMaterial != null)
+        {
+            Material[] currentMaterials = targetRenderer.materials;
+
+            if (materialIndex < currentMaterials.Length)
+            {
+                currentMaterials[materialIndex] = clothMaterial;
+
+                targetRenderer.materials = currentMaterials;
+                LODtargetRenderer.materials = currentMaterials;
+            }
+
+            return;
+        }
+
         if (targetRenderer != null && clothMaterials.Length > 0)
         {
             int randomIndex = Random.Range(0, clothMaterials.Length);
