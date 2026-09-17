@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3577253364970279766}
   - component: {fileID: 905214931819014418}
   - component: {fileID: 5858145266242429807}
+  - component: {fileID: 6190668463881162015}
   m_Layer: 0
   m_Name: Character_Badguy
   m_TagString: Untagged
@@ -207,7 +208,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -313,6 +314,26 @@ MonoBehaviour:
   animator: {fileID: 95474626191974340}
   speedParamName: Speed
   threshold: 0.4
+--- !u!114 &6190668463881162015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040643676778012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcebbc62c67790d4ba6d5845f0d154d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clothMaterial: {fileID: 0}
+  targetRenderer: {fileID: 137710299511143472}
+  LODtargetRenderer: {fileID: 4146547988354491306}
+  materialIndex: 0
+  clothMaterials:
+  - {fileID: 2100000, guid: 66a8a6e30880caa48908020cf5388217, type: 2}
+  - {fileID: 2100000, guid: a15da839caab97b4f9cd9586f4ff31e6, type: 2}
+  - {fileID: 2100000, guid: e611177a3c87f9746befe4d104a33201, type: 2}
 --- !u!1 &1064908387003072
 GameObject:
   m_ObjectHideFlags: 0

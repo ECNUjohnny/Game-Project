@@ -86303,6 +86303,37 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1567674167}
   m_Enabled: 1
+--- !u!1 &1260858333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1260858334}
+  m_Layer: 0
+  m_Name: Spawn Point 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1260858334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260858333}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -14.97, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1440133142}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1261303580 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7cb850ae184b8f741b3b893bd6239d6a, type: 3}
@@ -116636,6 +116667,7 @@ Transform:
   - {fileID: 1796729030}
   - {fileID: 1205795717}
   - {fileID: 1411626126}
+  - {fileID: 1260858334}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1440133143
@@ -116656,11 +116688,14 @@ MonoBehaviour:
   - {fileID: 1796729030}
   - {fileID: 1205795717}
   - {fileID: 1411626126}
+  - {fileID: 1260858334}
   spawnInterval: 5
   currentNpcCounts: 0
   NPCPrefabs:
   - {fileID: 1040643676778012, guid: afa42d06996f840498dfd3daba1c00c4, type: 3}
   - {fileID: 1040643676778012, guid: 449d2cbe5b3fed64f89b27fce6a514be, type: 3}
+  - {fileID: 1040643676778012, guid: 1f5a8432a50422047b95b8b4b4f6aea8, type: 3}
+  - {fileID: 1040643676778012, guid: 85320d4a9b28e8240b0e27ad22a3c8b2, type: 3}
 --- !u!205 &1443230357
 LODGroup:
   m_ObjectHideFlags: 0
