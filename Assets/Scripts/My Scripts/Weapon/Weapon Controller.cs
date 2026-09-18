@@ -61,6 +61,8 @@ public class WeaponController : MonoBehaviour
         audioSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
         audioSource.PlayOneShot(weaponData.fireSound);
 
+        Debug.Log($"Shooted!{Time.unscaledTime}");
+
         Destroy(fire, 0.25f);
 
         if (Physics.Raycast(aimOrigin, aimDirection, out RaycastHit hitInfo, weaponData.range, layerMask))

@@ -57721,6 +57721,7 @@ MonoBehaviour:
   respawnDelay: 30
   minSpawnDis: 20
   dialogueData: {fileID: 11400000, guid: 4ddb6f631c891bb4dab690fd9a6d26ff, type: 2}
+  npcMat: {fileID: 0}
   player: {fileID: 4670766067664836}
   inventory: []
 --- !u!1001 &830986050
@@ -65863,6 +65864,7 @@ MonoBehaviour:
   respawnDelay: 30
   minSpawnDis: 20
   dialogueData: {fileID: 0}
+  npcMat: {fileID: 0}
   player: {fileID: 0}
   inventory: []
 --- !u!205 &941886524
@@ -86327,13 +86329,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260858333}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -14.97, z: 0}
+  m_LocalRotation: {x: -0, y: 0.22611149, z: -0, w: 0.9741015}
+  m_LocalPosition: {x: 11.74, y: -14.97, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1440133142}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 26.136, z: 0}
 --- !u!4 &1261303580 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7cb850ae184b8f741b3b893bd6239d6a, type: 3}
@@ -86964,6 +86966,7 @@ MonoBehaviour:
   respawnDelay: 30
   minSpawnDis: 20
   dialogueData: {fileID: 0}
+  npcMat: {fileID: 2100000, guid: 3b20901891546e04999f06509086c9bf, type: 2}
   player: {fileID: 4670766067664836}
   inventory: []
 --- !u!1001 &1275317376
@@ -98162,7 +98165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5199889291744805985, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.219
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: 5199889291744805985, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
       propertyPath: m_LocalPosition.y
@@ -98170,7 +98173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5199889291744805985, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.376
+      value: 0.287
       objectReference: {fileID: 0}
     - target: {fileID: 5201392254529104309, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
       propertyPath: m_ReceiveShadows
@@ -99696,6 +99699,14 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7392588989016173902, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.181
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392588989016173902, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.197
+      objectReference: {fileID: 0}
     - target: {fileID: 7394016303574620584, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 123
@@ -100695,6 +100706,14 @@ PrefabInstance:
     - target: {fileID: 8892259560433937109, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 123
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904506330834630436, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.406
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904506330834630436, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.288
       objectReference: {fileID: 0}
     - target: {fileID: 8904506330834630436, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
       propertyPath: m_LocalRotation.w
@@ -101978,6 +101997,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8768948368923816859, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
       insertIndex: -1
       addedObject: {fileID: 76242292}
+    - targetCorrespondingSourceObject: {fileID: 8768948368923816859, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1561860595}
     - targetCorrespondingSourceObject: {fileID: 5198319028589570406, guid: 5af417d5f43066540a1b3f195b102235, type: 3}
       insertIndex: -1
       addedObject: {fileID: 176669636}
@@ -116696,6 +116718,8 @@ MonoBehaviour:
   - {fileID: 1040643676778012, guid: 449d2cbe5b3fed64f89b27fce6a514be, type: 3}
   - {fileID: 1040643676778012, guid: 1f5a8432a50422047b95b8b4b4f6aea8, type: 3}
   - {fileID: 1040643676778012, guid: 85320d4a9b28e8240b0e27ad22a3c8b2, type: 3}
+  - {fileID: 1040643676778012, guid: 6f5966b628ea5f04e886ed9db8757808, type: 3}
+  - {fileID: 1040643676778012, guid: afd4aa6bcf1ca044da524c592a9d77b6, type: 3}
 --- !u!205 &1443230357
 LODGroup:
   m_ObjectHideFlags: 0
@@ -126151,6 +126175,57 @@ LODGroup:
     renderers:
     - renderer: {fileID: 639804762}
   m_Enabled: 1
+--- !u!1 &1561860594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1561860595}
+  - component: {fileID: 1561860596}
+  m_Layer: 0
+  m_Name: Supply Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1561860595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561860594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.059, y: 0, z: -6.196}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1381247048}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1561860596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561860594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd985d8f738361147935774c2b557fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcPrefab: {fileID: 1040643676778012, guid: cc2b09439f5bc49479bbcecd81b6b8a8, type: 3}
+  respawnDelay: 30
+  minSpawnDis: 20
+  dialogueData: {fileID: 0}
+  npcMat: {fileID: 2100000, guid: 5e3d175f3d5b8914cb1c010383991d6d, type: 2}
+  player: {fileID: 4670766067664836}
+  inventory: []
 --- !u!205 &1561885513
 LODGroup:
   m_ObjectHideFlags: 0
@@ -164191,6 +164266,7 @@ MonoBehaviour:
   respawnDelay: 30
   minSpawnDis: 20
   dialogueData: {fileID: 0}
+  npcMat: {fileID: 0}
   player: {fileID: 4670766067664836}
   inventory: []
 --- !u!1001 &2036642953
@@ -169392,6 +169468,7 @@ MonoBehaviour:
   respawnDelay: 30
   minSpawnDis: 20
   dialogueData: {fileID: 0}
+  npcMat: {fileID: 0}
   player: {fileID: 4670766067664836}
   inventory:
   - {fileID: 11400000, guid: d1c65cfc922c3ea44b1aaa7559d7d2fb, type: 2}

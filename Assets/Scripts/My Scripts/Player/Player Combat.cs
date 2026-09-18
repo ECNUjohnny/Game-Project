@@ -72,10 +72,10 @@ public class PlayerCombat : MonoBehaviour
     {
         bAiming = Input.GetMouseButton(1);
         
-        bShooting = Input.GetMouseButton(0) && Time.unscaledTime >= shooter.NextFireTime;
+        bShooting = Time.unscaledTime >= shooter.NextFireTime && Input.GetMouseButton(0);
+        
+        // Debug.Log($"{shooter.NextFireTime} / {Time.unscaledTime}");
 
-        
-        
         if (DeadEyeMeter.fillAmount > 0 && Input.GetKeyDown(KeyCode.CapsLock))
         {
             DeadEye();

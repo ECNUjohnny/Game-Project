@@ -57,15 +57,18 @@ public class PlayerShooter : MonoBehaviour
 
         gunMuzzle = currentWeaponController.gunMuzzle;
 
+        // Debug.Log($"{currentWeapon.fireRate}");
         
         if (currentWeaponController == null) return;
         
-        if (currentWeaponController.CurrentAmmo != 0 && Input.GetMouseButton(0) && NextFireTime <= Time.unscaledTime)
+        if (NextFireTime <= Time.unscaledTime && currentWeaponController.CurrentAmmo != 0 && Input.GetMouseButton(0))
         {
             Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-            if (Input.GetMouseButton(1)) currentWeaponController.Shoot(ray.origin, ray.direction);
-
+            if (Input.GetMouseButton(1))
+            {
+                currentWeaponController.Shoot(ray.origin, ray.direction);
+            }             
             else
             {
                 StartDrawingWeapon();

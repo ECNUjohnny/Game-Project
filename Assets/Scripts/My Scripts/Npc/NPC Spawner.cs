@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPCSpawner : MonoBehaviour
 {
+    private static WaitForSeconds _waitForSeconds1 = new(1f);
+
     [Header("Spawning Setting")]
 
     public GameObject npcPrefab;
@@ -14,6 +17,9 @@ public class NPCSpawner : MonoBehaviour
 
     public DialogueData dialogueData;
 
+    public Material npcMat;
+
+
     [Header("Reference")]
 
     public Transform player;
@@ -23,6 +29,7 @@ public class NPCSpawner : MonoBehaviour
     private NpcHealth currentNpcHealth;
 
     private NpcInteract npcInteract;
+
 
     public List<ItemData> inventory;
 
@@ -67,6 +74,34 @@ public class NPCSpawner : MonoBehaviour
         {
             Debug.Log($"There is no health system on this npc: {npcPrefab.name}");
         }
+
+        if (npcMat != null)
+        {
+            if (currentNpcInstance.TryGetComponent(out LODGroup lodGroup))
+            {
+                LOD[] lods = lodGroup.GetLODs();
+
+                for (int i = 0; i < lods.Length; i++)
+                {
+                    foreach (Renderer r in lods[i].renderers)
+                    {
+                        SkinnedMeshRenderer lodSmr = r as SkinnedMeshRenderer;
+                        if (lodSmr != null)
+                        {
+                            Material[] materials = lodSmr.materials;
+                            materials[0] = npcMat;
+                            lodSmr.materials = materials;
+                        }   
+                    }
+                }   
+            }            
+        }
+
+        if (currentNpcInstance.TryGetComponent(out NpcMovement movement))
+        {
+            movement.enabled = false;
+        }
+
     }
 
     private void HandleNpcDeath()
@@ -89,7 +124,7 @@ public class NPCSpawner : MonoBehaviour
 
             while ((transform.position - player.position).sqrMagnitude < minDistSqr)
             {
-                yield return new WaitForSeconds(1f);
+                yield return _waitForSeconds1;
             }
         }
 

@@ -56,8 +56,7 @@ public class WeaponManager : MonoBehaviour
             weaponInstance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
             // 核心修改 2：在生成时，只执行这一次 GetComponent
-            WeaponController controller = weaponInstance.GetComponent<WeaponController>();
-            if (controller != null)
+            if (weaponInstance.TryGetComponent<WeaponController>(out var controller))
             {
                 // 把图纸数据注入给这把枪
                 controller.Init(data);
