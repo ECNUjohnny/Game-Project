@@ -7,6 +7,10 @@ using UnityEngine.AI;
 [RequireComponent(typeof(CapsuleCollider))]
 public class NpcAnimator : MonoBehaviour
 {
+    private static readonly int HumanMTalk03Hash = Animator.StringToHash("HumanM@Talk03");
+    private static readonly int HumanMTalk02Hash = Animator.StringToHash("HumanM@Talk02");
+    private static readonly int HumanMTalk01Hash = Animator.StringToHash("HumanM@Talk01");
+
     private static readonly int BSittingHash = Animator.StringToHash("bSitting");
 
     private static readonly int TReloadHash = Animator.StringToHash("tReload");
@@ -151,5 +155,27 @@ public class NpcAnimator : MonoBehaviour
         }
     }
 
+
+    public void InitTalk()
+    {
+        int index = Random.Range(1, 4);
+
+        switch(index)
+        {
+            case 1:
+                animator.CrossFadeInFixedTime(HumanMTalk01Hash, 0.2f, 0);
+                break;
+            
+            case 2:
+                animator.CrossFadeInFixedTime(HumanMTalk02Hash, 0.2f, 0);
+                break;
+
+            case 3:
+                animator.CrossFadeInFixedTime(HumanMTalk03Hash, 0.2f, 0);
+                break;
+ 
+        }
+        
+    }
     
 }

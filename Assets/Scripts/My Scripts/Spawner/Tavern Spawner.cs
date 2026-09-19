@@ -207,6 +207,14 @@ public class TavernSpawner : MonoBehaviour
 
                 spawnedNPCs.Add(npc);
 
+                if (Random.value < 0.6f)
+                {
+                    if (npc.TryGetComponent(out NpcAnimator npcAnimator))
+                    {
+                        npcAnimator.InitTalk(); // Talking state of 60% prob
+                    }
+                }
+
                 yield return _waitForSeconds0_1;
             }
         }

@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class NPCSpawner : MonoBehaviour
 {
     private static WaitForSeconds _waitForSeconds1 = new(1f);
+
+    public enum NpcState
+    {
+        IDLE,
+
+        Talk,
+
+        Labor,
+
+        Sentinal,   
+    }
 
     [Header("Spawning Setting")]
 
@@ -19,6 +29,8 @@ public class NPCSpawner : MonoBehaviour
 
     public Material npcMat;
 
+    public NpcState initState;
+
 
     [Header("Reference")]
 
@@ -29,6 +41,8 @@ public class NPCSpawner : MonoBehaviour
     private NpcHealth currentNpcHealth;
 
     private NpcInteract npcInteract;
+
+    private NpcAnimator npcAnimator;
 
 
     public List<ItemData> inventory;
@@ -73,6 +87,19 @@ public class NPCSpawner : MonoBehaviour
         else
         {
             Debug.Log($"There is no health system on this npc: {npcPrefab.name}");
+        }
+
+        if (currentNpcInstance.TryGetComponent(out npcAnimator))
+        {
+            if (initState == NpcState.Talk)
+            {
+                npcAnimator.InitTalk();
+            } 
+            else if (initState == NpcState.Labor)
+            {
+
+            }
+            
         }
 
         if (npcMat != null)
