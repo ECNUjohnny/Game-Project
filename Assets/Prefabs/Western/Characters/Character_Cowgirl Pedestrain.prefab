@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clothMaterial: {fileID: 0}
-  targetRenderer: {fileID: 137380246559289602}
-  LODtargetRenderer: {fileID: 1183179353596293961}
+  targetRenderer: {fileID: 137256220877297862}
+  LODtargetRenderer: {fileID: 4485036361743155214}
   materialIndex: 0
   clothMaterials:
   - {fileID: 2100000, guid: 5146a78f90d41354b9e048f81986a8f3, type: 2}

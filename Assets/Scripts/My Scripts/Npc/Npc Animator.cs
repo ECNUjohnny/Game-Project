@@ -7,6 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(CapsuleCollider))]
 public class NpcAnimator : MonoBehaviour
 {
+    private static readonly int HumanMFarmingWithPlow01RLoopHash = Animator.StringToHash("HumanM@FarmingWithPlow01_R - Loop");
     private static readonly int HumanMTalk03Hash = Animator.StringToHash("HumanM@Talk03");
     private static readonly int HumanMTalk02Hash = Animator.StringToHash("HumanM@Talk02");
     private static readonly int HumanMTalk01Hash = Animator.StringToHash("HumanM@Talk01");
@@ -176,6 +177,11 @@ public class NpcAnimator : MonoBehaviour
  
         }
         
+    }
+
+    public void InitfarmLabor()
+    {
+        animator.CrossFadeInFixedTime(HumanMFarmingWithPlow01RLoopHash, 0.2f, 0);   
     }
     
 }
