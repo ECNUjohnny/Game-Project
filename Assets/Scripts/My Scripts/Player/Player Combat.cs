@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Unity.VisualScripting;
+using System.Diagnostics;
 [RequireComponent(typeof(PlayerShooter))]
 
 [RequireComponent(typeof(PlayerAnimator))]
@@ -48,6 +50,26 @@ public class PlayerCombat : MonoBehaviour
     public float scanDuration = 0.2f;
 
     public float DeadEyeEnergyRecover = 60f;
+
+    [Header("Dead Eye AudioSources")]
+
+    public AudioSource deadeyeOneShotSource;
+
+    public AudioSource deadeyeLoopSource;
+
+    [Header("Dead Eye AudioClips")]
+
+    public AudioClip DeadEyeStart;
+    
+    public AudioClip DeadEyeLoop;
+    
+    public AudioClip DeadEyeEnd;
+
+    [Header("Audio Settings")]
+
+    public float loopDuration = 0.1f;
+
+    private Coroutine loop;
     
     void Start()
     {
@@ -67,7 +89,6 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         bAiming = Input.GetMouseButton(1);
@@ -100,6 +121,59 @@ public class PlayerCombat : MonoBehaviour
             currentTime -= Time.deltaTime * maxDeadEyeTime / DeadEyeEnergyRecover;
         }
 
+    }
+
+    void DeadEyeAudioStart()
+    {
+        if (DeadEyeStart != null && deadeyeOneShotSource != null)
+        {
+            deadeyeOneShotSource.PlayOneShot(DeadEyeStart);
+        }
+
+        if (DeadEyeLoop == null || deadeyeLoopSource == null) return;
+
+        if (loop != null) StopCoroutine(loop);
+        
+        deadeyeLoopSource.clip = DeadEyeLoop;
+        deadeyeLoopSource.loop = true;
+        deadeyeLoopSource.volume = 0;
+
+        deadeyeLoopSource.Play();
+
+        loop = StartCoroutine(FadeDeadEyeLoop(deadeyeLoopSource, 1f));
+
+    }
+
+    void DeadEyeAudioEnd()
+    {
+        if (deadeyeOneShotSource != null && DeadEyeEnd != null)
+        {
+            deadeyeLoopSource.PlayOneShot(DeadEyeEnd);
+        }        
+
+        if (deadeyeLoopSource == null || !deadeyeLoopSource.isPlaying) return;
+
+        if (loop != null) StopCoroutine(loop);
+        loop = StartCoroutine(FadeDeadEyeLoop(deadeyeLoopSource, 0f));
+    }
+
+    IEnumerator FadeDeadEyeLoop(AudioSource source, float targetVolume)
+    {
+        float startVolume = source.volume;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < loopDuration)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+
+            source.volume = Mathf.Lerp(startVolume, targetVolume, elapsedTime / loopDuration);
+        
+            yield return null;
+        }
+        
+        source.volume = targetVolume;
+
+        if (targetVolume == 0) source.Stop();
     }
 
     void DeadEye()

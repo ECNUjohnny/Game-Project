@@ -328,7 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wanderRadius: 25
   wanderTimer: 4
-  maxDis: 100
+  maxDis: 50
   player: {fileID: 0}
   wakeUpDistance: 130
   chances: 5

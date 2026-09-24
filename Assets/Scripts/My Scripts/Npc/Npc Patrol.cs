@@ -125,7 +125,6 @@ public class NpcMovement : MonoBehaviour
 
         targetPos = randDirection;
 
-        float dis = Vector3.Distance(targetPos, originPos);
 
         NavMeshHit navHit;
 
@@ -140,7 +139,6 @@ public class NpcMovement : MonoBehaviour
                     return navHit.position;
                 }
             }
-
             else
             {
                 Vector3 returnPos = originPos + Random.insideUnitSphere * dist * 0.5f;

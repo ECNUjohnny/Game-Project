@@ -14,6 +14,13 @@ public class FootStep : MonoBehaviour
 
     public float threshold = 0.4f;
 
+
+    void Start()
+    {
+        audioSource.volume = 0.7f;
+        audioSource.spatialBlend = 1.0f;
+    }
+
     public void Footstep()
     {
         if (movement != null)
