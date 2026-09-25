@@ -66,7 +66,10 @@ public class NpcInteract : MonoBehaviour
 
     void Update()
     {
+        if (UIManager.Instance.IsPause()) return;
+
         if (!isPlayerInRange) return;
+
         
         // 阶段一：等待玩家触发对话
         if (!isInteract && !isWaitingForAction)

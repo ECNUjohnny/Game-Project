@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 
 
 
@@ -40,10 +41,37 @@ public class UIManager : MonoBehaviour
 
     public KeyCode showGoldPanel = KeyCode.Z;
 
+    public enum State
+    {
+        inGame,
+        stop,
+        dialogue,
+        mission,         
+    }
+
+    State state;
+
+    State lastState;
 
     public bool isInDialogue { get; private set; }
 
-    private bool isInEvent;
+    public GameObject healthPanel;
+
+    public GameObject deadEyePanel;
+
+    public GameObject miniMap;
+
+    public GameObject pausePanel;
+
+    public GameObject deathScreen;
+
+    public PausePanel pause;
+
+    [Header("Other Component")]
+
+    public Animator playerAnimator;
+
+    public PlayerCombat combatScript;
 
     private Action onDialogueCompleteCallback;
 
@@ -84,6 +112,10 @@ public class UIManager : MonoBehaviour
             weaponManager.OnWeaponChanged += HandleWeaponSwitch;
         }
 
+        if (pausePanel != null) pausePanel.SetActive(true);
+
+        if (deathScreen != null) deathScreen.SetActive(true);
+
         if (playerShooter != null && playerShooter.currentWeaponController != null)
         {
             HandleWeaponSwitch(playerShooter.currentWeaponController);
@@ -95,6 +127,22 @@ public class UIManager : MonoBehaviour
 
         goldPanel.SetActive(false);
 
+        state = State.inGame;
+        lastState = State.inGame;
+    }
+
+    void Pause()
+    {
+        if (playerAnimator != null) playerAnimator.speed = 0;
+
+        HideForPause();
+    }
+
+    void Resume()
+    {
+        if (playerAnimator != null) playerAnimator.speed = 1;        
+
+        ShowForResume();
     }
 
     void Update()
@@ -103,7 +151,35 @@ public class UIManager : MonoBehaviour
         {
             ShowGoldPanle();
         }
+
+        if (!combatScript.bDeadEye && Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (state != State.stop)
+            {
+                Time.timeScale = 0;
+                lastState = state;
+                state = State.stop;
+            
+                Pause();                
+            }
+            else if (state == State.stop)
+            {
+                Time.timeScale = 1;
+                state = lastState;
+                lastState = State.stop;   
+            
+                Resume();
+            }    
+
+        }
+        
     }
+
+    public bool IsPause()
+    {
+        if (state == State.stop) return true;   
+        else return false;
+    } 
 
     IEnumerator GoldPanelCoroutine()
     {
@@ -189,6 +265,23 @@ public class UIManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
 
+    }
+
+    public void HideForPause()
+    {
+        if (healthPanel != null) healthPanel.SetActive(false);
+        if (deadEyePanel != null) deadEyePanel.SetActive(false);
+        if (miniMap != null) miniMap.SetActive(false);
+        if (pause != null) pause.SlideIn();
+    }
+
+    public void ShowForResume()
+    {
+        
+        if (healthPanel != null) healthPanel.SetActive(true);
+        if (deadEyePanel != null) deadEyePanel.SetActive(true);
+        if (miniMap != null) miniMap.SetActive(true);
+        if (pause != null) pause.SlideOut();
     }
 
     public void StartDialogue(DialogueData dialogueData, Action onComplete = null)

@@ -54,6 +54,7 @@ public class PlayerShooter : MonoBehaviour
 
     void Update()
     {
+        if (UIManager.Instance.IsPause()) return;
 
         gunMuzzle = currentWeaponController.gunMuzzle;
 

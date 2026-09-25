@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using Unity.VisualScripting;
-using System.Diagnostics;
+
+
 [RequireComponent(typeof(PlayerShooter))]
 
 [RequireComponent(typeof(PlayerAnimator))]
@@ -17,7 +17,7 @@ public class PlayerCombat : MonoBehaviour
 
     public int weaponType;
     
-    private bool bDeadEye;
+    public bool bDeadEye { get; private set; }
     
     public float worldTimeScale = 0.35f;
     
@@ -69,6 +69,10 @@ public class PlayerCombat : MonoBehaviour
 
     public float loopDuration = 0.1f;
 
+    public float loopPitch = 1.0f;
+
+    public float maxloopPitch = 1.5f;
+
     private Coroutine loop;
     
     void Start()
@@ -91,11 +95,17 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
+        if (UIManager.Instance.IsPause()) return;
+
         bAiming = Input.GetMouseButton(1);
         
         bShooting = Time.unscaledTime >= shooter.NextFireTime && Input.GetMouseButton(0);
         
-        // Debug.Log($"{shooter.NextFireTime} / {Time.unscaledTime}");
+
+        // if (Input.GetKeyDown(KeyCode.H))
+        // {
+        //     deadeyeOneShotSource.PlayOneShot(DeadEyeEnd);
+        // }
 
         if (DeadEyeMeter.fillAmount > 0 && Input.GetKeyDown(KeyCode.CapsLock))
         {
@@ -112,6 +122,13 @@ public class PlayerCombat : MonoBehaviour
             {
                 DeadEye();
             }    
+        
+            if (deadeyeLoopSource != null && deadeyeLoopSource.isPlaying)
+            {
+                float r = currentTime / maxDeadEyeTime;
+
+                deadeyeLoopSource.pitch = Mathf.Lerp(loopPitch, maxloopPitch, r);
+            }
         }
 
         if (!bDeadEye && DeadEyeMeter.fillAmount != 1.0f)
@@ -137,6 +154,7 @@ public class PlayerCombat : MonoBehaviour
         deadeyeLoopSource.clip = DeadEyeLoop;
         deadeyeLoopSource.loop = true;
         deadeyeLoopSource.volume = 0;
+        deadeyeLoopSource.pitch = loopPitch;
 
         deadeyeLoopSource.Play();
 
@@ -146,15 +164,18 @@ public class PlayerCombat : MonoBehaviour
 
     void DeadEyeAudioEnd()
     {
-        if (deadeyeOneShotSource != null && DeadEyeEnd != null)
-        {
-            deadeyeLoopSource.PlayOneShot(DeadEyeEnd);
-        }        
 
         if (deadeyeLoopSource == null || !deadeyeLoopSource.isPlaying) return;
 
         if (loop != null) StopCoroutine(loop);
+        deadeyeLoopSource.pitch = 1.0f;
         loop = StartCoroutine(FadeDeadEyeLoop(deadeyeLoopSource, 0f));
+    
+        if (deadeyeOneShotSource != null && DeadEyeEnd != null)
+        {
+            deadeyeOneShotSource.PlayOneShot(DeadEyeEnd);
+        }        
+
     }
 
     IEnumerator FadeDeadEyeLoop(AudioSource source, float targetVolume)
@@ -189,6 +210,8 @@ public class PlayerCombat : MonoBehaviour
 
             if (scanCoroutine != null) StopCoroutine(scanCoroutine);
             scanCoroutine = StartCoroutine(AnimateScanLine(0, 1.0f));
+
+            DeadEyeAudioStart();
         }
         else
         {
@@ -198,6 +221,8 @@ public class PlayerCombat : MonoBehaviour
 
             if (scanCoroutine != null) StopCoroutine(scanCoroutine);
             scanCoroutine = StartCoroutine(AnimateScanLine(1f, 0f));
+        
+            DeadEyeAudioEnd();
         }
     }
 

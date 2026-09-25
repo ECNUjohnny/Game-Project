@@ -81,13 +81,13 @@ public class PlayerHealthSystem : MonoBehaviour, IDamageable
 
             EnableRagdoll();
 
-            StartCoroutine(setDeathUI());
+            StartCoroutine(SetDeathUI());
         }
 
         
     }
 
-    IEnumerator setDeathUI()
+    IEnumerator SetDeathUI()
     {
         yield return new WaitForSecondsRealtime(deathTime);
 

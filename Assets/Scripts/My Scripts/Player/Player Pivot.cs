@@ -149,6 +149,7 @@ public class Pivot : MonoBehaviour
         // Rotation
         if (_enableRotation)
         {
+            if (UIManager.Instance.IsPause()) return;
             // Pitch
             xRotation -= -Input.GetAxis("Mouse Y") * _mouseSense / 5;
 
@@ -165,6 +166,8 @@ public class Pivot : MonoBehaviour
 
         if (Input.GetKey(KeyCode.C))
         {
+            if (UIManager.Instance.IsPause()) return;
+
             transform.Rotate(0, 180, 0);
         }
 

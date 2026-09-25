@@ -79,6 +79,8 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
+        if (UIManager.Instance.IsPause()) return;
+
         if (!Input.GetMouseButton(1) && Input.GetKeyDown(Change))
         {
             SwitchToNextWeapon();
