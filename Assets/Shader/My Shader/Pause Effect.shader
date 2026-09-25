@@ -1,12 +1,10 @@
-Shader "MyShader/Dead Effect"
+Shader "Unlit/Pause Effect"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
 
-        _Blend ("Grayscale Blend", Range(0, 1)) = 0
-
-        _Brightness ("Brightness", Range(0, 1)) = 0
+        _Blend ("Blend", Range(0, 1)) = 0
     }
     SubShader
     {
@@ -37,35 +35,26 @@ Shader "MyShader/Dead Effect"
             };
 
             sampler2D _MainTex;
+            float4 _MainTex_ST;
             float _Blend;
-            float _Brightness;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = v.uv; 
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                
-                float2 uvFromCenter = i.uv - float2(0.5, 0.5);
 
-                float dis = length(uvFromCenter);
+                float grey = dot(col.rgb, float3(0.299, 0.587, 0.114)); 
+               
+                col.rgb = lerp(col.rgb, float3(grey, grey, grey), _Blend);
 
-                float vignette = smoothstep(0.5, 0.1, dis);
-
-                float gray = dot(col.rgb, float3(0.299, 0.587, 0.114));
-
-                col.rgb = lerp(col.rgb, float3(gray, gray, gray), _Blend);
-
-                col.rgb = lerp(col.rgb, col.rgb * 0.05f, _Brightness * (1.0 - vignette));
-
-                return col;
+                return col;                
             }
             ENDCG
         }

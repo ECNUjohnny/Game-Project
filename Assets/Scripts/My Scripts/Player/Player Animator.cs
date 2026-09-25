@@ -104,6 +104,12 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetTrigger(TDrawHash);
     }
 
+    public void HoldRifle()
+    {
+        
+    } 
+
+
     /*void LateUpdate()
     {
         if (Input.GetMouseButton(1))

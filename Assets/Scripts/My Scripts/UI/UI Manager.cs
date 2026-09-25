@@ -2,7 +2,6 @@ using System.Collections;
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Playables;
 
 
 
@@ -66,6 +65,8 @@ public class UIManager : MonoBehaviour
     public GameObject deathScreen;
 
     public PausePanel pause;
+
+    public PauseEffectCore pauseEffect;
 
     [Header("Other Component")]
 
@@ -135,12 +136,16 @@ public class UIManager : MonoBehaviour
     {
         if (playerAnimator != null) playerAnimator.speed = 0;
 
+        pauseEffect.Pause(true);
+
         HideForPause();
     }
 
     void Resume()
     {
         if (playerAnimator != null) playerAnimator.speed = 1;        
+
+        pauseEffect.Pause(false);
 
         ShowForResume();
     }
