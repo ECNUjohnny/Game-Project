@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(WeaponManager))]
@@ -50,6 +49,8 @@ public class PlayerShooter : MonoBehaviour
         playerInventory = GetComponent<PlayerInventory>();
 
         playerAnimator = GetComponent<PlayerAnimator>();
+
+        isWeaponDrawn = false;
     }
 
     void Update()
@@ -61,6 +62,8 @@ public class PlayerShooter : MonoBehaviour
         // Debug.Log($"{currentWeapon.fireRate}");
         
         if (currentWeaponController == null) return;
+
+        currentWeaponController.shooterScript = this;
         
         if (NextFireTime <= Time.unscaledTime && currentWeaponController.CurrentAmmo != 0 && Input.GetMouseButton(0))
         {
@@ -116,7 +119,7 @@ public class PlayerShooter : MonoBehaviour
 
         playerAnimator.TriggerShootAnimation();
 
-        Debug.Log("Drawing");
+        // Debug.Log("Drawing");
 
         StartCoroutine(DrawWeaponRoutine());
     }

@@ -132,20 +132,36 @@ public class UIManager : MonoBehaviour
         lastState = State.inGame;
     }
 
-    void Pause()
+    public void Pause()
     {
         if (playerAnimator != null) playerAnimator.speed = 0;
 
+        Time.timeScale = 0;
+        lastState = state;
+        state = State.stop;
+
+
         pauseEffect.Pause(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         HideForPause();
     }
 
-    void Resume()
+    public void Resume()
     {
         if (playerAnimator != null) playerAnimator.speed = 1;        
 
+        Time.timeScale = 1;
+        state = lastState;
+        lastState = State.stop;   
+
+
         pauseEffect.Pause(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         ShowForResume();
     }
@@ -160,19 +176,11 @@ public class UIManager : MonoBehaviour
         if (!combatScript.bDeadEye && Input.GetKeyDown(KeyCode.Escape))
         {
             if (state != State.stop)
-            {
-                Time.timeScale = 0;
-                lastState = state;
-                state = State.stop;
-            
+            {        
                 Pause();                
             }
             else if (state == State.stop)
-            {
-                Time.timeScale = 1;
-                state = lastState;
-                lastState = State.stop;   
-            
+            {               
                 Resume();
             }    
 
@@ -243,7 +251,6 @@ public class UIManager : MonoBehaviour
         if (weaponController != null)
         {
             weaponController.OnAmmoChanged += RefreshUI;
-
         }
 
         RefreshUI(false);

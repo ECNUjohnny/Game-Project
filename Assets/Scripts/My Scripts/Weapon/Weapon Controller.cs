@@ -21,9 +21,13 @@ public class WeaponController : MonoBehaviour
 
     public int CurrentAmmo { get; private set; } // 当前枪里还有多少子弹
 
+    public float weaponDrawnIncrement = 4.0f; // How fast can weapon shoot after drawing it out
+
     private Vector3 visualEndPoint;
 
     public PlayerCombat combatScript;
+
+    public PlayerShooter shooterScript;
 
     public event Action<bool> OnAmmoChanged;
 
@@ -50,7 +54,9 @@ public class WeaponController : MonoBehaviour
 
         // timeScale = combatScript.GetCurrentPlayerTimeScale();
 
-        nextFireTime = Time.unscaledTime + weaponData.fireRate;
+
+        if (shooterScript != null && shooterScript.isWeaponDrawn) nextFireTime = Time.unscaledTime + weaponData.fireRate / weaponDrawnIncrement; 
+        else nextFireTime = Time.unscaledTime + weaponData.fireRate;
 
         CurrentAmmo--;
 

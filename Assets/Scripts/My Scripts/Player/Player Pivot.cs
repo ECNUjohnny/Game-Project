@@ -86,6 +86,8 @@ public class Pivot : MonoBehaviour
     // Apply requested cursor state
     private void SetCursorState()
     {
+        if (UIManager.Instance.IsPause()) return;
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = _wantedMode = CursorLockMode.None;

@@ -24,14 +24,14 @@ public class NpcRandomAppearance : MonoBehaviour
     {
         if (targetRenderer != null && clothMaterial != null)
         {
-            Material[] currentMaterials = targetRenderer.materials;
+            Material[] currentMaterials = targetRenderer.sharedMaterials;
 
             if (materialIndex < currentMaterials.Length)
             {
                 currentMaterials[materialIndex] = clothMaterial;
 
-                targetRenderer.materials = currentMaterials;
-                LODtargetRenderer.materials = currentMaterials;
+                targetRenderer.sharedMaterials = currentMaterials;
+                LODtargetRenderer.sharedMaterials = currentMaterials;
             }
 
             return;

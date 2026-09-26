@@ -216,7 +216,7 @@ MonoBehaviour:
   wanderTimer: 4
   maxDis: 50
   player: {fileID: 0}
-  wakeUpDistance: 130
+  wakeUpDistance: 100
   chances: 5
 --- !u!114 &8454665343716733299
 MonoBehaviour:

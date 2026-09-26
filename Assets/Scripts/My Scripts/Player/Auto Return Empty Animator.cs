@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AutoReturnEmptyAnimator : StateMachineBehaviour
@@ -14,6 +12,8 @@ public class AutoReturnEmptyAnimator : StateMachineBehaviour
 
     private PlayerCombat playerCombat;
 
+    private PlayerShooter shooterScript;
+
     private bool hasTriggered = false;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,6 +24,11 @@ public class AutoReturnEmptyAnimator : StateMachineBehaviour
         if (playerCombat == null)
         {
             playerCombat = animator.GetComponent<PlayerCombat>();
+        }
+    
+        if (shooterScript == null)
+        {
+            shooterScript = animator.GetComponent<PlayerShooter>();
         }
     }
 
@@ -47,6 +52,8 @@ public class AutoReturnEmptyAnimator : StateMachineBehaviour
             animator.SetTrigger(TReturnEmptyHash);
 
             hasTriggered = true;
+
+            shooterScript.isWeaponDrawn = false;
         }
     }
 }

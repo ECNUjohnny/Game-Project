@@ -1,4 +1,5 @@
 using System.Collections;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class PausePanel : MonoBehaviour
@@ -16,6 +17,10 @@ public class PausePanel : MonoBehaviour
 
     private Coroutine slide;
 
+    [Header("Setting Panel")]
+
+    public GameObject setting;
+
 
     void Awake()
     {
@@ -26,6 +31,8 @@ public class PausePanel : MonoBehaviour
         endPos = new(-610, 0);
 
         rect.anchoredPosition = startPos;
+    
+        if (setting != null) setting.SetActive(false);
     }
 
     public void SlideIn()
@@ -66,5 +73,10 @@ public class PausePanel : MonoBehaviour
         rect.anchoredPosition = endPos;
     }
 
+    public void OnSettingClick()
+    {
+        if (setting == null) return;
 
+        setting.SetActive(true);
+    } 
 }
