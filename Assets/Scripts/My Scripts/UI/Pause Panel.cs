@@ -73,10 +73,5 @@ public class PausePanel : MonoBehaviour
         rect.anchoredPosition = endPos;
     }
 
-    public void OnSettingClick()
-    {
-        if (setting == null) return;
-
-        setting.SetActive(true);
-    } 
+     
 }

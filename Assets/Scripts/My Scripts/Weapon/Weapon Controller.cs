@@ -11,7 +11,7 @@ public class WeaponController : MonoBehaviour
     
     public Transform gunMuzzle;
 
-    private float nextFireTime;
+    public float nextFireTime { get; private set; }
 
     public WeaponData weaponData; 
 

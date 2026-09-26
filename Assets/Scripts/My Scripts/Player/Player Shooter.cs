@@ -54,8 +54,11 @@ public class PlayerShooter : MonoBehaviour
     }
 
     void Update()
-    {
+    { 
+        
         if (UIManager.Instance.IsPause()) return;
+
+        NextFireTime = currentWeaponController.nextFireTime;
 
         gunMuzzle = currentWeaponController.gunMuzzle;
 
@@ -82,7 +85,6 @@ public class PlayerShooter : MonoBehaviour
                 if (isWeaponDrawn) currentWeaponController.Shoot(gunMuzzle.position, transform.forward);
             }
 
-            NextFireTime += currentWeapon.fireRate;
         }
 
         if (Input.GetKey(Reload) || (currentWeaponController.CurrentAmmo == 0 && Input.GetMouseButton(0)))
