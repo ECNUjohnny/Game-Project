@@ -157,7 +157,6 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log("OK");
         
         if (player != null)
         {
@@ -243,8 +242,5 @@ public class EnemyAI : MonoBehaviour
             agent.isStopped = true;
             agent.enabled = false;
         }
-
-
     }
-
 }

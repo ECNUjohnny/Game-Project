@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NPCSpawner : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class NPCSpawner : MonoBehaviour
     public Transform cameraFocusPoint;
 
 
+
     [Header("Reference")]
 
     public Transform player;
@@ -53,6 +55,8 @@ public class NPCSpawner : MonoBehaviour
 
     public List<ItemData> inventory;
 
+    public UnityEvent npcTask;
+
     void Start()
     {
         if (player == null)
@@ -61,20 +65,7 @@ public class NPCSpawner : MonoBehaviour
         }
 
         SpawnNpc();
-
-        npcInteract = currentNpcInstance.GetComponent<NpcInteract>();
-
-        if (npcInteract != null)
-        {
-            npcInteract.dialogueData = dialogueData;
-        
-            npcInteract.inventory = inventory;
-
-            // foreach (ItemData item in npcInteract.inventory)
-            // {
-            //     Debug.Log($"{item.name}\n");
-            // }
-        }
+ 
     }
 
     private void SpawnNpc()
@@ -101,12 +92,20 @@ public class NPCSpawner : MonoBehaviour
             {
                 npcAnimator.InitTalk();
             } 
-            else if (initState == NpcState.farmLabor)
-            {
-                                
-            }
+            
             
         }
+
+        if (currentNpcInstance.TryGetComponent(out npcInteract))
+        {
+            npcInteract.dialogueData = dialogueData;
+        
+            npcInteract.inventory = inventory;
+
+            npcInteract.onTaskAccepted = npcTask; 
+
+        }
+
 
         if (npcMat != null)
         {

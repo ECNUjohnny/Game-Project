@@ -8,7 +8,6 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimator))]
 public class PlayerShooter : MonoBehaviour
 {
-    private static readonly WaitForSeconds _waitForSeconds2_5 = new(1f);
     
     [Header("Setting")]
 
@@ -80,9 +79,9 @@ public class PlayerShooter : MonoBehaviour
             {
                 StartDrawingWeapon();
 
-                Debug.Log(isWeaponDrawn);
+                // Debug.Log(isWeaponDrawn);
 
-                if (isWeaponDrawn) currentWeaponController.Shoot(gunMuzzle.position, transform.forward);
+                // if (isWeaponDrawn) currentWeaponController.Shoot(gunMuzzle.position, transform.forward);
             }
 
         }
@@ -113,6 +112,8 @@ public class PlayerShooter : MonoBehaviour
         {
             Debug.Log("No more bullets");
         }
+
+        isWeaponDrawn = false; // close the judgement of fast shooting
     }
 
     private void StartDrawingWeapon()
@@ -128,13 +129,11 @@ public class PlayerShooter : MonoBehaviour
 
     IEnumerator DrawWeaponRoutine()
     {
-        yield return _waitForSeconds2_5;
+        yield return new WaitForSecondsRealtime(0.5f);
 
         isDrawing = false;
 
-        isWeaponDrawn = true;
-
-        
+        isWeaponDrawn = true; 
     }
 
 }   

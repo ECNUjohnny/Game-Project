@@ -267,11 +267,26 @@ public class UIManager : MonoBehaviour
         interactPromptPanel.SetActive(true);
     }
 
+    public void ShowInteraction(string message, float time2wait)
+    {
+        ShowInteractionPrompt(message);
+
+        StartCoroutine(InteractCoroutine(time2wait));
+    }
+
+    private IEnumerator InteractCoroutine(float time2wait)
+    {
+        yield return new WaitForSecondsRealtime(time2wait);
+
+        HideInteractionPrompt();
+    }
+
     public void ShowDialoguePanel(string message)
     {
         dialogueText.text = message;
         dialoguePanel.SetActive(true);
     }
+ 
 
     public void HideDialoguePanle()
     {

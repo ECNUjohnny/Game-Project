@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Westerntownbountymission : MonoBehaviour
 {
-    private static WaitForSeconds _waitForSeconds6 = new(6f);
-    private static WaitForSeconds _waitForSeconds3 = new(3f);
-    [Header("Settings")]
+    [Header("Mission Settings")]
     public Transform[] spawnPoints; 
 
     public int epochs;     
@@ -22,30 +20,39 @@ public class Westerntownbountymission : MonoBehaviour
         end,
     }
     
+    public KeyCode quit = KeyCode.P;
+
     private State currentState;
     
     private int totalEnemiesThisEpoch;
     
     private bool isSpawning;
 
+    private Coroutine spawnCoroutine;
+
+    private Coroutine processCoroutine;
+
+    public float time2wait = 3f;
+
 
     [Header("Spawn Settings")]
-    public float spawnInterval = 1.5f;
-    
+    public float spawnInterval = 1f;    
     public Dictionary<int, GameObject> spawnedEnemies = new Dictionary<int, GameObject>();
     
     public int enemiesCount; 
 
-    [Header("UI Settings")]
-    public GameObject dialoguePanel;
-    
-    public UIManager ui;
     
     void Start()
     {
         epochs = 1;
+    }
 
-        StartCoroutine(EpochFlow());
+    public void StartMission()
+    {
+        Debug.Log("Mission");
+
+        processCoroutine = StartCoroutine(EpochFlow());    
+
     }
 
     /// <summary>
@@ -56,8 +63,12 @@ public class Westerntownbountymission : MonoBehaviour
         while (true)
         {
             currentState = State.head;
-            ui.ShowInteractionPrompt($"Rounnd {epochs} will start");
-            yield return _waitForSeconds3; // 提示保留 3 秒
+
+            UIManager.Instance.ShowInteractionPrompt($"You have started the bounty hunter mission. Press '{quit}' to quit mission");
+            yield return new WaitForSecondsRealtime(time2wait);
+
+            UIManager.Instance.ShowInteractionPrompt($"Rounnd {epochs} will start");
+            yield return new WaitForSecondsRealtime(time2wait); // 提示保留 3 秒
 
             currentState = State.body;
             
@@ -65,16 +76,16 @@ public class Westerntownbountymission : MonoBehaviour
             enemiesCount = totalEnemiesThisEpoch;
             
             isSpawning = true;
-            StartCoroutine(SpawnEnemiesRoutine());
+            spawnCoroutine = StartCoroutine(SpawnEnemiesRoutine());
 
             while (isSpawning || enemiesCount > 0)
             {
-                ui.ShowInteractionPrompt($"Enemies remain: {enemiesCount} / {totalEnemiesThisEpoch}");
+                UIManager.Instance.ShowInteractionPrompt($"Enemies remain: {enemiesCount} / {totalEnemiesThisEpoch}");
                 yield return null; // 等待下一帧
             }
 
             currentState = State.end;
-            ui.ShowInteractionPrompt($"Round {epochs} is end");
+            UIManager.Instance.ShowInteractionPrompt($"Round {epochs} is end");
             
             if (epochs % 5 == 0)
             {
@@ -82,7 +93,7 @@ public class Westerntownbountymission : MonoBehaviour
                 Debug.Log($"Current saved epochs: round {savedEpochs}");
             }
 
-            yield return _waitForSeconds6; // 提示保留 3 秒
+            yield return new WaitForSecondsRealtime(time2wait * 2); // 提示保留 3 秒
             
             epochs++; 
         }
@@ -109,9 +120,14 @@ public class Westerntownbountymission : MonoBehaviour
                 spawnedEnemies.Add(instanceId, enemyObj);
             }
 
+            if (enemyObj.TryGetComponent(out NpcHealth healthSystem))
+            {
+                healthSystem.OnDeath += () => OnEnemyDeath(enemyObj);
+            }
+
             yield return new WaitForSeconds(spawnInterval);
         }
-        
+
         isSpawning = false;
     }
 
@@ -119,8 +135,24 @@ public class Westerntownbountymission : MonoBehaviour
     {
         // 核心流程已经交由 IEnumerator EpochFlow 接管
         // Update 留作处理诸如玩家输入、全局暂停等杂项逻辑
+        if (Input.GetKeyDown(quit))
+        {
+            StopMission();            
+        }
+
     }
-    
+
+    public void StopMission()
+    {
+        if (spawnCoroutine != null) StopCoroutine(spawnCoroutine);
+
+        if (processCoroutine != null) StopCoroutine(processCoroutine);
+
+        UIManager.Instance.ShowInteraction($"The mission is stoped. Recorded round: {epochs}", time2wait * 2);
+
+        
+    }
+
     /// <summary>
     /// 提供给外部（敌人自身的脚本）在死亡时调用的接口
     /// </summary>

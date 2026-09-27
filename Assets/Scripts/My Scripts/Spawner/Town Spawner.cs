@@ -27,7 +27,7 @@ public class TownSpawner : MonoBehaviour
             if (currentNpcCounts < maxNpcs && spawnPoints.Length > 0)
             {
                 SpawnNpc();
-                Debug.Log($"{currentNpcCounts}");
+                // Debug.Log($"{currentNpcCounts}");
             }            
 
             yield return new WaitForSeconds(spawnInterval);

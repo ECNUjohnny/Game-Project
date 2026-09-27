@@ -656,7 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef68a6b9664871e45adb25ac704db25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time2Wait: 8
+  time2Wait: 3
 --- !u!1101 &1143210593796692090
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

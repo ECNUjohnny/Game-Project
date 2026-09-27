@@ -20,6 +20,7 @@ public class AutoReturnEmptyAnimator : StateMachineBehaviour
     {
         time = 0f;
         hasTriggered = false;
+
         
         if (playerCombat == null)
         {
@@ -36,7 +37,7 @@ public class AutoReturnEmptyAnimator : StateMachineBehaviour
     {
         if (hasTriggered) return;
         
-        if (playerCombat.bAiming || playerCombat.bShooting)
+        if (playerCombat.bShooting)
         {
             time = 0f;
             return;
@@ -56,4 +57,6 @@ public class AutoReturnEmptyAnimator : StateMachineBehaviour
             shooterScript.isWeaponDrawn = false;
         }
     }
+
+    
 }

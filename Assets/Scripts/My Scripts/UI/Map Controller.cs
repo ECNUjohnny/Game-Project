@@ -21,6 +21,9 @@ public class MinimapController : MonoBehaviour
             float player3D_X = player.position.x;
             float player3D_Z = player.position.z;
 
+            player3D_X += 500f;
+            player3D_Z += 500f;
+
             // 2. 将 3D 坐标转换为 UI 像素坐标
             // 为什么要加负号（-）？
             // 因为玩家往右走时，玩家图标（红点）在屏幕上是固定不动的，

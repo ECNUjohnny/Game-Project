@@ -11,7 +11,7 @@ public class MapScreenshot : MonoBehaviour
 
     [Header("保存路径及文件名")]
     [Tooltip("图片会直接保存在项目的 Assets 文件夹根目录下")]
-    public string fileName = "Minimap_HighRes.png";
+    public string fileName = "Minimap.png";
 
     private Camera cam;
 
