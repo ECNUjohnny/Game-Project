@@ -15,6 +15,8 @@ public class TownSpawner : MonoBehaviour
 
     public GameObject[] NPCPrefabs; 
 
+    private GameObject npc;
+
     void Start()
     {
         StartCoroutine(SpawnRoutine());        
@@ -43,8 +45,19 @@ public class TownSpawner : MonoBehaviour
         int randomNPCIndex = Random.Range(0, NPCPrefabs.Length);
         GameObject selectedNPC = NPCPrefabs[randomNPCIndex];
 
-        Instantiate(selectedNPC, selectedPoint.position, selectedPoint.rotation);
+        npc = Instantiate(selectedNPC, selectedPoint.position, selectedPoint.rotation);
+
+        if (npc.TryGetComponent(out NpcHealth healthSystem))
+        {
+            healthSystem.OnDeath += NpcDead;   
+        }
+
         currentNpcCounts++;
+    }
+
+    void NpcDead()
+    {
+        currentNpcCounts--;
     }
 
 }

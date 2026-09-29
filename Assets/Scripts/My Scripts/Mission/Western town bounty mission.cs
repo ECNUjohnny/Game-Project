@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Westerntownbountymission : MonoBehaviour
 {
+    [Header("Map Setting")]
+
+    public GameObject enemyBlip;
+    
     [Header("Mission Settings")]
     public Transform[] spawnPoints; 
 
@@ -120,9 +124,17 @@ public class Westerntownbountymission : MonoBehaviour
                 spawnedEnemies.Add(instanceId, enemyObj);
             }
 
+            GameObject blip = Instantiate(enemyBlip, MapController.Instance.mapBackground);
+
+            blip.GetComponent<MapBlip>().target = enemyObj.transform;
+
             if (enemyObj.TryGetComponent(out NpcHealth healthSystem))
             {
-                healthSystem.OnDeath += () => OnEnemyDeath(enemyObj);
+                healthSystem.OnDeath += () =>
+                {
+                    Destroy(blip);
+                    OnEnemyDeath(enemyObj);
+                };
             }
 
             yield return new WaitForSeconds(spawnInterval);

@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  shootingRange: 10
+  shootingRange: 25
   turnSpeed: 1
   gunMuzzle: {fileID: 0}
   shootFreq: 2

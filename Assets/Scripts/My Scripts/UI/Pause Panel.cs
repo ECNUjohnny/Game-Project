@@ -1,5 +1,4 @@
 using System.Collections;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class PausePanel : MonoBehaviour
@@ -26,9 +25,9 @@ public class PausePanel : MonoBehaviour
     {
         rect = GetComponent<RectTransform>();
 
-        startPos = new(-610, 1080);
+        startPos = new(0, 3000);
 
-        endPos = new(-610, 0);
+        endPos = new(0, 0);
 
         rect.anchoredPosition = startPos;
     
