@@ -7,6 +7,8 @@ public class MapController : MonoBehaviour
 
     public RectTransform mapBackground;
 
+    public RectTransform mapRig;
+
     [Header("Transform Setting")]
 
     public float scale = 2.0f;
@@ -39,5 +41,7 @@ public class MapController : MonoBehaviour
         if (player == null || mapBackground == null) return;
         
         mapBackground.localPosition = -WorldToMapLocalPosition(player.position);
+
+        mapRig.localRotation = Quaternion.Euler(0f, 0f, player.eulerAngles.y); 
     }
 }

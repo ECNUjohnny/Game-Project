@@ -45,6 +45,7 @@ public class SceneLoader : MonoBehaviour
             progressText.text = (progress * 100f).ToString("F0") + "%";
 
             yield return null;
+
         }
     }
 
