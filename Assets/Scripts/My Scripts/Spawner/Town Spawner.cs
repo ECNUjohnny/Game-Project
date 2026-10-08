@@ -9,7 +9,7 @@ public class TownSpawner : MonoBehaviour
 
     public Transform[] spawnPoints;
 
-    public float spawnInterval = 5f;
+    public float spawnInterval = 0.5f;
 
     public int currentNpcCounts = 0;  
 

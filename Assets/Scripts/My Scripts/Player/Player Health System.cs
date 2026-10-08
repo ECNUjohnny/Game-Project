@@ -79,11 +79,8 @@ public class PlayerHealthSystem : MonoBehaviour, IDamageable
 
             Dead?.Invoke();
 
-            EnableRagdoll();
-
-            StartCoroutine(SetDeathUI());
+            PlayerDead(); 
         }
-
         
     }
 
@@ -97,6 +94,13 @@ public class PlayerHealthSystem : MonoBehaviour, IDamageable
         }
 
         Time.timeScale = 0f;
+    }
+
+    public void PlayerDead()
+    {
+        EnableRagdoll();
+
+        StartCoroutine(SetDeathUI());
     }
 
     private void SetRagdollState(bool isRagdollActive)
