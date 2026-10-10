@@ -1,0 +1,13 @@
+{
+  "name": "Western.Trains.Tests",
+  "rootNamespace": "Western.Trains.Tests",
+  "references": [
+    "Western.Trains"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

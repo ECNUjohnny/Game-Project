@@ -1,0 +1,10 @@
+{
+  "name": "Western.Trains.Editor",
+  "rootNamespace": "Western.Trains.Editor",
+  "references": [
+    "Western.Trains"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}
