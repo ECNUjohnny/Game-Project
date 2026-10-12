@@ -153,12 +153,15 @@ public class Pivot : MonoBehaviour
         {
             if (UIManager.Instance.IsPause()) return;
             // Pitch
-            xRotation -= -Input.GetAxis("Mouse Y") * _mouseSense / 5;
+            var preferences = Western.Settings.GameSettings.Instance.Data;
+            float mouseSense = _mouseSense * preferences.mouseSensitivity;
+            float verticalSign = preferences.invertY ? -1f : 1f;
+            xRotation -= -Input.GetAxis("Mouse Y") * mouseSense * verticalSign / 5;
 
             if (Input.GetMouseButton(1)) xRotation = Mathf.Clamp(xRotation, -35f, 35f);
             else xRotation = Mathf.Clamp(xRotation, -75f, 75f);
 
-            yRotation += Input.GetAxis("Mouse X") * _mouseSense; 
+            yRotation += Input.GetAxis("Mouse X") * mouseSense;
 
             if (Input.GetMouseButton(1)) transform.localRotation = Quaternion.Euler(-xRotation, yRotation, 0f);
             

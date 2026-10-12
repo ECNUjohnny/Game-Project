@@ -151,6 +151,8 @@ public class UIManager : MonoBehaviour
 
     public void Resume()
     {
+        if (SettingsAnimation.Active != null) SettingsAnimation.Active.CloseImmediately();
+
         if (playerAnimator != null) playerAnimator.speed = 1;        
 
         Time.timeScale = 1;
@@ -171,6 +173,13 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(showGoldPanel))
         {
             ShowGoldPanle();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) &&
+            (SettingsAnimation.Active != null || SettingsAnimation.LastEscapeFrame == Time.frameCount))
+        {
+            if (SettingsAnimation.Active != null) SettingsAnimation.Active.HandleEscape();
+            return;
         }
 
         if (!combatScript.bDeadEye && Input.GetKeyDown(KeyCode.Escape))

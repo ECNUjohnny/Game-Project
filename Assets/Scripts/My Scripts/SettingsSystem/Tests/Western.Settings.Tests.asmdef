@@ -1,0 +1,13 @@
+{
+  "name": "Western.Settings.Tests",
+  "rootNamespace": "Western.Settings.Tests",
+  "references": [
+    "Western.Settings"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

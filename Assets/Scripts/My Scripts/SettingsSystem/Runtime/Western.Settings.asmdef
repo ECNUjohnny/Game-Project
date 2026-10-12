@@ -1,0 +1,8 @@
+{
+  "name": "Western.Settings",
+  "rootNamespace": "Western.Settings",
+  "references": [
+    "Unity.TextMeshPro",
+    "Unity.ugui"
+  ]
+}

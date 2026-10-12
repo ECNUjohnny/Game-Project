@@ -334,7 +334,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 254
+  weaponDrawnIncrement: 4
   combatScript: {fileID: 0}
+  shooterScript: {fileID: 0}
   audioSource: {fileID: -883168488967980077}
 --- !u!82 &-883168488967980077
 AudioSource:
@@ -345,7 +347,7 @@ AudioSource:
   m_GameObject: {fileID: 1191095969629160}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7128067719386893152, guid: aa5cb86810ca99b4ba0267759e5e198b, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
