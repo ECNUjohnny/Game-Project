@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Western.Settings
 {
     [Serializable]
-    public sealed class SettingsWidget
+    public sealed class SettingsWidget // can't be inherited by other classes
     {
         public SettingKey key;
         public Slider slider;

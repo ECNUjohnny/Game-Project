@@ -43,7 +43,7 @@ public static class SettingsUISetup
         var music = mixer.FindMatchingGroups("Music").Single(g => g.name == "Music");
         var effects = mixer.FindMatchingGroups("SFX").Single(g => g.name == "SFX");
 
-        bodyFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset");
+        bodyFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/UI/Font/chinese rocks rg SDF.asset");
         titleFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/UI/Font/chinese rocks rg SDF.asset");
         knob = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/Knob.psd");
         arrow = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/DropdownArrow.psd");

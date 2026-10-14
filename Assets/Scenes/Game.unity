@@ -19842,7 +19842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c431cf629fb5ad84c96372e865077fd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeOfDay: 11.1
+  timeOfDay: 12.8
   timeMultipler: 0
   sunLight: {fileID: 1029885455}
   sunIntensityCurve:
@@ -91602,7 +91602,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -179823,7 +179823,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -500, y: -2, z: -500}
-  m_LocalScale: {x: 300, y: 1, z: 300}
+  m_LocalScale: {x: 200, y: 1, z: 200}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -190619,8 +190619,8 @@ MonoBehaviour:
   pausePanel: {fileID: 1847710738}
   backgroundImage: {fileID: 1475760889}
   uiContentGroup: {fileID: 1666988369}
-  bgFadeDuration: 0.18
-  uiFadeDuration: 0.18
+  bgFadeDuration: 0.2
+  uiFadeDuration: 0.4
   pauseDuration: 0.04
   targetBgAlpha: 1
 --- !u!4 &1476091896 stripped
@@ -219581,19 +219581,19 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1475760888}
     m_Modifications:
-    - target: {fileID: 810025128631680584, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
+    - target: {fileID: 66295088126702559, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 994587905488578815, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
+    - target: {fileID: 2466234171029592706, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1772468207328730094, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
+    - target: {fileID: 2587170365425145664, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1821945852038786235, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
+    - target: {fileID: 5075530462821710158, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
@@ -219601,37 +219601,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 6746751490605944667, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+    - target: {fileID: 5494628344426108840, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906259731887835497, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6746751490605944667, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1475760891}
-    - target: {fileID: 6746751490605944667, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6746751490605944667, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: CloseSettings
-      objectReference: {fileID: 0}
-    - target: {fileID: 6746751490605944667, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: SettingsAnimation, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 7874145016266413751, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7874145016266413751, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7874145016266413751, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.42929292
+      value: 0.5707071
       objectReference: {fileID: 0}
     - target: {fileID: 8346926932509183302, guid: 5d2e6730581059741bde63c09e88a8c5, type: 3}
       propertyPath: m_Pivot.x
@@ -246317,7 +246305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1382bd149d2558f4e9c7b231dee1c74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slideDuration: 0.2
+  slideDuration: 0.15
   setting: {fileID: 1475760887}
 --- !u!205 &1847809561
 LODGroup:
