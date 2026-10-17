@@ -230,7 +230,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  inventory: []
+  inventory:
+  - {fileID: 11400000, guid: f646e1f003c841cda9fd5ee94d7ea0fb, type: 2}
+  - {fileID: 11400000, guid: 7782532f58bb2212649b2bf7e1c9ecfe, type: 2}
+  - {fileID: 11400000, guid: ff2737f3f9e8741cb26f857f4c21fde4, type: 2}
   cameraFocusPoint: {fileID: 4515744115347394388}
 --- !u!114 &6678467696078553862
 MonoBehaviour:

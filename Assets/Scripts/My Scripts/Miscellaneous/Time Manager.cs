@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TimeManager : MonoBehaviour
+public class TimeManager : MonoBehaviour, ISaveable
 {
     [Header("Time Setting")]
 
@@ -24,6 +24,18 @@ public class TimeManager : MonoBehaviour
         UpdateClock();
         
         UpdateSun();
+    }
+
+    public void Capture(GameSaveData data)
+    {
+        data.timeOfDay = timeOfDay;
+
+    }
+
+    public void Restore(GameSaveData data)
+    {
+        timeOfDay = data.timeOfDay;
+        UpdateSun();        
     }
 
     public void UpdateClock()

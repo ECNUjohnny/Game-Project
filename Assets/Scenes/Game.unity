@@ -110443,7 +110443,13 @@ MonoBehaviour:
   initState: 0
   cameraFocusPoint: {fileID: 0}
   player: {fileID: 4670766067664836}
-  inventory: []
+  inventory:
+  - {fileID: 11400000, guid: 57858183e8e116d0f68cd299bde42bd7, type: 2}
+  - {fileID: 11400000, guid: 5643d027a8e0b70f49e4fddb38ed7354, type: 2}
+  - {fileID: 11400000, guid: d5400158c6ed0f7861f3f67405b5cdb9, type: 2}
+  - {fileID: 11400000, guid: 10646f622dfa210e91982df74874ef11, type: 2}
+  - {fileID: 11400000, guid: b246a941d74df215d3dd9977e2249dd7, type: 2}
+  - {fileID: 11400000, guid: b9f8919cd4e893ad4b3fd4227b2b4237, type: 2}
   npcTask:
     m_PersistentCalls:
       m_Calls: []
@@ -118298,7 +118304,13 @@ MonoBehaviour:
   initState: 0
   cameraFocusPoint: {fileID: 0}
   player: {fileID: 0}
-  inventory: []
+  inventory:
+  - {fileID: 11400000, guid: 57858183e8e116d0f68cd299bde42bd7, type: 2}
+  - {fileID: 11400000, guid: 5643d027a8e0b70f49e4fddb38ed7354, type: 2}
+  - {fileID: 11400000, guid: d5400158c6ed0f7861f3f67405b5cdb9, type: 2}
+  - {fileID: 11400000, guid: 10646f622dfa210e91982df74874ef11, type: 2}
+  - {fileID: 11400000, guid: b246a941d74df215d3dd9977e2249dd7, type: 2}
+  - {fileID: 11400000, guid: b9f8919cd4e893ad4b3fd4227b2b4237, type: 2}
   npcTask:
     m_PersistentCalls:
       m_Calls: []
@@ -157099,7 +157111,10 @@ MonoBehaviour:
   initState: 0
   cameraFocusPoint: {fileID: 0}
   player: {fileID: 4670766067664836}
-  inventory: []
+  inventory:
+  - {fileID: 11400000, guid: f646e1f003c841cda9fd5ee94d7ea0fb, type: 2}
+  - {fileID: 11400000, guid: 7782532f58bb2212649b2bf7e1c9ecfe, type: 2}
+  - {fileID: 11400000, guid: ff2737f3f9e8741cb26f857f4c21fde4, type: 2}
   npcTask:
     m_PersistentCalls:
       m_Calls: []
@@ -194474,9 +194489,9 @@ MonoBehaviour:
   - {fileID: 542473242}
   - {fileID: 760177483}
   - {fileID: 796281904}
-  cruiseSpeed: 8
-  reversingSpeed: 3
-  acceleration: 0.8
+  cruiseSpeed: 12
+  reversingSpeed: 8
+  acceleration: 1
   braking: 1.2
   minimumDwell: 60
   maximumDwell: 120
@@ -205772,7 +205787,13 @@ MonoBehaviour:
   initState: 0
   cameraFocusPoint: {fileID: 0}
   player: {fileID: 4670766067664836}
-  inventory: []
+  inventory:
+  - {fileID: 11400000, guid: 57858183e8e116d0f68cd299bde42bd7, type: 2}
+  - {fileID: 11400000, guid: 5643d027a8e0b70f49e4fddb38ed7354, type: 2}
+  - {fileID: 11400000, guid: d5400158c6ed0f7861f3f67405b5cdb9, type: 2}
+  - {fileID: 11400000, guid: 10646f622dfa210e91982df74874ef11, type: 2}
+  - {fileID: 11400000, guid: b246a941d74df215d3dd9977e2249dd7, type: 2}
+  - {fileID: 11400000, guid: b9f8919cd4e893ad4b3fd4227b2b4237, type: 2}
   npcTask:
     m_PersistentCalls:
       m_Calls: []
@@ -252579,8 +252600,11 @@ MonoBehaviour:
   cameraFocusPoint: {fileID: 0}
   player: {fileID: 4670766067664836}
   inventory:
-  - {fileID: 11400000, guid: d1c65cfc922c3ea44b1aaa7559d7d2fb, type: 2}
   - {fileID: 11400000, guid: 6d3e0b06dcdbd0046a0a473bbb3d3eaa, type: 2}
+  - {fileID: 11400000, guid: d1c65cfc922c3ea44b1aaa7559d7d2fb, type: 2}
+  - {fileID: 11400000, guid: 0ecdeebbc94a74764978876888219ec2, type: 2}
+  - {fileID: 11400000, guid: a47a619fbd635693bf8ea7a0e385cc03, type: 2}
+  - {fileID: 11400000, guid: 46f282e3ced0c073ac889752df6149b6, type: 2}
   npcTask:
     m_PersistentCalls:
       m_Calls: []
@@ -281590,8 +281614,11 @@ MonoBehaviour:
   cameraFocusPoint: {fileID: 0}
   player: {fileID: 4670766067664836}
   inventory:
-  - {fileID: 11400000, guid: d1c65cfc922c3ea44b1aaa7559d7d2fb, type: 2}
   - {fileID: 11400000, guid: 6d3e0b06dcdbd0046a0a473bbb3d3eaa, type: 2}
+  - {fileID: 11400000, guid: d1c65cfc922c3ea44b1aaa7559d7d2fb, type: 2}
+  - {fileID: 11400000, guid: 0ecdeebbc94a74764978876888219ec2, type: 2}
+  - {fileID: 11400000, guid: a47a619fbd635693bf8ea7a0e385cc03, type: 2}
+  - {fileID: 11400000, guid: 46f282e3ced0c073ac889752df6149b6, type: 2}
   npcTask:
     m_PersistentCalls:
       m_Calls: []
@@ -289200,7 +289227,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.399309, y: -0.0000016763806, z: -0.0000143274665}
+  m_ConnectedAnchor: {x: 0.39930943, y: 0.0000003501773, z: -0.00001090765}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -289385,7 +289412,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.23371936, y: -0.007864319, z: 0.19098808}
+  m_ConnectedAnchor: {x: -0.2337124, y: -0.00781817, z: 0.19099037}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -289518,7 +289545,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.4041561, y: 0.061351884, z: 0.000027008127}
+  m_ConnectedAnchor: {x: -0.4041573, y: 0.061344124, z: -0.000014090682}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -289749,7 +289776,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.041152343, y: -0.026955292, z: 0.09898017}
+  m_ConnectedAnchor: {x: 0.041155733, y: -0.026932836, z: 0.098949924}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -289861,7 +289888,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.23371728, y: -0.007868409, z: -0.19097956}
+  m_ConnectedAnchor: {x: -0.23371242, y: -0.007836558, z: -0.19100831}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -290067,7 +290094,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.28196284, y: 0.035381854, z: 0.000029874034}
+  m_ConnectedAnchor: {x: -0.2819638, y: 0.03537546, z: -0.00003886409}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -290197,7 +290224,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.3394729, y: -0.0014497377, z: -0.0014160406}
+  m_ConnectedAnchor: {x: -0.33948717, y: -0.0014475663, z: -0.0014331471}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -290402,7 +290429,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.04116066, y: -0.026900223, z: -0.09894554}
+  m_ConnectedAnchor: {x: 0.04115999, y: -0.026904657, z: -0.09896141}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -290505,7 +290532,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.3993081, y: -0.000032879412, z: -0.000000052154064}
+  m_ConnectedAnchor: {x: -0.39930943, y: 0.0000111833215, z: -0.000014856458}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -290720,7 +290747,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.33945572, y: 0.001449021, z: 0.0014154911}
+  m_ConnectedAnchor: {x: 0.3394785, y: 0.0014469987, z: 0.0014484935}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -315352,15 +315379,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4917692024321908, guid: 6e48720e2686baf4b9170b824aaedf0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0609369
+      value: -1.031
       objectReference: {fileID: 0}
     - target: {fileID: 4917692024321908, guid: 6e48720e2686baf4b9170b824aaedf0e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.732622
+      value: -5.795
       objectReference: {fileID: 0}
     - target: {fileID: 4917692024321908, guid: 6e48720e2686baf4b9170b824aaedf0e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -68.79431
+      value: -68.794
       objectReference: {fileID: 0}
     - target: {fileID: 4917692024321908, guid: 6e48720e2686baf4b9170b824aaedf0e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -320977,7 +321004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4991273190312502, guid: c6ab61d40da1cf444b727292a6ed2553, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.4825535
+      value: -5.748
       objectReference: {fileID: 0}
     - target: {fileID: 4991273190312502, guid: c6ab61d40da1cf444b727292a6ed2553, type: 3}
       propertyPath: m_LocalPosition.z
@@ -340679,15 +340706,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4946188713926860, guid: ae6716148b78d9d4fbc289d950210aca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.033937
+      value: -0.971
       objectReference: {fileID: 0}
     - target: {fileID: 4946188713926860, guid: ae6716148b78d9d4fbc289d950210aca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.712622
+      value: -5.844
       objectReference: {fileID: 0}
     - target: {fileID: 4946188713926860, guid: ae6716148b78d9d4fbc289d950210aca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -68.153305
+      value: -68.153
       objectReference: {fileID: 0}
     - target: {fileID: 4946188713926860, guid: ae6716148b78d9d4fbc289d950210aca, type: 3}
       propertyPath: m_LocalRotation.w

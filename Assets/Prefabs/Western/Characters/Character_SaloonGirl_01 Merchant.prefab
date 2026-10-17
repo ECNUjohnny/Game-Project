@@ -228,7 +228,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  inventory: []
+  inventory:
+  - {fileID: 11400000, guid: 6d3e0b06dcdbd0046a0a473bbb3d3eaa, type: 2}
+  - {fileID: 11400000, guid: d1c65cfc922c3ea44b1aaa7559d7d2fb, type: 2}
+  - {fileID: 11400000, guid: 0ecdeebbc94a74764978876888219ec2, type: 2}
+  - {fileID: 11400000, guid: a47a619fbd635693bf8ea7a0e385cc03, type: 2}
+  - {fileID: 11400000, guid: 46f282e3ced0c073ac889752df6149b6, type: 2}
   cameraFocusPoint: {fileID: 4515744115347394388}
 --- !u!1 &1064908387003072
 GameObject:

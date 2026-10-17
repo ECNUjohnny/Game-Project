@@ -11,7 +11,7 @@ public enum WeaponType
 }
 
 [RequireComponent(typeof(PlayerShooter))]
-public class PlayerInventory : MonoBehaviour
+public class PlayerInventory : MonoBehaviour, ISaveable
 {
 
     [Header("Player Assets")]
@@ -32,6 +32,21 @@ public class PlayerInventory : MonoBehaviour
 
         playerShooter = GetComponent<PlayerShooter>();
     }
+
+    public void Restore(GameSaveData data)
+    {
+         data.player.gold = gold;
+         data.player.ammoType = (int)ammoType;
+         data.player.ammo = (int[])ammo.Clone();
+    }
+
+    public void Capture(GameSaveData data)
+    {
+        gold = data.player.gold;
+        ammoType = (WeaponType)data.player.ammoType;
+
+        OnInventoryChanged?.Invoke(true); 
+    } 
 
     public bool SpendGold(int amount)
     {
